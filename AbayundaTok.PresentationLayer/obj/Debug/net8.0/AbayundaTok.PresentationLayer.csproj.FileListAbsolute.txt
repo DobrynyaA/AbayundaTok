@@ -1,0 +1,17 @@
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.PresentationLayer\bin\Debug\net8.0\AbayundaTok.PresentationLayer.deps.json
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.PresentationLayer\bin\Debug\net8.0\AbayundaTok.PresentationLayer.dll
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.PresentationLayer\bin\Debug\net8.0\AbayundaTok.PresentationLayer.pdb
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.PresentationLayer\bin\Debug\net8.0\AbayundaTok.BLL.dll
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.PresentationLayer\bin\Debug\net8.0\AbayundaTok.DAL.dll
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.PresentationLayer\bin\Debug\net8.0\AbayundaTok.BLL.pdb
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.PresentationLayer\bin\Debug\net8.0\AbayundaTok.DAL.pdb
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.PresentationLayer\obj\Debug\net8.0\AbayundaTok.PresentationLayer.csproj.AssemblyReference.cache
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.PresentationLayer\obj\Debug\net8.0\AbayundaTok.PresentationLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.PresentationLayer\obj\Debug\net8.0\AbayundaTok.PresentationLayer.AssemblyInfoInputs.cache
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.PresentationLayer\obj\Debug\net8.0\AbayundaTok.PresentationLayer.AssemblyInfo.cs
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.PresentationLayer\obj\Debug\net8.0\AbayundaTok.PresentationLayer.csproj.CoreCompileInputs.cache
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.PresentationLayer\obj\Debug\net8.0\Abayunda.47E3FAEC.Up2Date
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.PresentationLayer\obj\Debug\net8.0\AbayundaTok.PresentationLayer.dll
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.PresentationLayer\obj\Debug\net8.0\refint\AbayundaTok.PresentationLayer.dll
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.PresentationLayer\obj\Debug\net8.0\AbayundaTok.PresentationLayer.pdb
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.PresentationLayer\obj\Debug\net8.0\ref\AbayundaTok.PresentationLayer.dll

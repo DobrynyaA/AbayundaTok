@@ -1,0 +1,14 @@
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.DAL\bin\Debug\net8.0\AbayundaTok.DAL.deps.json
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.DAL\bin\Debug\net8.0\AbayundaTok.DAL.runtimeconfig.json
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.DAL\bin\Debug\net8.0\AbayundaTok.DAL.dll
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.DAL\bin\Debug\net8.0\AbayundaTok.DAL.pdb
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.DAL\obj\Debug\net8.0\AbayundaTok.DAL.csproj.AssemblyReference.cache
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.DAL\obj\Debug\net8.0\AbayundaTok.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.DAL\obj\Debug\net8.0\AbayundaTok.DAL.AssemblyInfoInputs.cache
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.DAL\obj\Debug\net8.0\AbayundaTok.DAL.AssemblyInfo.cs
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.DAL\obj\Debug\net8.0\AbayundaTok.DAL.csproj.CoreCompileInputs.cache
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.DAL\obj\Debug\net8.0\AbayundaTok.DAL.dll
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.DAL\obj\Debug\net8.0\refint\AbayundaTok.DAL.dll
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.DAL\obj\Debug\net8.0\AbayundaTok.DAL.pdb
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.DAL\obj\Debug\net8.0\AbayundaTok.DAL.genruntimeconfig.cache
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.DAL\obj\Debug\net8.0\ref\AbayundaTok.DAL.dll

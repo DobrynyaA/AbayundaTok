@@ -1,0 +1,6 @@
+@AbayundaTok_HostAddress = http://localhost:5158
+
+GET {{AbayundaTok_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

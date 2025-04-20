@@ -1,0 +1,15 @@
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.BLL\bin\Debug\net8.0\AbayundaTok.BLL.deps.json
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.BLL\bin\Debug\net8.0\AbayundaTok.BLL.dll
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.BLL\bin\Debug\net8.0\AbayundaTok.BLL.pdb
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.BLL\bin\Debug\net8.0\AbayundaTok.DAL.dll
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.BLL\bin\Debug\net8.0\AbayundaTok.DAL.pdb
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.BLL\obj\Debug\net8.0\AbayundaTok.BLL.csproj.AssemblyReference.cache
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.BLL\obj\Debug\net8.0\AbayundaTok.BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.BLL\obj\Debug\net8.0\AbayundaTok.BLL.AssemblyInfoInputs.cache
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.BLL\obj\Debug\net8.0\AbayundaTok.BLL.AssemblyInfo.cs
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.BLL\obj\Debug\net8.0\AbayundaTok.BLL.csproj.CoreCompileInputs.cache
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.BLL\obj\Debug\net8.0\Abayunda.4F78DE21.Up2Date
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.BLL\obj\Debug\net8.0\AbayundaTok.BLL.dll
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.BLL\obj\Debug\net8.0\refint\AbayundaTok.BLL.dll
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.BLL\obj\Debug\net8.0\AbayundaTok.BLL.pdb
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.BLL\obj\Debug\net8.0\ref\AbayundaTok.BLL.dll

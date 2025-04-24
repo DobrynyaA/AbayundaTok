@@ -12,3 +12,4 @@ C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.DAL\obj\Debug\net8.0\refint\AbayundaTo
 C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.DAL\obj\Debug\net8.0\AbayundaTok.DAL.pdb
 C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.DAL\obj\Debug\net8.0\AbayundaTok.DAL.genruntimeconfig.cache
 C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.DAL\obj\Debug\net8.0\ref\AbayundaTok.DAL.dll
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.DAL\obj\Debug\net8.0\AbayundaTok.DAL.sourcelink.json

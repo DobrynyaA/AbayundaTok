@@ -33,9 +33,10 @@ namespace AbayundaTok.BLL.Services
 
             var authClaims = new List<Claim>
             {
+                new(ClaimTypes.NameIdentifier, user.Id),
                 new(ClaimTypes.Name, user.UserName),
                 new(ClaimTypes.Email, user.Email),
-                new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 
             var roles = await _userManager.GetRolesAsync(user);

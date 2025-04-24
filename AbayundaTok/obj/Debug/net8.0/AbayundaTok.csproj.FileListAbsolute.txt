@@ -174,3 +174,10 @@ C:\Users\Dobrynya\Desktop\VKR\AbayundaTok\bin\Debug\net8.0\AbayundaTok.BLL.dll
 C:\Users\Dobrynya\Desktop\VKR\AbayundaTok\bin\Debug\net8.0\AbayundaTok.PresentationLayer.dll
 C:\Users\Dobrynya\Desktop\VKR\AbayundaTok\bin\Debug\net8.0\AbayundaTok.PresentationLayer.pdb
 C:\Users\Dobrynya\Desktop\VKR\AbayundaTok\bin\Debug\net8.0\AbayundaTok.BLL.pdb
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok\obj\Debug\net8.0\AbayundaTok.sourcelink.json
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok\bin\Debug\net8.0\CommunityToolkit.HighPerformance.dll
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok\bin\Debug\net8.0\Minio.dll
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok\bin\Debug\net8.0\System.IO.Hashing.dll
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok\bin\Debug\net8.0\System.Reactive.dll
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok\bin\Debug\net8.0\FFmpeg.AutoGen.dll
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok\bin\Debug\net8.0\Xabe.FFmpeg.dll

@@ -50,9 +50,21 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "FFmpeg.AutoGen": {
+              "target": "Package",
+              "version": "[7.1.1, )"
+            },
             "Microsoft.Extensions.DependencyInjection.Abstractions": {
               "target": "Package",
               "version": "[9.0.4, )"
+            },
+            "Minio": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
+            "Xabe.FFmpeg": {
+              "target": "Package",
+              "version": "[6.0.1, )"
             }
           },
           "imports": [
@@ -117,6 +129,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "FFmpeg.AutoGen": {
+              "target": "Package",
+              "version": "[7.1.1, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[8.0.15, )"
@@ -135,9 +151,17 @@
               "target": "Package",
               "version": "[9.0.4, )"
             },
+            "Minio": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[9.0.4, )"
+            },
+            "Xabe.FFmpeg": {
+              "target": "Package",
+              "version": "[6.0.1, )"
             }
           },
           "imports": [
@@ -206,6 +230,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "FFmpeg.AutoGen": {
+              "target": "Package",
+              "version": "[7.1.1, )"
+            },
             "Microsoft.AspNet.Mvc": {
               "target": "Package",
               "version": "[5.3.0, )"
@@ -213,6 +241,14 @@
             "Microsoft.AspNetCore.Mvc.Core": {
               "target": "Package",
               "version": "[2.3.0, )"
+            },
+            "Minio": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
+            "Xabe.FFmpeg": {
+              "target": "Package",
+              "version": "[6.0.1, )"
             }
           },
           "imports": [
@@ -284,6 +320,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "FFmpeg.AutoGen": {
+              "target": "Package",
+              "version": "[7.1.1, )"
+            },
             "Microsoft.AspNet.Identity.Core": {
               "target": "Package",
               "version": "[2.2.4, )"
@@ -314,6 +354,10 @@
               "target": "Package",
               "version": "[1.20.0, )"
             },
+            "Minio": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[9.0.4, )"
@@ -321,6 +365,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"
+            },
+            "Xabe.FFmpeg": {
+              "target": "Package",
+              "version": "[6.0.1, )"
             }
           },
           "imports": [

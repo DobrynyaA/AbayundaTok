@@ -1,0 +1,50 @@
+﻿using AbayundaTok.BLL.DTO;
+using AbayundaTok.BLL.Interfaces;
+using Diplom.DAL.Entities;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AbayundaTok.PresentationLayer.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ProfileController : ControllerBase
+    {
+        private readonly IUserService _profileService;
+
+        public ProfileController(IUserService profileService)
+        {
+            _profileService = profileService;
+        }
+
+        [HttpGet("my")]
+        [Authorize]
+        public async Task<ActionResult<ProfileDto>> GetMyProfile()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var profile = await _profileService.GetCurrentUserProfileAsync(userId);
+
+            if (profile == null)
+                return NotFound();
+
+            return profile;
+        }
+
+        [HttpGet("{userId}")]
+        public async Task<ActionResult<ProfileDto>> GetUserProfile(string userId)
+        {
+            var profile = await _profileService.GetUserProfileAsync(userId);
+
+            if (profile == null)
+                return NotFound();
+
+            return profile;
+        }
+    }
+}

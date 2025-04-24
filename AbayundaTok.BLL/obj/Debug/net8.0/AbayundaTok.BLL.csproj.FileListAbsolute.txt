@@ -13,3 +13,4 @@ C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.BLL\obj\Debug\net8.0\AbayundaTok.BLL.d
 C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.BLL\obj\Debug\net8.0\refint\AbayundaTok.BLL.dll
 C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.BLL\obj\Debug\net8.0\AbayundaTok.BLL.pdb
 C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.BLL\obj\Debug\net8.0\ref\AbayundaTok.BLL.dll
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.BLL\obj\Debug\net8.0\AbayundaTok.BLL.sourcelink.json

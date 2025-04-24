@@ -16,6 +16,7 @@ namespace Diplom.DAL.Entities
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public int Duration { get; set; }
         public int ViewCount { get; set; }
+        public int LikeCount {  get; set; }
         //навигационные свойства
         public User User { get; set; }
         public ICollection<Like> Likes { get; set; }

@@ -15,3 +15,4 @@ C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.PresentationLayer\obj\Debug\net8.0\Aba
 C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.PresentationLayer\obj\Debug\net8.0\refint\AbayundaTok.PresentationLayer.dll
 C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.PresentationLayer\obj\Debug\net8.0\AbayundaTok.PresentationLayer.pdb
 C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.PresentationLayer\obj\Debug\net8.0\ref\AbayundaTok.PresentationLayer.dll
+C:\Users\Dobrynya\Desktop\VKR\AbayundaTok.PresentationLayer\obj\Debug\net8.0\AbayundaTok.PresentationLayer.sourcelink.json

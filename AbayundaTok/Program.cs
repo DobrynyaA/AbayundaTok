@@ -9,11 +9,15 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Minio;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddSingleton<IMinioService,MinioService>();
+builder.Services.AddScoped<IVideoService, VideoService>();
 
 builder.Services.AddControllers();
 
@@ -42,19 +46,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     {
         options.TokenValidationParameters = new TokenValidationParameters
         {
-            // указывает, будет ли валидироваться издатель при валидации токена
             ValidateIssuer = true,
-            // строка, представляющая издателя
             ValidIssuer = builder.Configuration["Jwt:Issuer"]!,
-            // будет ли валидироваться потребитель токена
             ValidateAudience = true,
-            // установка потребителя токена
             ValidAudience = builder.Configuration["Jwt:Audience"]!,
-            // будет ли валидироваться время существования
             ValidateLifetime = true,
-            // установка ключа безопасности
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Secret"]!)),
-            // валидация ключа безопасности
             ValidateIssuerSigningKey = true,
         };
     });
@@ -99,6 +96,13 @@ builder.Services.AddCors(options => {
               .AllowAnyHeader();
     });
 });
+
+builder.Services.AddSingleton<IMinioClient>(_ =>
+    new MinioClient()
+        .WithEndpoint("localhost:9000")
+        .WithCredentials("admin", "password")
+        .Build()
+);
 
 var app = builder.Build();
 

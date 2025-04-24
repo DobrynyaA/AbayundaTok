@@ -3,14 +3,61 @@
   "WorkspaceRootPath": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5F2644F3-5FBD-4508-AF71-E3F94BBCF2B3}|..\\AbayundaTok.PresentationLayer\\AbayundaTok.PresentationLayer.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.presentationlayer\\controllers\\testcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B916946F-1C23-4958-8AC1-21718E6B106A}|AbayundaTok.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B916946F-1C23-4958-8AC1-21718E6B106A}|AbayundaTok.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9BFD6A4E-5DA9-44CC-9ADC-C6FA066A50D4}|..\\AbayundaTok.BLL\\AbayundaTok.BLL.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.bll\\services\\videoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F2644F3-5FBD-4508-AF71-E3F94BBCF2B3}|..\\AbayundaTok.PresentationLayer\\AbayundaTok.PresentationLayer.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.presentationlayer\\controllers\\videocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9BFD6A4E-5DA9-44CC-9ADC-C6FA066A50D4}|..\\AbayundaTok.BLL\\AbayundaTok.BLL.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.bll\\services\\minioservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9BFD6A4E-5DA9-44CC-9ADC-C6FA066A50D4}|..\\AbayundaTok.BLL\\AbayundaTok.BLL.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.bll\\interfaces\\ivideoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B916946F-1C23-4958-8AC1-21718E6B106A}|AbayundaTok.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{B916946F-1C23-4958-8AC1-21718E6B106A}|AbayundaTok.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9BFD6A4E-5DA9-44CC-9ADC-C6FA066A50D4}|..\\AbayundaTok.BLL\\AbayundaTok.BLL.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.bll\\dto\\videodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{229C92A5-88C2-4819-86DF-C93E0A7D592C}|..\\AbayundaTok.DAL\\AbayundaTok.DAL.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.dal\\models\\video.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9BFD6A4E-5DA9-44CC-9ADC-C6FA066A50D4}|..\\AbayundaTok.BLL\\AbayundaTok.BLL.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.bll\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9BFD6A4E-5DA9-44CC-9ADC-C6FA066A50D4}|..\\AbayundaTok.BLL\\AbayundaTok.BLL.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.bll\\interfaces\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F2644F3-5FBD-4508-AF71-E3F94BBCF2B3}|..\\AbayundaTok.PresentationLayer\\AbayundaTok.PresentationLayer.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.presentationlayer\\controllers\\minioconrtoller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9BFD6A4E-5DA9-44CC-9ADC-C6FA066A50D4}|..\\AbayundaTok.BLL\\AbayundaTok.BLL.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.bll\\interfaces\\iminioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B916946F-1C23-4958-8AC1-21718E6B106A}|AbayundaTok.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok\\abayundatok.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{B916946F-1C23-4958-8AC1-21718E6B106A}|AbayundaTok.csproj|solutionrelative:abayundatok.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F2644F3-5FBD-4508-AF71-E3F94BBCF2B3}|..\\AbayundaTok.PresentationLayer\\AbayundaTok.PresentationLayer.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.presentationlayer\\controllers\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9BFD6A4E-5DA9-44CC-9ADC-C6FA066A50D4}|..\\AbayundaTok.BLL\\AbayundaTok.BLL.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.bll\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B916946F-1C23-4958-8AC1-21718E6B106A}|AbayundaTok.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B916946F-1C23-4958-8AC1-21718E6B106A}|AbayundaTok.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5F2644F3-5FBD-4508-AF71-E3F94BBCF2B3}|..\\AbayundaTok.PresentationLayer\\AbayundaTok.PresentationLayer.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.presentationlayer\\controllers\\testcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9BFD6A4E-5DA9-44CC-9ADC-C6FA066A50D4}|..\\AbayundaTok.BLL\\AbayundaTok.BLL.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.bll\\dto\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9BFD6A4E-5DA9-44CC-9ADC-C6FA066A50D4}|..\\AbayundaTok.BLL\\AbayundaTok.BLL.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.bll\\dto\\profiledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5F2644F3-5FBD-4508-AF71-E3F94BBCF2B3}|..\\AbayundaTok.PresentationLayer\\AbayundaTok.PresentationLayer.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.presentationlayer\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -19,16 +66,22 @@
       "AbsoluteMoniker": "D:0:0:{9BFD6A4E-5DA9-44CC-9ADC-C6FA066A50D4}|..\\AbayundaTok.BLL\\AbayundaTok.BLL.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.bll\\interfaces\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9BFD6A4E-5DA9-44CC-9ADC-C6FA066A50D4}|..\\AbayundaTok.BLL\\AbayundaTok.BLL.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.bll\\dto\\authresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{9BFD6A4E-5DA9-44CC-9ADC-C6FA066A50D4}|..\\AbayundaTok.BLL\\AbayundaTok.BLL.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.bll\\dto\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9BFD6A4E-5DA9-44CC-9ADC-C6FA066A50D4}|..\\AbayundaTok.BLL\\AbayundaTok.BLL.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.bll\\dto\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{229C92A5-88C2-4819-86DF-C93E0A7D592C}|..\\AbayundaTok.DAL\\AbayundaTok.DAL.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.dal\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{229C92A5-88C2-4819-86DF-C93E0A7D592C}|..\\AbayundaTok.DAL\\AbayundaTok.DAL.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.dal\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{229C92A5-88C2-4819-86DF-C93E0A7D592C}|..\\AbayundaTok.DAL\\AbayundaTok.DAL.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.dal\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{229C92A5-88C2-4819-86DF-C93E0A7D592C}|..\\AbayundaTok.DAL\\AbayundaTok.DAL.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.dal\\models\\follow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{229C92A5-88C2-4819-86DF-C93E0A7D592C}|..\\AbayundaTok.DAL\\AbayundaTok.DAL.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.dal\\models\\view.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9BFD6A4E-5DA9-44CC-9ADC-C6FA066A50D4}|..\\AbayundaTok.BLL\\AbayundaTok.BLL.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.bll\\dto\\authresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{229C92A5-88C2-4819-86DF-C93E0A7D592C}|..\\AbayundaTok.DAL\\AbayundaTok.DAL.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.dal\\models\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -37,13 +90,7 @@
       "AbsoluteMoniker": "D:0:0:{229C92A5-88C2-4819-86DF-C93E0A7D592C}|..\\AbayundaTok.DAL\\AbayundaTok.DAL.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.dal\\models\\like.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{229C92A5-88C2-4819-86DF-C93E0A7D592C}|..\\AbayundaTok.DAL\\AbayundaTok.DAL.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.dal\\models\\follow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{229C92A5-88C2-4819-86DF-C93E0A7D592C}|..\\AbayundaTok.DAL\\AbayundaTok.DAL.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.dal\\models\\comment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{229C92A5-88C2-4819-86DF-C93E0A7D592C}|..\\AbayundaTok.DAL\\AbayundaTok.DAL.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.dal\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5F2644F3-5FBD-4508-AF71-E3F94BBCF2B3}|..\\AbayundaTok.PresentationLayer\\AbayundaTok.PresentationLayer.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.presentationlayer\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -68,10 +115,6 @@
       "AbsoluteMoniker": "D:0:0:{229C92A5-88C2-4819-86DF-C93E0A7D592C}|..\\AbayundaTok.DAL\\AbayundaTok.DAL.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.dal\\abayundatok.dal.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B916946F-1C23-4958-8AC1-21718E6B106A}|AbayundaTok.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{B916946F-1C23-4958-8AC1-21718E6B106A}|AbayundaTok.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{229C92A5-88C2-4819-86DF-C93E0A7D592C}|..\\AbayundaTok.DAL\\AbayundaTok.DAL.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.dal\\models\\hashtag.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -86,6 +129,9 @@
     },
     {
       "AbsoluteMoniker": "D:0:0:{229C92A5-88C2-4819-86DF-C93E0A7D592C}|..\\AbayundaTok.DAL\\AbayundaTok.DAL.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.dal\\migrations\\20250419130402_changeuseravatarurlonmaybenull.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{229C92A5-88C2-4819-86DF-C93E0A7D592C}|..\\AbayundaTok.DAL\\AbayundaTok.DAL.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.dal\\migrations\\20250420141055_addlikescounttovideos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -95,7 +141,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -103,13 +149,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAAIAAAAAAAAAAAAwwBgAAAAEAAAA",
+              "ViewState": "AQIAAE8AAAAAAAAAAAAAADUAAAB2AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-16T19:10:51.187Z",
               "IsPinned": true,
@@ -117,152 +163,257 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.PresentationLayer\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "..\\AbayundaTok.PresentationLayer\\Controllers\\AuthController.cs",
-              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.PresentationLayer\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "..\\AbayundaTok.PresentationLayer\\Controllers\\AuthController.cs",
-              "ViewState": "AQIAABUAAAAAAAAAAAAqwC8AAAA9AAAA",
+              "DocumentIndex": 10,
+              "Title": "MinioConrtoller.cs",
+              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.PresentationLayer\\Controllers\\MinioConrtoller.cs",
+              "RelativeDocumentMoniker": "..\\AbayundaTok.PresentationLayer\\Controllers\\MinioConrtoller.cs",
+              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.PresentationLayer\\Controllers\\MinioConrtoller.cs",
+              "RelativeToolTip": "..\\AbayundaTok.PresentationLayer\\Controllers\\MinioConrtoller.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAqwBwAAAAwAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-19T11:57:50.774Z",
+              "WhenOpened": "2025-04-22T19:50:40.897Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MinioServices.cs",
+              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\Services\\MinioServices.cs",
+              "RelativeDocumentMoniker": "..\\AbayundaTok.BLL\\Services\\MinioServices.cs",
+              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\Services\\MinioServices.cs",
+              "RelativeToolTip": "..\\AbayundaTok.BLL\\Services\\MinioServices.cs",
+              "ViewState": "AQIAACoAAAAAAAAAAAA5wBwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T19:47:24.665Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "AuthService.cs",
-              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\Services\\AuthService.cs",
-              "RelativeDocumentMoniker": "..\\AbayundaTok.BLL\\Services\\AuthService.cs",
-              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\Services\\AuthService.cs",
-              "RelativeToolTip": "..\\AbayundaTok.BLL\\Services\\AuthService.cs",
-              "ViewState": "AQIAABAAAAAAAAAAAAAhwB0AAAAMAAAA",
+              "Title": "VideoService.cs",
+              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\Services\\VideoService.cs",
+              "RelativeDocumentMoniker": "..\\AbayundaTok.BLL\\Services\\VideoService.cs",
+              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\Services\\VideoService.cs",
+              "RelativeToolTip": "..\\AbayundaTok.BLL\\Services\\VideoService.cs",
+              "ViewState": "AQIAACMAAAAAAAAAAAAgwDgAAABhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-19T12:56:31.312Z",
+              "WhenOpened": "2025-04-24T18:38:32.483Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "TestController.cs",
-              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.PresentationLayer\\Controllers\\TestController.cs",
-              "RelativeDocumentMoniker": "..\\AbayundaTok.PresentationLayer\\Controllers\\TestController.cs",
-              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.PresentationLayer\\Controllers\\TestController.cs",
-              "RelativeToolTip": "..\\AbayundaTok.PresentationLayer\\Controllers\\TestController.cs",
-              "ViewState": "AQIAAAUAAAAAAAAAAADgvyAAAAAAAAAA",
+              "DocumentIndex": 2,
+              "Title": "VideoController.cs",
+              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.PresentationLayer\\Controllers\\VideoController.cs",
+              "RelativeDocumentMoniker": "..\\AbayundaTok.PresentationLayer\\Controllers\\VideoController.cs",
+              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.PresentationLayer\\Controllers\\VideoController.cs",
+              "RelativeToolTip": "..\\AbayundaTok.PresentationLayer\\Controllers\\VideoController.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAMwBcAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-19T13:51:12.307Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Comment.cs",
-              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Models\\Comment.cs",
-              "RelativeDocumentMoniker": "..\\AbayundaTok.DAL\\Models\\Comment.cs",
-              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Models\\Comment.cs",
-              "RelativeToolTip": "..\\AbayundaTok.DAL\\Models\\Comment.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-20T11:00:02.366Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Models\\User.cs",
-              "RelativeDocumentMoniker": "..\\AbayundaTok.DAL\\Models\\User.cs",
-              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Models\\User.cs",
-              "RelativeToolTip": "..\\AbayundaTok.DAL\\Models\\User.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-16T19:20:21.493Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "AppDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\AppDbContext.cs",
-              "RelativeDocumentMoniker": "..\\AbayundaTok.DAL\\AppDbContext.cs",
-              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\AppDbContext.cs",
-              "RelativeToolTip": "..\\AbayundaTok.DAL\\AppDbContext.cs",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAQwBAAAAAuAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-16T19:14:52.364Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Like.cs",
-              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Models\\Like.cs",
-              "RelativeDocumentMoniker": "..\\AbayundaTok.DAL\\Models\\Like.cs",
-              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Models\\Like.cs",
-              "RelativeToolTip": "..\\AbayundaTok.DAL\\Models\\Like.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-16T19:21:15.977Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Role.cs",
-              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Models\\Role.cs",
-              "RelativeDocumentMoniker": "..\\AbayundaTok.DAL\\Models\\Role.cs",
-              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Models\\Role.cs",
-              "RelativeToolTip": "..\\AbayundaTok.DAL\\Models\\Role.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-16T19:21:16.972Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AuthResponseDto.cs",
-              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\DTO\\AuthResponseDto.cs",
-              "RelativeDocumentMoniker": "..\\AbayundaTok.BLL\\DTO\\AuthResponseDto.cs",
-              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\DTO\\AuthResponseDto.cs",
-              "RelativeToolTip": "..\\AbayundaTok.BLL\\DTO\\AuthResponseDto.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAgAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-19T11:31:05.671Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "LoginDto.cs",
-              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\DTO\\LoginDto.cs",
-              "RelativeDocumentMoniker": "..\\AbayundaTok.BLL\\DTO\\LoginDto.cs",
-              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\DTO\\LoginDto.cs",
-              "RelativeToolTip": "..\\AbayundaTok.BLL\\DTO\\LoginDto.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAKAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-19T11:30:06.933Z",
+              "WhenOpened": "2025-04-24T18:54:02.144Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
+              "Title": "VideoDto.cs",
+              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\DTO\\VideoDto.cs",
+              "RelativeDocumentMoniker": "..\\AbayundaTok.BLL\\DTO\\VideoDto.cs",
+              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\DTO\\VideoDto.cs",
+              "RelativeToolTip": "..\\AbayundaTok.BLL\\DTO\\VideoDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAoAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-24T18:45:37.009Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IVideoService.cs",
+              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\Interfaces\\IVideoService.cs",
+              "RelativeDocumentMoniker": "..\\AbayundaTok.BLL\\Interfaces\\IVideoService.cs",
+              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\Interfaces\\IVideoService.cs",
+              "RelativeToolTip": "..\\AbayundaTok.BLL\\Interfaces\\IVideoService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAwAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-24T18:38:08.73Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "TestController.cs",
+              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.PresentationLayer\\Controllers\\TestController.cs",
+              "RelativeDocumentMoniker": "..\\AbayundaTok.PresentationLayer\\Controllers\\TestController.cs",
+              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.PresentationLayer\\Controllers\\TestController.cs",
+              "RelativeToolTip": "..\\AbayundaTok.PresentationLayer\\Controllers\\TestController.cs",
+              "ViewState": "AQIAAAIAAAAAAAAAAADgvyAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-19T13:51:12.307Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ProfileController.cs",
+              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.PresentationLayer\\Controllers\\ProfileController.cs",
+              "RelativeDocumentMoniker": "..\\AbayundaTok.PresentationLayer\\Controllers\\ProfileController.cs",
+              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.PresentationLayer\\Controllers\\ProfileController.cs",
+              "RelativeToolTip": "..\\AbayundaTok.PresentationLayer\\Controllers\\ProfileController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAIBJwDAAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-20T15:15:30.07Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "IUserService.cs",
+              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\Interfaces\\IUserService.cs",
+              "RelativeDocumentMoniker": "..\\AbayundaTok.BLL\\Interfaces\\IUserService.cs",
+              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\Interfaces\\IUserService.cs",
+              "RelativeToolTip": "..\\AbayundaTok.BLL\\Interfaces\\IUserService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-20T14:55:37.025Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-04-16T19:23:29.576Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Video.cs",
+              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Models\\Video.cs",
+              "RelativeDocumentMoniker": "..\\AbayundaTok.DAL\\Models\\Video.cs",
+              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Models\\Video.cs",
+              "RelativeToolTip": "..\\AbayundaTok.DAL\\Models\\Video.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAIBJwAoAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-20T14:08:01.587Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "..\\AbayundaTok.BLL\\Services\\AuthService.cs",
+              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\Services\\AuthService.cs",
+              "RelativeToolTip": "..\\AbayundaTok.BLL\\Services\\AuthService.cs",
+              "ViewState": "AQIAABcAAAAAAAAAAIAwwCYAAABLAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-19T12:56:31.312Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\Services\\UserService.cs",
+              "RelativeDocumentMoniker": "..\\AbayundaTok.BLL\\Services\\UserService.cs",
+              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\Services\\UserService.cs",
+              "RelativeToolTip": "..\\AbayundaTok.BLL\\Services\\UserService.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAIBJwBIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-20T15:01:28.26Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.PresentationLayer\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "..\\AbayundaTok.PresentationLayer\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.PresentationLayer\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "..\\AbayundaTok.PresentationLayer\\Controllers\\AuthController.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAqwC8AAAA9AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-19T11:57:50.774Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "AbayundaTok.http",
+              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok\\AbayundaTok.http",
+              "RelativeDocumentMoniker": "AbayundaTok.http",
+              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok\\AbayundaTok.http",
+              "RelativeToolTip": "AbayundaTok.http",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2025-04-22T20:13:57.97Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "IMinioService.cs",
+              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\Interfaces\\IMinioService.cs",
+              "RelativeDocumentMoniker": "..\\AbayundaTok.BLL\\Interfaces\\IMinioService.cs",
+              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\Interfaces\\IMinioService.cs",
+              "RelativeToolTip": "..\\AbayundaTok.BLL\\Interfaces\\IMinioService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAwAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T19:47:15.218Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
               "Title": "RegisterDto.cs",
               "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\DTO\\RegisterDto.cs",
               "RelativeDocumentMoniker": "..\\AbayundaTok.BLL\\DTO\\RegisterDto.cs",
               "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\DTO\\RegisterDto.cs",
               "RelativeToolTip": "..\\AbayundaTok.BLL\\DTO\\RegisterDto.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAFAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-19T11:38:10.547Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 23,
+              "Title": "Follow.cs",
+              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Models\\Follow.cs",
+              "RelativeDocumentMoniker": "..\\AbayundaTok.DAL\\Models\\Follow.cs",
+              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Models\\Follow.cs",
+              "RelativeToolTip": "..\\AbayundaTok.DAL\\Models\\Follow.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-20T11:00:03.04Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Models\\User.cs",
+              "RelativeDocumentMoniker": "..\\AbayundaTok.DAL\\Models\\User.cs",
+              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Models\\User.cs",
+              "RelativeToolTip": "..\\AbayundaTok.DAL\\Models\\User.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAIA4wBIAAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T19:20:21.493Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
               "Title": "IAuthService.cs",
               "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\Interfaces\\IAuthService.cs",
               "RelativeDocumentMoniker": "..\\AbayundaTok.BLL\\Interfaces\\IAuthService.cs",
@@ -275,7 +426,124 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "20250420141055_AddLikesCountToVideos.cs",
+              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Migrations\\20250420141055_AddLikesCountToVideos.cs",
+              "RelativeDocumentMoniker": "..\\AbayundaTok.DAL\\Migrations\\20250420141055_AddLikesCountToVideos.cs",
+              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Migrations\\20250420141055_AddLikesCountToVideos.cs",
+              "RelativeToolTip": "..\\AbayundaTok.DAL\\Migrations\\20250420141055_AddLikesCountToVideos.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-20T14:10:56.044Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "LoginDto.cs",
+              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\DTO\\LoginDto.cs",
+              "RelativeDocumentMoniker": "..\\AbayundaTok.BLL\\DTO\\LoginDto.cs",
+              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\DTO\\LoginDto.cs",
+              "RelativeToolTip": "..\\AbayundaTok.BLL\\DTO\\LoginDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-19T11:30:06.933Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ProfileDto.cs",
+              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\DTO\\ProfileDto.cs",
+              "RelativeDocumentMoniker": "..\\AbayundaTok.BLL\\DTO\\ProfileDto.cs",
+              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\DTO\\ProfileDto.cs",
+              "RelativeToolTip": "..\\AbayundaTok.BLL\\DTO\\ProfileDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-20T15:07:52.081Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "View.cs",
+              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Models\\View.cs",
+              "RelativeDocumentMoniker": "..\\AbayundaTok.DAL\\Models\\View.cs",
+              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Models\\View.cs",
+              "RelativeToolTip": "..\\AbayundaTok.DAL\\Models\\View.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-20T14:09:32.233Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "..\\AbayundaTok.DAL\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\AppDbContext.cs",
+              "RelativeToolTip": "..\\AbayundaTok.DAL\\AppDbContext.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAIBJwBsAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T19:14:52.364Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "Like.cs",
+              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Models\\Like.cs",
+              "RelativeDocumentMoniker": "..\\AbayundaTok.DAL\\Models\\Like.cs",
+              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Models\\Like.cs",
+              "RelativeToolTip": "..\\AbayundaTok.DAL\\Models\\Like.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T19:21:15.977Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 26,
+              "Title": "Role.cs",
+              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Models\\Role.cs",
+              "RelativeDocumentMoniker": "..\\AbayundaTok.DAL\\Models\\Role.cs",
+              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Models\\Role.cs",
+              "RelativeToolTip": "..\\AbayundaTok.DAL\\Models\\Role.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T19:21:16.972Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "Comment.cs",
+              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Models\\Comment.cs",
+              "RelativeDocumentMoniker": "..\\AbayundaTok.DAL\\Models\\Comment.cs",
+              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Models\\Comment.cs",
+              "RelativeToolTip": "..\\AbayundaTok.DAL\\Models\\Comment.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-20T11:00:02.366Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "AuthResponseDto.cs",
+              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\DTO\\AuthResponseDto.cs",
+              "RelativeDocumentMoniker": "..\\AbayundaTok.BLL\\DTO\\AuthResponseDto.cs",
+              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\DTO\\AuthResponseDto.cs",
+              "RelativeToolTip": "..\\AbayundaTok.BLL\\DTO\\AuthResponseDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-19T11:31:05.671Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
               "Title": "20250419130402_ChangeUserAvatarUrlOnMayBeNull.cs",
               "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Migrations\\20250419130402_ChangeUserAvatarUrlOnMayBeNull.cs",
               "RelativeDocumentMoniker": "..\\AbayundaTok.DAL\\Migrations\\20250419130402_ChangeUserAvatarUrlOnMayBeNull.cs",
@@ -283,36 +551,25 @@
               "RelativeToolTip": "..\\AbayundaTok.DAL\\Migrations\\20250419130402_ChangeUserAvatarUrlOnMayBeNull.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-19T13:04:02.546Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Follow.cs",
-              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Models\\Follow.cs",
-              "RelativeDocumentMoniker": "..\\AbayundaTok.DAL\\Models\\Follow.cs",
-              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Models\\Follow.cs",
-              "RelativeToolTip": "..\\AbayundaTok.DAL\\Models\\Follow.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-20T11:00:03.04Z",
+              "WhenOpened": "2025-04-19T13:04:02.546Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 29,
               "Title": "WeatherForecastController.cs",
               "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.PresentationLayer\\Controllers\\WeatherForecastController.cs",
               "RelativeDocumentMoniker": "..\\AbayundaTok.PresentationLayer\\Controllers\\WeatherForecastController.cs",
               "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.PresentationLayer\\Controllers\\WeatherForecastController.cs",
               "RelativeToolTip": "..\\AbayundaTok.PresentationLayer\\Controllers\\WeatherForecastController.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAUAAAAWAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAIBJwAUAAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-19T12:01:02.78Z"
+              "WhenOpened": "2025-04-19T12:01:02.78Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 34,
               "Title": "WeatherForecast.cs",
               "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Models\\WeatherForecast.cs",
               "RelativeDocumentMoniker": "..\\AbayundaTok.DAL\\Models\\WeatherForecast.cs",
@@ -320,11 +577,12 @@
               "RelativeToolTip": "..\\AbayundaTok.DAL\\Models\\WeatherForecast.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-19T12:03:02.521Z"
+              "WhenOpened": "2025-04-19T12:03:02.521Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 31,
               "Title": "AbayundaTok.BLL.csproj",
               "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\AbayundaTok.BLL.csproj",
               "RelativeDocumentMoniker": "..\\AbayundaTok.BLL\\AbayundaTok.BLL.csproj",
@@ -332,11 +590,12 @@
               "RelativeToolTip": "..\\AbayundaTok.BLL\\AbayundaTok.BLL.csproj",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-04-19T12:51:18.136Z"
+              "WhenOpened": "2025-04-19T12:51:18.136Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 30,
               "Title": "UserRolesConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Configurations\\UserRolesConfiguration.cs",
               "RelativeDocumentMoniker": "..\\AbayundaTok.DAL\\Configurations\\UserRolesConfiguration.cs",
@@ -344,35 +603,38 @@
               "RelativeToolTip": "..\\AbayundaTok.DAL\\Configurations\\UserRolesConfiguration.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-16T19:35:46.024Z"
+              "WhenOpened": "2025-04-16T19:35:46.024Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 33,
               "Title": "AbayundaTok.csproj",
               "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok\\AbayundaTok.csproj",
               "RelativeDocumentMoniker": "AbayundaTok.csproj",
               "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok\\AbayundaTok.csproj",
               "RelativeToolTip": "AbayundaTok.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB0AAAAOAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACAAAAAOAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-04-19T12:42:26.227Z"
+              "WhenOpened": "2025-04-19T12:42:26.227Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 32,
               "Title": "AbayundaTok.PresentationLayer.csproj",
               "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.PresentationLayer\\AbayundaTok.PresentationLayer.csproj",
               "RelativeDocumentMoniker": "..\\AbayundaTok.PresentationLayer\\AbayundaTok.PresentationLayer.csproj",
               "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.PresentationLayer\\AbayundaTok.PresentationLayer.csproj",
               "RelativeToolTip": "..\\AbayundaTok.PresentationLayer\\AbayundaTok.PresentationLayer.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAABHAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAABHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-04-19T12:43:18.82Z"
+              "WhenOpened": "2025-04-19T12:43:18.82Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 35,
               "Title": "AbayundaTok.DAL.csproj",
               "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\AbayundaTok.DAL.csproj",
               "RelativeDocumentMoniker": "..\\AbayundaTok.DAL\\AbayundaTok.DAL.csproj",
@@ -380,11 +642,12 @@
               "RelativeToolTip": "..\\AbayundaTok.DAL\\AbayundaTok.DAL.csproj",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-04-19T12:04:04.225Z"
+              "WhenOpened": "2025-04-19T12:04:04.225Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 39,
               "Title": "FollowConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Configurations\\FollowConfiguration.cs",
               "RelativeDocumentMoniker": "..\\AbayundaTok.DAL\\Configurations\\FollowConfiguration.cs",
@@ -392,23 +655,12 @@
               "RelativeToolTip": "..\\AbayundaTok.DAL\\Configurations\\FollowConfiguration.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-16T19:35:44.017Z"
+              "WhenOpened": "2025-04-16T19:35:44.017Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok\\appsettings.json",
-              "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok\\appsettings.json",
-              "RelativeToolTip": "appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAEAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-04-16T19:23:29.576Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 38,
               "Title": "VideoHashtagConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Configurations\\VideoHashtagConfiguration.cs",
               "RelativeDocumentMoniker": "..\\AbayundaTok.DAL\\Configurations\\VideoHashtagConfiguration.cs",
@@ -416,11 +668,12 @@
               "RelativeToolTip": "..\\AbayundaTok.DAL\\Configurations\\VideoHashtagConfiguration.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-16T19:35:46.529Z"
+              "WhenOpened": "2025-04-16T19:35:46.529Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 37,
               "Title": "Dockerfile",
               "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok\\Dockerfile",
               "RelativeDocumentMoniker": "Dockerfile",
@@ -428,19 +681,21 @@
               "RelativeToolTip": "Dockerfile",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-04-19T09:55:44.768Z"
+              "WhenOpened": "2025-04-19T09:55:44.768Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 36,
               "Title": "Hashtag.cs",
               "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Models\\Hashtag.cs",
               "RelativeDocumentMoniker": "..\\AbayundaTok.DAL\\Models\\Hashtag.cs",
               "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Models\\Hashtag.cs",
               "RelativeToolTip": "..\\AbayundaTok.DAL\\Models\\Hashtag.cs",
-              "ViewState": "AQIAAAEAAAAAAAAAAAAAABgAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAxwBgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-19T09:55:55.368Z"
+              "WhenOpened": "2025-04-19T09:55:55.368Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -4,8 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AbayundaTok.PresentationLayer.Controllers
 {
@@ -18,27 +20,28 @@ namespace AbayundaTok.PresentationLayer.Controllers
             _videoService = videoService;
         }
 
-        // Загрузка видео
+        [Authorize]
         [HttpPost("upload")]
-        public async Task<IActionResult> UploadVideo(IFormFile file, string name)
+        public async Task<IActionResult> UploadVideo(IFormFile file)
         {
-            var videoId = await _videoService.UploadVideoAsync(file, name);
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var videoId = await _videoService.UploadVideoAsync(file,userId);
             return Ok(new { VideoId = videoId });
         }
 
         // Получение HLS-плейлиста
-        [HttpGet("{videoId}/playlist")]
-        public async Task<IActionResult> GetPlaylist(int videoId)
+        [HttpGet("{videoUrl}/playlist")]
+        public async Task<IActionResult> GetPlaylist(string videoUrl)
         {
-            var playlistUrl = await _videoService.GetVideoPlaylistAsync(videoId);
+            var playlistUrl = await _videoService.GetVideoPlaylistAsync(videoUrl);
             return Ok(new { PlaylistUrl = playlistUrl });
         }
 
         // Получение метаданных
-        [HttpGet("{videoId}/metadata")]
-        public async Task<IActionResult> GetMetadata(int videoId)
+        [HttpGet("{videoUrl}/metadata")]
+        public async Task<IActionResult> GetMetadata(string videoUrl)
         {
-            var meta = await _videoService.GetVideoMetadataAsync(videoId);
+            var meta = await _videoService.GetVideoMetadataAsync(videoUrl);
             return Ok(meta);
         }
     }

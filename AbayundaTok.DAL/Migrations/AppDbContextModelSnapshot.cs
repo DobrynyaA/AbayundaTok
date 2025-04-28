@@ -40,10 +40,8 @@ namespace AbayundaTok.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("UserId1")
+                    b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("VideoId")
@@ -53,7 +51,7 @@ namespace AbayundaTok.DAL.Migrations
 
                     b.HasIndex("ParentCommentId");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.HasIndex("VideoId");
 
@@ -116,10 +114,8 @@ namespace AbayundaTok.DAL.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("UserId1")
+                    b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("VideoId")
@@ -127,7 +123,7 @@ namespace AbayundaTok.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.HasIndex("VideoId");
 
@@ -239,7 +235,6 @@ namespace AbayundaTok.DAL.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("Duration")
@@ -249,13 +244,9 @@ namespace AbayundaTok.DAL.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("ThumbnailUrl")
-                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("UserId1")
+                    b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -268,7 +259,7 @@ namespace AbayundaTok.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Videos");
                 });
@@ -299,11 +290,7 @@ namespace AbayundaTok.DAL.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("UserId1")
-                        .IsRequired()
+                    b.Property<string>("UserId")
                         .HasColumnType("text");
 
                     b.Property<int>("VideoId")
@@ -311,7 +298,7 @@ namespace AbayundaTok.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.HasIndex("VideoId");
 
@@ -458,7 +445,9 @@ namespace AbayundaTok.DAL.Migrations
 
                     b.HasOne("Diplom.DAL.Entities.User", "User")
                         .WithMany("Comments")
-                        .HasForeignKey("UserId1");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Diplom.DAL.Entities.Video", "Video")
                         .WithMany("Comments")
@@ -496,7 +485,9 @@ namespace AbayundaTok.DAL.Migrations
                 {
                     b.HasOne("Diplom.DAL.Entities.User", "User")
                         .WithMany("Likes")
-                        .HasForeignKey("UserId1");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Diplom.DAL.Entities.Video", "Video")
                         .WithMany("Likes")
@@ -513,7 +504,7 @@ namespace AbayundaTok.DAL.Migrations
                 {
                     b.HasOne("Diplom.DAL.Entities.User", "User")
                         .WithMany("Videos")
-                        .HasForeignKey("UserId1")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -543,9 +534,7 @@ namespace AbayundaTok.DAL.Migrations
                 {
                     b.HasOne("Diplom.DAL.Entities.User", "User")
                         .WithMany("Views")
-                        .HasForeignKey("UserId1")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.HasOne("Diplom.DAL.Entities.Video", "Video")
                         .WithMany()

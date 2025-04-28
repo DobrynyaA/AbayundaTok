@@ -2,14 +2,14 @@
   {
     "ContainingType": "AbayundaTok.PresentationLayer.Controllers.VideoController",
     "Method": "GetMetadata",
-    "RelativePath": "{videoId}/metadata",
+    "RelativePath": "{videoUrl}/metadata",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "videoId",
-        "Type": "System.Int32",
+        "Name": "videoUrl",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
@@ -18,14 +18,14 @@
   {
     "ContainingType": "AbayundaTok.PresentationLayer.Controllers.VideoController",
     "Method": "GetPlaylist",
-    "RelativePath": "{videoId}/playlist",
+    "RelativePath": "{videoUrl}/playlist",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "videoId",
-        "Type": "System.Int32",
+        "Name": "videoUrl",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
@@ -71,38 +71,6 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "AbayundaTok.PresentationLayer.Controllers.MinioController",
-    "Method": "StreamVideo",
-    "RelativePath": "api/Minio/stream/{objectName}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "objectName",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "AbayundaTok.PresentationLayer.Controllers.MinioController",
-    "Method": "UploadVideo",
-    "RelativePath": "api/Minio/upload",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "file",
-        "Type": "Microsoft.AspNetCore.Http.IFormFile",
-        "IsRequired": false
-      }
-    ],
     "ReturnTypes": []
   },
   {
@@ -172,11 +140,6 @@
       {
         "Name": "file",
         "Type": "Microsoft.AspNetCore.Http.IFormFile",
-        "IsRequired": false
-      },
-      {
-        "Name": "name",
-        "Type": "System.String",
         "IsRequired": false
       }
     ],

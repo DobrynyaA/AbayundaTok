@@ -9,7 +9,7 @@ namespace Diplom.DAL.Entities
     public class View
     {
         public int Id { get; set; }
-        public int? UserId { get; set; } // Может быть null (анонимный просмотр)
+        public string? UserId { get; set; } // Может быть null (анонимный просмотр)
         public int VideoId { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 

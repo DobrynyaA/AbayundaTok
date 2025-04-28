@@ -5,6 +5,10 @@ using Minio;
 using Diplom.DAL.Entities;
 using System.Diagnostics;
 using System.Text;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc;
+using AbayundaTok.DAL;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace AbayundaTok.BLL.Services
 {
@@ -13,13 +17,13 @@ namespace AbayundaTok.BLL.Services
         private readonly IMinioClient _minioClient;
         private const string BucketName = "videos";
         private const string FfmpegPath = @"C:\Program Files\ffmpeg-7.1.1-full_build\bin\ffmpeg.exe";
-
-        public VideoService(IMinioClient minioClient)
+        private readonly AppDbContext _dbContext;
+        public VideoService(IMinioClient minioClient, AppDbContext dbContext)
         {
             _minioClient = minioClient;
+            _dbContext = dbContext;
         }
 
-        // Создаем бакет при первом запуске (если его нет)
         private async Task EnsureBucketExistsAsync()
         {
             var exists = await _minioClient.BucketExistsAsync(
@@ -32,32 +36,26 @@ namespace AbayundaTok.BLL.Services
                 );
         }
 
-        // Загрузка видео и конвертация в HLS
-        public async Task<string> UploadVideoAsync(IFormFile file, string videoName)
+        public async Task<Video> UploadVideoAsync(IFormFile file, string userId)
         {
             await EnsureBucketExistsAsync();
 
-            var videoId = Guid.NewGuid().ToString();
+            var videoUrl = Guid.NewGuid().ToString();
             var tempPath = Path.GetTempPath();
-            var originalPath = Path.Combine(tempPath, $"{videoId}_original.mp4");
-            var hlsPath = Path.Combine(tempPath, videoId);
+            var originalPath = Path.Combine(tempPath, $"{videoUrl}_original.mp4");
+            var hlsPath = Path.Combine(tempPath, videoUrl);
 
             try
             {
-                // 1. Создаем папку для HLS-чанков
                 Directory.CreateDirectory(hlsPath);
-
-                // 2. Сохраняем исходный файл
                 await using (var stream = new FileStream(originalPath, FileMode.Create))
                 {
                     await file.CopyToAsync(stream);
                 }
 
-                // 3. Конвертируем в HLS
                 var ffmpegCmd = $"-i \"{originalPath}\" -c:v libx264 -hls_time 10 -hls_list_size 0 \"{Path.Combine(hlsPath, "master.m3u8")}\"";
                 await ExecuteFFmpegCommand(ffmpegCmd);
 
-                // 4. Загружаем чанки в MinIO
                 var chunks = Directory.GetFiles(hlsPath);
                 if (chunks.Length == 0)
                 {
@@ -66,7 +64,7 @@ namespace AbayundaTok.BLL.Services
 
                 foreach (var chunk in chunks)
                 {
-                    var objectName = $"{videoId}/{Path.GetFileName(chunk)}";
+                    var objectName = $"{videoUrl}/{Path.GetFileName(chunk)}";
                     await _minioClient.PutObjectAsync(
                         new PutObjectArgs()
                             .WithBucket(BucketName)
@@ -75,11 +73,27 @@ namespace AbayundaTok.BLL.Services
                     );
                 }
 
-                return videoId;
+                var video = new Video
+                {
+                    UserId = userId,
+                    VideoUrl = videoUrl,
+                    Description = "fsdfsdfsdf",
+                };
+
+                try
+                {
+                    _dbContext.Videos.Add(video);
+                    await _dbContext.SaveChangesAsync();
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                }
+                
+                return video;
             }
             finally
             {
-                // 5. Очистка временных файлов
                 if (File.Exists(originalPath))
                 {
                     File.Delete(originalPath);
@@ -92,44 +106,40 @@ namespace AbayundaTok.BLL.Services
             }
         }
 
-        // Получение видео как потока (прямая загрузка)
-        public async Task<Stream> GetVideoStreamAsync(int videoId)
+        public async Task<Stream> GetVideoStreamAsync(string videoUrl)
         {
             var stream = new MemoryStream();
             await _minioClient.GetObjectAsync(
                 new GetObjectArgs()
                     .WithBucket(BucketName)
-                    .WithObject($"{videoId}/master.m3u8")
+                    .WithObject($"{videoUrl}/master.m3u8")
                     .WithCallbackStream(st => st.CopyTo(stream))
             );
             stream.Position = 0;
             return stream;
         }
 
-        // Получение HLS-плейлиста
-        public async Task<string> GetVideoPlaylistAsync(int videoId)
+        public async Task<string> GetVideoPlaylistAsync(string videoUrl)
         {
             var playlistUrl = await _minioClient.PresignedGetObjectAsync(
                 new PresignedGetObjectArgs()
                     .WithBucket(BucketName)
-                    .WithObject($"{videoId}/master.m3u8")
-                    .WithExpiry(3600) // Ссылка действует 1 час
+                    .WithObject($"{videoUrl}/master.m3u8")
+                    .WithExpiry(3600)
             );
             return playlistUrl;
         }
 
-        // Метаданные видео (можно расширить)
-        public async Task<Video> GetVideoMetadataAsync(int videoId)
+        public async Task<Video> GetVideoMetadataAsync(string videoUrl)
         {
             var meta = new Video
             {
-                Id = videoId,
+                VideoUrl = videoUrl,
                 CreatedAt = DateTime.UtcNow
             };
             return meta;
         }
 
-        // Вспомогательный метод для запуска FFmpeg
         private async Task ExecuteFFmpegCommand(string command)
         {
             var process = new Process
@@ -149,19 +159,14 @@ namespace AbayundaTok.BLL.Services
             var output = new StringBuilder();
             var error = new StringBuilder();
 
-            // Асинхронное чтение выходных потоков
             process.OutputDataReceived += (sender, e) => output.AppendLine(e.Data);
             process.ErrorDataReceived += (sender, e) => error.AppendLine(e.Data);
 
             try
             {
                 process.Start();
-
-                // Начинаем асинхронное чтение потоков
                 process.BeginOutputReadLine();
                 process.BeginErrorReadLine();
-
-                // Ожидание завершения с таймаутом (30 секунд)
                 var timeout = TimeSpan.FromSeconds(30);
                 if (!await WaitForExitAsync(process, timeout))
                 {

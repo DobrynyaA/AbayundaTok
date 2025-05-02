@@ -3,12 +3,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'Services/auth_service.dart';
 import 'pages/home_page.dart';
 import 'pages/profile_page.dart';
+import 'package:flutter/services.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final authService = AuthService(await SharedPreferences.getInstance());
+  enableHttpCleartext();
   runApp(MyApp(authService: authService));
 }
 
+void enableHttpCleartext() {
+  SystemChannels.platform.invokeMethod('SystemNavigator.enableCleartextTraffic');
+}
 class MyApp extends StatelessWidget {
   final AuthService authService;
 

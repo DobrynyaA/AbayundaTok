@@ -53,7 +53,20 @@ namespace AbayundaTok.BLL.Services
                     await file.CopyToAsync(stream);
                 }
 
-                var ffmpegCmd = $"-i \"{originalPath}\" -c:v libx264 -hls_time 10 -hls_list_size 0 \"{Path.Combine(hlsPath, "master.m3u8")}\"";
+                //var ffmpegCmd = $"-i \"{originalPath}\" -c:v libx264 -hls_time 10 -hls_list_size 0 \"{Path.Combine(hlsPath, "master.m3u8")}\"";
+                var ffmpegCmd = $"-i \"{originalPath}\" " +
+                "-c:v h264 " +
+                "-preset fast " +
+                "-b:v 800k " +
+                "-s 640x360 " +
+                "-c:a aac " +
+                "-b:a 128k " +
+                "-hls_time 4 " +
+                "-hls_playlist_type vod " +
+                $"-hls_segment_filename \"{Path.Combine(hlsPath, "%03d.ts")}\" " +
+                $"-hls_base_url \"http://localhost:9000/videos/{videoUrl}/\" " +
+                $"\"{Path.Combine(hlsPath, "master.m3u8")}\"";
+
                 await ExecuteFFmpegCommand(ffmpegCmd);
 
                 var chunks = Directory.GetFiles(hlsPath);
@@ -65,12 +78,23 @@ namespace AbayundaTok.BLL.Services
                 foreach (var chunk in chunks)
                 {
                     var objectName = $"{videoUrl}/{Path.GetFileName(chunk)}";
-                    await _minioClient.PutObjectAsync(
-                        new PutObjectArgs()
-                            .WithBucket(BucketName)
-                            .WithObject(objectName)
-                            .WithFileName(chunk)
-                    );
+
+                    try
+                    {
+                        await _minioClient.PutObjectAsync(
+                            new PutObjectArgs()
+                                .WithBucket(BucketName)
+                                .WithObject(objectName)
+                                .WithContentType("application/vnd.apple.mpegurl")
+                                .WithFileName(chunk)
+                        );
+
+                        Console.WriteLine($"✅ Загружено: {objectName}");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"❌ Ошибка при загрузке {objectName}: {ex.Message}");
+                    }
                 }
 
                 var video = new Video
@@ -85,11 +109,11 @@ namespace AbayundaTok.BLL.Services
                     _dbContext.Videos.Add(video);
                     await _dbContext.SaveChangesAsync();
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     Console.WriteLine(e.ToString());
                 }
-                
+
                 return video;
             }
             finally
@@ -106,6 +130,8 @@ namespace AbayundaTok.BLL.Services
             }
         }
 
+        
+
         public async Task<Stream> GetVideoStreamAsync(string videoUrl)
         {
             var stream = new MemoryStream();
@@ -119,7 +145,7 @@ namespace AbayundaTok.BLL.Services
             return stream;
         }
 
-        public async Task<string> GetVideoPlaylistAsync(string videoUrl)
+        /*public async Task<string> GetVideoPlaylistAsync(string videoUrl)
         {
             var playlistUrl = await _minioClient.PresignedGetObjectAsync(
                 new PresignedGetObjectArgs()
@@ -128,6 +154,10 @@ namespace AbayundaTok.BLL.Services
                     .WithExpiry(3600)
             );
             return playlistUrl;
+        }*/
+        public async Task<string> GetVideoPlaylistAsync(string videoUrl)
+        {
+            return $"http://localhost:9000/videos/{videoUrl}/master.m3u8";
         }
 
         public async Task<Video> GetVideoMetadataAsync(string videoUrl)
@@ -159,15 +189,23 @@ namespace AbayundaTok.BLL.Services
             var output = new StringBuilder();
             var error = new StringBuilder();
 
-            process.OutputDataReceived += (sender, e) => output.AppendLine(e.Data);
-            process.ErrorDataReceived += (sender, e) => error.AppendLine(e.Data);
+            process.OutputDataReceived += (sender, e) =>
+            {
+                if (e.Data != null) output.AppendLine(e.Data);
+            };
+
+            process.ErrorDataReceived += (sender, e) =>
+            {
+                if (e.Data != null) error.AppendLine(e.Data);
+            };
 
             try
             {
                 process.Start();
                 process.BeginOutputReadLine();
                 process.BeginErrorReadLine();
-                var timeout = TimeSpan.FromSeconds(30);
+
+                var timeout = TimeSpan.FromSeconds(60);
                 if (!await WaitForExitAsync(process, timeout))
                 {
                     process.Kill();
@@ -176,8 +214,19 @@ namespace AbayundaTok.BLL.Services
 
                 if (process.ExitCode != 0)
                 {
+                    Console.WriteLine("FFmpeg Output:");
+                    Console.WriteLine(output.ToString());
+                    Console.WriteLine("FFmpeg Error:");
+                    Console.WriteLine(error.ToString());
+
                     throw new Exception($"FFmpeg failed with code {process.ExitCode}. Error: {error}");
                 }
+
+                Console.WriteLine("FFmpeg Output:");
+                Console.WriteLine(output.ToString());
+                Console.WriteLine("FFmpeg Error:");
+                Console.WriteLine(error.ToString());
+
             }
             finally
             {

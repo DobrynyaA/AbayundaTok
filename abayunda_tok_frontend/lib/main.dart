@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Services/auth_service.dart';
@@ -7,13 +9,18 @@ import 'package:flutter/services.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final authService = AuthService(await SharedPreferences.getInstance());
-  enableHttpCleartext();
+  HttpOverrides.global = _MyHttpOverrides();
   runApp(MyApp(authService: authService));
 }
 
-void enableHttpCleartext() {
-  SystemChannels.platform.invokeMethod('SystemNavigator.enableCleartextTraffic');
+class _MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (cert, host, port) => true;
+  }
 }
+
 class MyApp extends StatelessWidget {
   final AuthService authService;
 

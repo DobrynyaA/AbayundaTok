@@ -14,6 +14,7 @@ namespace AbayundaTok.BLL.DTO
         public int FollowersCount { get; set; }
         public int FollowingCount { get; set; }
         public DateTime? CreatedAt { get; set; }
+        public long LikeCount {  get; set; }
 
     }
 }

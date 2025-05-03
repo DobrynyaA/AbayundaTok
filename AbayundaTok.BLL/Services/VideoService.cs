@@ -64,7 +64,7 @@ namespace AbayundaTok.BLL.Services
                 "-hls_time 4 " +
                 "-hls_playlist_type vod " +
                 $"-hls_segment_filename \"{Path.Combine(hlsPath, "%03d.ts")}\" " +
-                $"-hls_base_url \"http://localhost:9000/videos/{videoUrl}/\" " +
+                $"-hls_base_url \"http://10.0.2.2:9000/videos/{videoUrl}/\" " +
                 $"\"{Path.Combine(hlsPath, "master.m3u8")}\"";
 
                 await ExecuteFFmpegCommand(ffmpegCmd);

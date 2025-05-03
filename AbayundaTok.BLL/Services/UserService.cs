@@ -25,7 +25,7 @@ namespace AbayundaTok.BLL.Services
 
         public async Task<ProfileDto> GetUserProfileAsync(string userId)
         {
-            return await _userManager.Users
+            var userProfile = await _userManager.Users
                 .Where(u => u.Id == userId)
                 .Select(u => new ProfileDto
                 {
@@ -34,9 +34,12 @@ namespace AbayundaTok.BLL.Services
                     Bio = u.Bio,
                     FollowersCount = u.Followers.Count,
                     FollowingCount = u.Following.Count,
-                    CreatedAt = u.CreatedAt
+                    CreatedAt = u.CreatedAt,
                 })
                 .FirstOrDefaultAsync();
+
+            userProfile.LikeCount = await _context.Videos.Where(u=>u.UserId == userId).SumAsync(likes => likes.LikeCount);
+            return userProfile;
         }
 
         public async Task<ProfileDto> GetCurrentUserProfileAsync(string currentUserId)

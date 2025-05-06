@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:jwt_decoder/jwt_decoder.dart';
 class AuthService {
   static const String _baseUrl = 'https://10.0.2.2:7000/api/Auth';
   final SharedPreferences _prefs;
@@ -83,25 +83,6 @@ class AuthService {
     return _prefs.getString('jwt_token');
   }
 
-  // Future<String?> getUserName() async {
-  //   final token = await getToken();
-  //   if (token == null) return null;
-    
-  //   try {
-  //     final response = await http.get(
-  //       Uri.parse('https://10.0.2.2:7000/api/Test'),
-  //       headers: {'Authorization': 'Bearer $token'},
-  //     );
-
-  //     if (response.statusCode == 200) {
-  //       return jsonDecode(response.body).replaceAll('Привет, ', '').replaceAll('!', '');
-  //     }
-  //     return null;
-  //   } catch (e) {
-  //     return null;
-  //   }
-  // }
-
   Future<String?> getUserName() async{
     final token = await getToken();
   if (token == null) return null;
@@ -135,5 +116,34 @@ class AuthService {
 
   Future<void> logout() async {
     await _prefs.remove('jwt_token');
+  }
+
+  Future<Map<String, dynamic>?> getUserProfile() async {
+    final token = await getToken();
+    if (token == null) return null;
+
+    try {
+      final client = HttpClient()
+        ..badCertificateCallback = (cert, host, port) => true;
+      final ioClient = IOClient(client);
+
+      final response = await ioClient.get(
+        Uri.parse('https://10.0.2.2:7000/api/Profile/my'),
+        headers: {'Authorization': 'Bearer $token'},
+        //headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjFjN2MwYzgxLTUzNDgtNGU4NC1iM2YwLWNiMTY1NzUzNDI5NCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJPbGVnIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoia2l6YXJ1QG1haWwucnUiLCJqdGkiOiJlN2YwNmNjNC1iNTJjLTQ3NGQtOGY4NC0yZTNhMjRiNThjZTkiLCJleHAiOjE3NDY0NDk5NDQsImlzcyI6Ik15QXV0aFNlcnZlciIsImF1ZCI6Ik15QXV0aENsaWVudCJ9.qhg-pQIAd-KV_pBJbjMOgJUcKP0hHQkmCROn4XujRLU'},
+      );
+
+      if (response.statusCode == 200) {
+        return jsonDecode(response.body);
+      }
+
+      if (response.statusCode == 401) {
+        logout();
+      }
+      return null;
+    } catch (e) {
+      print('Error fetching user profile: $e');
+      return null;
+    }
   }
 }

@@ -1,9 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:video_player/video_player.dart';
 import 'package:chewie/chewie.dart';
+import 'package:flutter/material.dart';
+import 'package:abayunda_tok_frontend/Services/video_service.dart';
+import 'package:video_player/video_player.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final VideoService videoService;
+
+  const HomePage({super.key, required this.videoService});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -11,169 +14,239 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final PageController _pageController = PageController();
-  final List<String> _videoUrls = [
-      //'https://devstreaming-cdn.apple.com/videos/streaming/examples/bipbop_4x3/bipbop_4x3_variant.m3u8', 
-      //'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/main.m3u8',
-      'http://10.0.2.2:9000/videos/65e49fd0-8e1a-47e1-981f-f259b470337c/master.m3u8',
-      'http://localhost:9000/videos/e6e6e408-0b44-4bdb-8251-96f92cadeb93/master.m3u8',
-      'http://localhost:9000/videos/89aff2d0-646a-41e2-a35a-a3097c8fde76/master.m3u8',
+  final List<String> _videoUrls = [];
+  final List<String> _videoDescriptions = [
+    "dfgdfgdfgdf",
+    "dfgdfgdfgdfgdfgdfgdf",
+    "sdfffffffffffffffffffffffffffffffffff"
   ];
-  
-  List<VideoPlayerController> _videoControllers = [];
-  List<ChewieController> _chewieControllers = [];
-  bool _isInitialized = false;
-  bool _hasError = false;
+  int _currentPage = 1;
+  bool _isLoading = false;
+  bool _hasMore = true;
 
   @override
   void initState() {
     super.initState();
-    _initializePlayers();
+    _loadVideos();
   }
 
-  Future<void> _initializePlayers() async {
+  Future<void> _loadVideos() async {
+    if (_isLoading || !_hasMore) return;
+    
+    setState(() => _isLoading = true);
+
     try {
-      _videoControllers = _videoUrls.map((url) {
-        return VideoPlayerController.networkUrl(
-          Uri.parse(url
-            .replaceAll('localhost', '10.0.2.2')
-            .replaceAll('127.0.0.1', '10.0.2.2'),
-          ),
-          formatHint: VideoFormat.hls,
-        );
-      }).toList();
-
-      // 2. Быстрая проверка доступности видео
-      final firstVideo = _videoControllers.first;
-      await firstVideo.initialize().timeout(const Duration(seconds: 10));
-
-      // 3. Инициализация остальных (параллельно)
-      await Future.wait(
-        _videoControllers.map((c) => c.initialize()),
-      );
-
-      // 4. Настройка Chewie
-      _chewieControllers = _videoControllers.map((vc) {
-        return ChewieController(
-          videoPlayerController: vc,
-          autoPlay: true,
-          looping: true,
-          showControls: false,
-          errorBuilder: (context, errorMsg) {
-            return Center(child: Text('Ошибка видео: $errorMsg'));
-          },
-        );
-      }).toList();
-
-      setState(() => _isInitialized = true);
+      final newUrls = await widget.videoService.fetchVideos(_currentPage, 3);
+      
+      setState(() {
+        _videoUrls.addAll(newUrls);
+        _currentPage++;
+        _hasMore = newUrls.isNotEmpty;
+        _isLoading = false;
+      });
     } catch (e) {
-      debugPrint('Ошибка инициализации: $e');
-      setState(() => _hasError = true);
+      setState(() => _isLoading = false);
+      _showErrorSnackbar(e.toString());
     }
   }
 
-  @override
-  void dispose() {
-    _pageController.dispose();
-    for (var c in _videoControllers) c.dispose();
-    for (var c in _chewieControllers) c.dispose();
-    super.dispose();
-  }
-
-  Widget _buildLoader() {
-    return const Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          CircularProgressIndicator(),
-          SizedBox(height: 16),
-          Text('Загружаем видео...'),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildError() {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Icon(Icons.error, size: 48, color: Colors.red),
-          const SizedBox(height: 16),
-          const Text('Не удалось загрузить видео'),
-          const SizedBox(height: 24),
-          ElevatedButton(
-            onPressed: _initializePlayers,
-            child: const Text('Повторить'),
-          ),
-        ],
-      ),
+  void _showErrorSnackbar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message)),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_hasError) return Scaffold(body: _buildError());
-    if (!_isInitialized) return Scaffold(body: _buildLoader());
-
     return Scaffold(
+      backgroundColor: Colors.black,
       body: PageView.builder(
         controller: _pageController,
         scrollDirection: Axis.vertical,
-        itemCount: _videoUrls.length,
+        itemCount: _videoUrls.length + (_hasMore ? 1 : 0),
+        onPageChanged: (index) {
+          if (index >= _videoUrls.length - 3 && _hasMore) {
+            _loadVideos();
+          }
+        },
         itemBuilder: (context, index) {
-          return Stack(
-            children: [
-              Chewie(controller: _chewieControllers[index]),
-              _buildVideoInfo(index),
-              _buildActionBar(index),
-            ],
+          if (index >= _videoUrls.length) {
+            return const Center(child: CircularProgressIndicator(color: Colors.white));
+          }
+          return _VideoPlayerWithOverlay(
+            videoUrl: _videoUrls[index],
+            description: _videoDescriptions[index % _videoDescriptions.length],
           );
         },
       ),
     );
   }
+}
 
-  Widget _buildVideoInfo(int index) {
-    return Positioned(
-      bottom: 80,
-      left: 16,
+class _VideoPlayerWithOverlay extends StatefulWidget {
+  final String videoUrl;
+  final String description;
+
+  const _VideoPlayerWithOverlay({
+    required this.videoUrl,
+    required this.description,
+  });
+
+  @override
+  State<_VideoPlayerWithOverlay> createState() => _VideoPlayerWithOverlayState();
+}
+
+class _VideoPlayerWithOverlayState extends State<_VideoPlayerWithOverlay> {
+  VideoPlayerController? _videoController;
+  ChewieController? _chewieController;
+  bool _isInitialized = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeVideo();
+  }
+
+  Future<void> _initializeVideo() async {
+    try {
+      _videoController = VideoPlayerController.network(widget.videoUrl);
+      await _videoController!.initialize();
+      
+      _chewieController = ChewieController(
+        videoPlayerController: _videoController!,
+        autoPlay: true,
+        looping: true,
+        showControls: false,
+        aspectRatio: _videoController!.value.aspectRatio,
+      );
+
+      setState(() => _isInitialized = true);
+    } catch (e) {
+      debugPrint("Ошибка загрузки видео: $e");
+      _disposeControllers();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Ошибка загрузки видео")),
+      );
+    }
+  }
+
+  void _disposeControllers() {
+    _chewieController?.dispose();
+    _videoController?.dispose();
+    _chewieController = null;
+    _videoController = null;
+  }
+
+  @override
+  void dispose() {
+    _disposeControllers();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (!_isInitialized || _chewieController == null) {
+      return const Center(
+        child: CircularProgressIndicator(color: Colors.white),
+      );
+    }
+
+    final screenWidth = MediaQuery.of(context).size.width;
+    final videoHeight = screenWidth / _videoController!.value.aspectRatio;
+
+    return Stack(
+      children: [
+        Container(color: Colors.black),
+        Center(
+          child: SizedBox(
+            width: screenWidth,
+            height: videoHeight,
+            child: Chewie(controller: _chewieController!),
+          ),
+        ),
+        Positioned(
+          bottom: 20,
+          left: 10,
+          child: _VideoDescription(description: widget.description),
+        ),
+        Positioned(
+          right: 10,
+          bottom: 100,
+          child: _RightIcons(),
+        ),
+      ],
+    );
+  }
+}
+
+class _RightIcons extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        _IconButton(icon: Icons.favorite, count: '245K'),
+        const SizedBox(height: 15),
+        _IconButton(icon: Icons.comment, count: '1.2K'),
+        const SizedBox(height: 15),
+        _IconButton(icon: Icons.share, count: '543'),
+        const SizedBox(height: 15),
+        _IconButton(icon: Icons.bookmark, count: ''),
+        const SizedBox(height: 15),
+        const CircleAvatar(
+          radius: 20,
+          backgroundImage: NetworkImage('https://picsum.photos/200'),
+        ),
+      ],
+    );
+  }
+}
+
+class _IconButton extends StatelessWidget {
+  final IconData icon;
+  final String count;
+
+  const _IconButton({required this.icon, required this.count});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Icon(icon, size: 35, color: Colors.white),
+        if (count.isNotEmpty) ...[
+          const SizedBox(height: 5),
+          Text(count, style: const TextStyle(color: Colors.white, fontSize: 12)),
+        ],
+      ],
+    );
+  }
+}
+
+class _VideoDescription extends StatelessWidget {
+  final String description;
+
+  const _VideoDescription({required this.description});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width * 0.7,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            '@user_$index',
-            style: const TextStyle(
+          const Text(
+            '@username',
+            style: TextStyle(
               color: Colors.white,
-              fontSize: 16,
               fontWeight: FontWeight.bold,
+              fontSize: 16,
             ),
           ),
           const SizedBox(height: 8),
           Text(
-            'Тестовое видео #${index + 1}',
-            style: const TextStyle(color: Colors.white),
+            description,
+            style: const TextStyle(color: Colors.white, fontSize: 14),
           ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildActionBar(int index) {
-    return Positioned(
-      right: 16,
-      bottom: 100,
-      child: Column(
-        children: [
-          IconButton(
-            icon: const Icon(Icons.favorite, color: Colors.white, size: 32),
-            onPressed: () {},
-          ),
-          const Text('123', style: TextStyle(color: Colors.white)),
-          const SizedBox(height: 20),
-          IconButton(
-            icon: const Icon(Icons.comment, color: Colors.white, size: 32),
-            onPressed: () {},
-          ),
+          const SizedBox(height: 8),
         ],
       ),
     );

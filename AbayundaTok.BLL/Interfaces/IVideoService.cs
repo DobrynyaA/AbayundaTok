@@ -1,4 +1,5 @@
-﻿using Diplom.DAL.Entities;
+﻿using AbayundaTok.BLL.DTO;
+using Diplom.DAL.Entities;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace AbayundaTok.BLL.Interfaces
         Task<Video> UploadVideoAsync(IFormFile file,string userId);
         Task<Stream> GetVideoStreamAsync(string videoUrl);
         Task<string> GetVideoPlaylistAsync(string videoUrl);
-        //Task DeleteVideoAsync(string videoId);
         Task<Video> GetVideoMetadataAsync(string videoUrl);
+        Task<List<VideoDto>> GetVideosAsync(int page, int limit);
     }
 }

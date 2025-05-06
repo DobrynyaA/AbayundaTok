@@ -1,5 +1,6 @@
 ﻿using AbayundaTok.BLL.DTO;
 using Diplom.DAL.Entities;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,8 @@ namespace AbayundaTok.BLL.Interfaces
     {
         Task<ProfileDto> GetUserProfileAsync(string userId);
         Task<ProfileDto> GetCurrentUserProfileAsync(string currentUserId);
+        Task<string> UploadAvatarAsync(IFormFile file, string userId);
+        Task<Stream> GetAvatarStreamAsync(string photoUrl);
+        Task<string> GetAvatarUrlAsync(string photoUrl);
     }
 }

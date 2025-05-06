@@ -2,6 +2,7 @@
 using AbayundaTok.BLL.Interfaces;
 using Diplom.DAL.Entities;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -45,6 +46,39 @@ namespace AbayundaTok.PresentationLayer.Controllers
                 return NotFound();
 
             return profile;
+        }
+        [Authorize]
+        [HttpPost("uploadAvatar")]
+        public async Task<IActionResult> UploadPhoto(IFormFile file)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if(userId is null)
+                throw new ArgumentNullException(nameof(userId));
+
+            if (file == null || file.Length == 0)
+                return BadRequest("No file uploaded");
+
+            var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
+            var extension = Path.GetExtension(file.FileName).ToLowerInvariant();
+
+            if (!allowedExtensions.Contains(extension))
+                return BadRequest("Invalid file type");
+
+            try
+            {
+                var photoUrl = await _profileService.UploadAvatarAsync(file, userId);
+                return Ok(new { PhotoUrl = photoUrl });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+        [HttpPost("AvatarUrl")]
+        public async Task<string> GetAvatarUrl(string avatarUrl)
+        {
+            return await _profileService.GetAvatarUrlAsync(avatarUrl);
         }
     }
 }

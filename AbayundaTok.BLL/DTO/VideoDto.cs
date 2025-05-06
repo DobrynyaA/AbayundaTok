@@ -9,5 +9,6 @@ namespace AbayundaTok.BLL.DTO
     public class VideoDto
     {
         public int Id { get; set; }
+        public string? HlsUrl { get; set; }
     }
 }

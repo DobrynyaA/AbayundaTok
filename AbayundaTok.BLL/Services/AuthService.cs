@@ -51,6 +51,8 @@ namespace AbayundaTok.BLL.Services
                     new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Secret"])),
                     SecurityAlgorithms.HmacSha256));
 
+            var expiryMinutes = _configuration.GetValue<int>("Jwt:ExpiryInMinutes");
+            Console.WriteLine($"Токен будет действителен {expiryMinutes} минут");
             return new AuthResponseDto
             {
                 Token = new JwtSecurityTokenHandler().WriteToken(token),

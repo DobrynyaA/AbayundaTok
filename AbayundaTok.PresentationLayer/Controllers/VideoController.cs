@@ -8,9 +8,11 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using AbayundaTok.BLL.DTO;
 
 namespace AbayundaTok.PresentationLayer.Controllers
 {
+    [Route("api/[controller]")]
     public class VideoController : ControllerBase
     {
         private readonly IVideoService _videoService;
@@ -29,7 +31,6 @@ namespace AbayundaTok.PresentationLayer.Controllers
             return Ok(new { VideoId = videoId });
         }
 
-        // Получение HLS-плейлиста
         [HttpGet("{videoUrl}/playlist")]
         public async Task<IActionResult> GetPlaylist(string videoUrl)
         {
@@ -37,12 +38,30 @@ namespace AbayundaTok.PresentationLayer.Controllers
             return Ok(new { PlaylistUrl = playlistUrl });
         }
 
-        // Получение метаданных
         [HttpGet("{videoUrl}/metadata")]
         public async Task<IActionResult> GetMetadata(string videoUrl)
         {
             var meta = await _videoService.GetVideoMetadataAsync(videoUrl);
             return Ok(meta);
+        }
+
+        [HttpGet("lenta")]
+        public async Task<ActionResult<IEnumerable<VideoDto>>> GetVideo([FromQuery] int page = 1, [FromQuery] int limit = 3)
+        {
+            try
+            {
+                if (page < 1 || limit < 1 || limit > 100)
+                    return BadRequest("Invalid pagination parameters");
+
+                var result = await _videoService.GetVideosAsync(page, limit);
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+
+                return StatusCode(500, "Internal server error");
+            }
         }
     }
 }

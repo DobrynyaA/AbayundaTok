@@ -9,6 +9,8 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
 using AbayundaTok.DAL;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.EntityFrameworkCore;
+using AbayundaTok.BLL.DTO;
 
 namespace AbayundaTok.BLL.Services
 {
@@ -145,16 +147,6 @@ namespace AbayundaTok.BLL.Services
             return stream;
         }
 
-        /*public async Task<string> GetVideoPlaylistAsync(string videoUrl)
-        {
-            var playlistUrl = await _minioClient.PresignedGetObjectAsync(
-                new PresignedGetObjectArgs()
-                    .WithBucket(BucketName)
-                    .WithObject($"{videoUrl}/master.m3u8")
-                    .WithExpiry(3600)
-            );
-            return playlistUrl;
-        }*/
         public async Task<string> GetVideoPlaylistAsync(string videoUrl)
         {
             return $"http://localhost:9000/videos/{videoUrl}/master.m3u8";
@@ -168,6 +160,22 @@ namespace AbayundaTok.BLL.Services
                 CreatedAt = DateTime.UtcNow
             };
             return meta;
+        }
+
+        public async Task<List<VideoDto>> GetVideosAsync(int page, int limit)
+        {
+            var query = _dbContext.Videos
+                .OrderByDescending(v => v.CreatedAt)
+                .Skip((page - 1) * limit)
+                .Take(limit)
+                .Select(v => new VideoDto
+                {
+                    Id = v.Id,
+                    HlsUrl = $"http://10.0.2.2:9000/videos/{v.VideoUrl}/master.m3u8"
+                })
+                .AsNoTracking();
+
+            return await query.ToListAsync();
         }
 
         private async Task ExecuteFFmpegCommand(string command)

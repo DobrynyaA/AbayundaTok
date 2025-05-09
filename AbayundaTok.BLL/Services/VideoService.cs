@@ -60,7 +60,7 @@ namespace AbayundaTok.BLL.Services
                 "-c:v h264 " +
                 "-preset fast " +
                 "-b:v 800k " +
-                "-s 640x360 " +
+                "-vf \"scale=-2:720\" " +
                 "-c:a aac " +
                 "-b:a 128k " +
                 "-hls_time 4 " +
@@ -152,12 +152,16 @@ namespace AbayundaTok.BLL.Services
             return $"http://localhost:9000/videos/{videoUrl}/master.m3u8";
         }
 
-        public async Task<Video> GetVideoMetadataAsync(string videoUrl)
+        public async Task<VideoDto> GetVideoMetadataAsync(string videoUrl)
         {
-            var meta = new Video
+            var video = await _dbContext.Videos.FirstOrDefaultAsync(v => v.VideoUrl == videoUrl);
+            var meta = new VideoDto
             {
-                VideoUrl = videoUrl,
-                CreatedAt = DateTime.UtcNow
+                AvtorId = video.UserId,
+                Id = video.Id,
+                Description = video.Description,
+                LikeCount = video.LikeCount,
+                HlsUrl = videoUrl
             };
             return meta;
         }

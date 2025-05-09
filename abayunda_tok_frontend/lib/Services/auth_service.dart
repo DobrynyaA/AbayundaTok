@@ -138,7 +138,8 @@ class AuthService {
       }
 
       if (response.statusCode == 401) {
-        logout();
+        await logout();
+        return null;
       }
       return null;
     } catch (e) {

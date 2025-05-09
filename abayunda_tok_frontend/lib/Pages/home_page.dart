@@ -1,3 +1,4 @@
+import 'package:abayunda_tok_frontend/Services/auth_service.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:abayunda_tok_frontend/Services/video_service.dart';
@@ -5,8 +6,9 @@ import 'package:video_player/video_player.dart';
 
 class HomePage extends StatefulWidget {
   final VideoService videoService;
-
-  const HomePage({super.key, required this.videoService});
+  final AuthService authService;
+  
+  const HomePage({super.key, required this.videoService, required this.authService});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -76,6 +78,7 @@ class _HomePageState extends State<HomePage> {
           return _VideoPlayerWithOverlay(
             videoUrl: _videoUrls[index],
             description: _videoDescriptions[index % _videoDescriptions.length],
+            authService: widget.authService,
           );
         },
       ),
@@ -86,10 +89,11 @@ class _HomePageState extends State<HomePage> {
 class _VideoPlayerWithOverlay extends StatefulWidget {
   final String videoUrl;
   final String description;
-
+  final AuthService authService;
   const _VideoPlayerWithOverlay({
     required this.videoUrl,
     required this.description,
+    required this.authService
   });
 
   @override
@@ -97,6 +101,7 @@ class _VideoPlayerWithOverlay extends StatefulWidget {
 }
 
 class _VideoPlayerWithOverlayState extends State<_VideoPlayerWithOverlay> {
+  
   VideoPlayerController? _videoController;
   ChewieController? _chewieController;
   bool _isInitialized = false;
@@ -151,16 +156,12 @@ class _VideoPlayerWithOverlayState extends State<_VideoPlayerWithOverlay> {
       );
     }
 
-    final screenWidth = MediaQuery.of(context).size.width;
-    final videoHeight = screenWidth / _videoController!.value.aspectRatio;
-
     return Stack(
       children: [
         Container(color: Colors.black),
         Center(
-          child: SizedBox(
-            width: screenWidth,
-            height: videoHeight,
+          child: AspectRatio(
+            aspectRatio: _videoController!.value.aspectRatio,
             child: Chewie(controller: _chewieController!),
           ),
         ),
@@ -171,8 +172,8 @@ class _VideoPlayerWithOverlayState extends State<_VideoPlayerWithOverlay> {
         ),
         Positioned(
           right: 10,
-          bottom: 100,
-          child: _RightIcons(),
+          bottom: 250,
+          child: _RightIcons(authService: widget.authService,),
         ),
       ],
     );
@@ -180,21 +181,20 @@ class _VideoPlayerWithOverlayState extends State<_VideoPlayerWithOverlay> {
 }
 
 class _RightIcons extends StatelessWidget {
+  final AuthService authService; 
+
+  const _RightIcons({required this.authService});
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        _IconButton(icon: Icons.favorite, count: '245K'),
+        _IconButton(icon: Icons.favorite, count: '245K',authService: authService),
         const SizedBox(height: 15),
-        _IconButton(icon: Icons.comment, count: '1.2K'),
-        const SizedBox(height: 15),
-        _IconButton(icon: Icons.share, count: '543'),
-        const SizedBox(height: 15),
-        _IconButton(icon: Icons.bookmark, count: ''),
+        _IconButton(icon: Icons.comment, count: '1.2K',authService: authService),
         const SizedBox(height: 15),
         const CircleAvatar(
           radius: 20,
-          backgroundImage: NetworkImage('https://picsum.photos/200'),
+          backgroundColor: Colors.amber,
         ),
       ],
     );
@@ -204,19 +204,36 @@ class _RightIcons extends StatelessWidget {
 class _IconButton extends StatelessWidget {
   final IconData icon;
   final String count;
-
-  const _IconButton({required this.icon, required this.count});
+  final AuthService authService;
+  const _IconButton({required this.icon, required this.count, required this.authService});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Icon(icon, size: 35, color: Colors.white),
-        if (count.isNotEmpty) ...[
-          const SizedBox(height: 5),
-          Text(count, style: const TextStyle(color: Colors.white, fontSize: 12)),
+    return GestureDetector(
+      onTap: ()async {
+        if (!await authService.isLoggedIn()) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Войдите или зарегистрируйтесь, чтобы пользоваться данным функционалом'),
+            ),
+          );
+        }else{
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Вы успешно зарегистрированы'),
+            ),
+          );
+        }
+      },
+      child: Column(
+        children: [
+          Icon(icon, size: 35, color: Colors.white),
+          if (count.isNotEmpty) ...[
+            const SizedBox(height: 5),
+            Text(count, style: const TextStyle(color: Colors.white, fontSize: 12)),
+          ],
         ],
-      ],
+      ),
     );
   }
 }

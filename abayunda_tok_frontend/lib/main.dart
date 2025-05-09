@@ -65,7 +65,7 @@ class _MainNavigationState extends State<MainNavigation> {
       body: IndexedStack(
         index: _currentIndex,
         children: [
-          HomePage(videoService: widget.videoService),
+          HomePage(videoService: widget.videoService, authService: widget.authService),
           ProfilePage(authService: widget.authService),
         ],
       ),

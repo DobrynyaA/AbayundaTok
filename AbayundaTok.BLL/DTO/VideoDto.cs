@@ -10,5 +10,8 @@ namespace AbayundaTok.BLL.DTO
     {
         public int Id { get; set; }
         public string? HlsUrl { get; set; }
+        public string? AvtorId { get; set; }
+        public string? Description { get; set; }
+        public int LikeCount {  get; set; }
     }
 }

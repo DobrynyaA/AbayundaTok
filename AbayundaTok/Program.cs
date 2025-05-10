@@ -16,8 +16,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddSingleton<IMinioService,MinioService>();
 builder.Services.AddScoped<IVideoService, VideoService>();
+builder.Services.AddScoped<ILikeService, LikeService>();
 
 builder.Services.AddControllers();
 

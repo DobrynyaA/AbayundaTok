@@ -1,3 +1,4 @@
+import 'package:abayunda_tok_frontend/Models/VideoData.dart';
 import 'package:abayunda_tok_frontend/Services/auth_service.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +39,7 @@ class _HomePageState extends State<HomePage> {
     setState(() => _isLoading = true);
 
     try {
-      final newUrls = await widget.videoService.fetchVideos(_currentPage, 3);
+      final newUrls = await widget.videoService.fetchVideosUrls(_currentPage, 3);
       
       setState(() {
         _videoUrls.addAll(newUrls);
@@ -79,6 +80,7 @@ class _HomePageState extends State<HomePage> {
             videoUrl: _videoUrls[index],
             description: _videoDescriptions[index % _videoDescriptions.length],
             authService: widget.authService,
+            videoService: widget.videoService,
           );
         },
       ),
@@ -90,10 +92,13 @@ class _VideoPlayerWithOverlay extends StatefulWidget {
   final String videoUrl;
   final String description;
   final AuthService authService;
+  final VideoService videoService;
+
   const _VideoPlayerWithOverlay({
     required this.videoUrl,
     required this.description,
-    required this.authService
+    required this.authService,
+    required this.videoService
   });
 
   @override
@@ -105,18 +110,42 @@ class _VideoPlayerWithOverlayState extends State<_VideoPlayerWithOverlay> {
   VideoPlayerController? _videoController;
   ChewieController? _chewieController;
   bool _isInitialized = false;
+  VideoData? _videoData;
+  bool _isLoadingDetails = true;
+  bool _isLikeLoading = false;
 
   @override
   void initState() {
     super.initState();
     _initializeVideo();
+    _loadVideoDetails();
   }
 
+  Future<void> _loadVideoDetails() async {
+    try {
+      final details = await widget.videoService.fetchVideoDetails(widget.videoUrl);
+
+      if (!mounted) return;
+
+      setState(() {
+        _videoData = details;
+        _isLoadingDetails = false;
+      });
+    } catch (e) {
+      setState(() => _isLoadingDetails = false);
+      debugPrint('Ошибка загрузки деталей видео: $e');
+    }
+  }
   Future<void> _initializeVideo() async {
     try {
       _videoController = VideoPlayerController.network(widget.videoUrl);
       await _videoController!.initialize();
       
+      if (!mounted) {
+        _disposeControllers();
+        return;
+      }
+
       _chewieController = ChewieController(
         videoPlayerController: _videoController!,
         autoPlay: true,
@@ -144,6 +173,7 @@ class _VideoPlayerWithOverlayState extends State<_VideoPlayerWithOverlay> {
 
   @override
   void dispose() {
+    _isLoadingDetails = false;
     _disposeControllers();
     super.dispose();
   }
@@ -168,12 +198,12 @@ class _VideoPlayerWithOverlayState extends State<_VideoPlayerWithOverlay> {
         Positioned(
           bottom: 20,
           left: 10,
-          child: _VideoDescription(description: widget.description),
+          child: _VideoDescription(description: _videoData?.description ?? widget.description,),
         ),
         Positioned(
           right: 10,
           bottom: 250,
-          child: _RightIcons(authService: widget.authService,),
+          child: _RightIcons(authService: widget.authService,videoData: _videoData ),
         ),
       ],
     );
@@ -182,13 +212,13 @@ class _VideoPlayerWithOverlayState extends State<_VideoPlayerWithOverlay> {
 
 class _RightIcons extends StatelessWidget {
   final AuthService authService; 
-
-  const _RightIcons({required this.authService});
+  final VideoData? videoData;
+  const _RightIcons({required this.authService,required this.videoData});
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        _IconButton(icon: Icons.favorite, count: '245K',authService: authService),
+        _IconButton(icon: Icons.favorite, count: videoData?.likeCount.toString() ?? "не прогрузилось",authService: authService),
         const SizedBox(height: 15),
         _IconButton(icon: Icons.comment, count: '1.2K',authService: authService),
         const SizedBox(height: 15),

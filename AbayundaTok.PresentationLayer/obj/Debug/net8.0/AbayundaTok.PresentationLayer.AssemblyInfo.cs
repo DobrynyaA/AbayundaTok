@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AbayundaTok.PresentationLayer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+24bc8bee3222d4c8053dda166d9de41bdb551584")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fbd3b7db75e8bec76dfe61d5a2e99d78d424f25e")]
 [assembly: System.Reflection.AssemblyProductAttribute("AbayundaTok.PresentationLayer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AbayundaTok.PresentationLayer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

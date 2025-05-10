@@ -42,6 +42,54 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "AbayundaTok.PresentationLayer.Controllers.LikeController",
+    "Method": "AddLike",
+    "RelativePath": "api/Like/{videoId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "videoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AbayundaTok.PresentationLayer.Controllers.LikeController",
+    "Method": "RemoveLike",
+    "RelativePath": "api/Like/{videoId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "videoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AbayundaTok.PresentationLayer.Controllers.LikeController",
+    "Method": "CheckLike",
+    "RelativePath": "api/Like/{videoId}/check",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "videoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "AbayundaTok.PresentationLayer.Controllers.ProfileController",
     "Method": "GetUserProfile",
     "RelativePath": "api/Profile/{userId}",
@@ -130,16 +178,6 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "AbayundaTok.PresentationLayer.Controllers.TestController",
-    "Method": "GetGreeting",
-    "RelativePath": "api/Test",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "AbayundaTok.PresentationLayer.Controllers.VideoController",
     "Method": "GetMetadata",
     "RelativePath": "api/Video/{videoUrl}/metadata",
@@ -217,25 +255,5 @@
       }
     ],
     "ReturnTypes": []
-  },
-  {
-    "ContainingType": "AbayundaTok.Controllers.WeatherForecastController",
-    "Method": "Get",
-    "RelativePath": "WeatherForecast",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[AbayundaTok.WeatherForecast, AbayundaTok.DAL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
   }
 ]

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AbayundaTok.DAL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+89153a147ce8f2b462c61b72f2761207fb03f94f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+64c4a87725def9f8f51dc6ddad6639cebeddb146")]
 [assembly: System.Reflection.AssemblyProductAttribute("AbayundaTok.DAL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AbayundaTok.DAL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

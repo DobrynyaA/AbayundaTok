@@ -117,18 +117,20 @@ class _VideoPlayerWithOverlayState extends State<_VideoPlayerWithOverlay> {
   @override
   void initState() {
     super.initState();
-    _initializeVideo();
     _loadVideoDetails();
+    if(_isLoadingDetails){
+      _initializeVideo();
+    }
   }
 
   Future<void> _loadVideoDetails() async {
     try {
       final details = await widget.videoService.fetchVideoDetails(widget.videoUrl);
       if (!mounted) return;
-
+      
       setState(() {
         _videoData = details;
-        _isLoadingDetails = false;
+        _isLoadingDetails = true;
       });
     } catch (e) {
       if (!mounted) return;
@@ -228,7 +230,7 @@ class _RightIcons extends StatefulWidget {
 class _RightIconsState extends State<_RightIcons> {
   bool _isLiked = false;
   bool _isLikeLoading = false;
-  int _likeCount = 0;
+  int _likeCount = -1;
 
   @override
   void initState() {
@@ -284,7 +286,7 @@ class _RightIconsState extends State<_RightIcons> {
     if (widget.videoData == null) {
       return const CircularProgressIndicator(color: Colors.white);
     }
-    
+
     return Column(
       children: [
         _LikeButton(

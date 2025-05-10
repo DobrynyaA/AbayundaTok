@@ -3,13 +3,25 @@
   "WorkspaceRootPath": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5F2644F3-5FBD-4508-AF71-E3F94BBCF2B3}|..\\AbayundaTok.PresentationLayer\\AbayundaTok.PresentationLayer.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.presentationlayer\\controllers\\videocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Migrations\\20250510170052_ChangeComment_2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{229C92A5-88C2-4819-86DF-C93E0A7D592C}|..\\AbayundaTok.DAL\\AbayundaTok.DAL.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.dal\\models\\comment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Migrations\\20250510165952_ChangeComment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9BFD6A4E-5DA9-44CC-9ADC-C6FA066A50D4}|..\\AbayundaTok.BLL\\AbayundaTok.BLL.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.bll\\interfaces\\icommentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F2644F3-5FBD-4508-AF71-E3F94BBCF2B3}|..\\AbayundaTok.PresentationLayer\\AbayundaTok.PresentationLayer.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.presentationlayer\\controllers\\likecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9BFD6A4E-5DA9-44CC-9ADC-C6FA066A50D4}|..\\AbayundaTok.BLL\\AbayundaTok.BLL.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.bll\\services\\likeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5F2644F3-5FBD-4508-AF71-E3F94BBCF2B3}|..\\AbayundaTok.PresentationLayer\\AbayundaTok.PresentationLayer.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.presentationlayer\\controllers\\likecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5F2644F3-5FBD-4508-AF71-E3F94BBCF2B3}|..\\AbayundaTok.PresentationLayer\\AbayundaTok.PresentationLayer.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.presentationlayer\\controllers\\videocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9BFD6A4E-5DA9-44CC-9ADC-C6FA066A50D4}|..\\AbayundaTok.BLL\\AbayundaTok.BLL.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.bll\\services\\videoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -66,11 +78,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "VideoService.cs",
               "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\Services\\VideoService.cs",
               "RelativeDocumentMoniker": "..\\AbayundaTok.BLL\\Services\\VideoService.cs",
@@ -83,51 +95,103 @@
               "EditorCaption": ""
             },
             {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "20250510170052_ChangeComment_2.cs",
+              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Migrations\\20250510170052_ChangeComment_2.cs",
+              "RelativeDocumentMoniker": "..\\AbayundaTok.DAL\\Migrations\\20250510170052_ChangeComment_2.cs",
+              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Migrations\\20250510170052_ChangeComment_2.cs",
+              "RelativeToolTip": "..\\AbayundaTok.DAL\\Migrations\\20250510170052_ChangeComment_2.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-10T17:00:53.02Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "20250510165952_ChangeComment.cs",
+              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Migrations\\20250510165952_ChangeComment.cs",
+              "RelativeDocumentMoniker": "..\\AbayundaTok.DAL\\Migrations\\20250510165952_ChangeComment.cs",
+              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Migrations\\20250510165952_ChangeComment.cs",
+              "RelativeToolTip": "..\\AbayundaTok.DAL\\Migrations\\20250510165952_ChangeComment.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-10T16:59:52.564Z",
+              "EditorCaption": ""
+            },
+            {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
+              "Title": "Comment.cs",
+              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Models\\Comment.cs",
+              "RelativeDocumentMoniker": "..\\AbayundaTok.DAL\\Models\\Comment.cs",
+              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Models\\Comment.cs",
+              "RelativeToolTip": "..\\AbayundaTok.DAL\\Models\\Comment.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAkwBMAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-10T16:57:31.124Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ICommentService.cs",
+              "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\Interfaces\\ICommentService.cs",
+              "RelativeDocumentMoniker": "..\\AbayundaTok.BLL\\Interfaces\\ICommentService.cs",
+              "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\Interfaces\\ICommentService.cs",
+              "RelativeToolTip": "..\\AbayundaTok.BLL\\Interfaces\\ICommentService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-10T16:56:52.252Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "LikeController.cs",
               "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.PresentationLayer\\Controllers\\LikeController.cs",
               "RelativeDocumentMoniker": "..\\AbayundaTok.PresentationLayer\\Controllers\\LikeController.cs",
               "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.PresentationLayer\\Controllers\\LikeController.cs",
               "RelativeToolTip": "..\\AbayundaTok.PresentationLayer\\Controllers\\LikeController.cs",
-              "ViewState": "AQIAAFYAAAAAAAAAAAAqwCYAAAAQAAAA",
+              "ViewState": "AQIAABoAAAAAAAAAAAAqwB8AAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-10T12:15:37.748Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "LikeService.cs",
               "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\Services\\LikeService.cs",
               "RelativeDocumentMoniker": "..\\AbayundaTok.BLL\\Services\\LikeService.cs",
               "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\Services\\LikeService.cs",
               "RelativeToolTip": "..\\AbayundaTok.BLL\\Services\\LikeService.cs",
-              "ViewState": "AQIAAFIAAAAAAAAAAAAAADYAAAAQAAAA",
+              "ViewState": "AQIAABMAAAAAAAAAAAAqwDYAAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-10T11:48:09.018Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 6,
               "Title": "VideoController.cs",
               "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.PresentationLayer\\Controllers\\VideoController.cs",
               "RelativeDocumentMoniker": "..\\AbayundaTok.PresentationLayer\\Controllers\\VideoController.cs",
               "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.PresentationLayer\\Controllers\\VideoController.cs",
               "RelativeToolTip": "..\\AbayundaTok.PresentationLayer\\Controllers\\VideoController.cs",
-              "ViewState": "AQIAACIAAAAAAAAAAAAqwDIAAAANAAAA",
+              "ViewState": "AQIAADYAAAAAAAAAAAAqwEQAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-04T12:50:01.394Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 13,
               "Title": "IVideoService.cs",
               "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\Interfaces\\IVideoService.cs",
               "RelativeDocumentMoniker": "..\\AbayundaTok.BLL\\Interfaces\\IVideoService.cs",
@@ -140,7 +204,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 11,
               "Title": "ProfileController.cs",
               "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.PresentationLayer\\Controllers\\ProfileController.cs",
               "RelativeDocumentMoniker": "..\\AbayundaTok.PresentationLayer\\Controllers\\ProfileController.cs",
@@ -153,7 +217,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 19,
               "Title": "ProfileDto.cs",
               "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\DTO\\ProfileDto.cs",
               "RelativeDocumentMoniker": "..\\AbayundaTok.BLL\\DTO\\ProfileDto.cs",
@@ -166,7 +230,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 17,
               "Title": "UserService.cs",
               "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\Services\\UserService.cs",
               "RelativeDocumentMoniker": "..\\AbayundaTok.BLL\\Services\\UserService.cs",
@@ -179,7 +243,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 16,
               "Title": "IUserService.cs",
               "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\Interfaces\\IUserService.cs",
               "RelativeDocumentMoniker": "..\\AbayundaTok.BLL\\Interfaces\\IUserService.cs",
@@ -192,7 +256,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 15,
               "Title": "Like.cs",
               "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Models\\Like.cs",
               "RelativeDocumentMoniker": "..\\AbayundaTok.DAL\\Models\\Like.cs",
@@ -205,7 +269,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 12,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -218,7 +282,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
               "Title": "AuthService.cs",
               "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\Services\\AuthService.cs",
               "RelativeDocumentMoniker": "..\\AbayundaTok.BLL\\Services\\AuthService.cs",
@@ -231,7 +295,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 14,
               "Title": "Video.cs",
               "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Models\\Video.cs",
               "RelativeDocumentMoniker": "..\\AbayundaTok.DAL\\Models\\Video.cs",
@@ -244,7 +308,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 9,
               "Title": "VideoDto.cs",
               "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\DTO\\VideoDto.cs",
               "RelativeDocumentMoniker": "..\\AbayundaTok.BLL\\DTO\\VideoDto.cs",
@@ -257,7 +321,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 10,
               "Title": "ILikeService.cs",
               "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\Interfaces\\ILikeService.cs",
               "RelativeDocumentMoniker": "..\\AbayundaTok.BLL\\Interfaces\\ILikeService.cs",
@@ -270,7 +334,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 18,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -283,7 +347,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 20,
               "Title": "UsersRoles.cs",
               "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Models\\UsersRoles.cs",
               "RelativeDocumentMoniker": "..\\AbayundaTok.DAL\\Models\\UsersRoles.cs",
@@ -296,7 +360,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 21,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.DAL\\Models\\User.cs",
               "RelativeDocumentMoniker": "..\\AbayundaTok.DAL\\Models\\User.cs",

@@ -54,22 +54,33 @@ class VideoService {
   }
 
   Future<String> putLike(int videoId) async {
+    final token = await _authService.getToken();
+    final headers = {
+    'Content-Type': 'application/json',
+    if (token != null) 'Authorization': 'Bearer $token',
+    };
 
-  final response = await http.post(
-    Uri.parse('$_baseUrl/api/Like/$videoId'),
-  );
+    final response = await http.post(
+      Uri.parse('$_baseUrl/api/Like/$videoId'),
+      headers: headers
+    );
 
-  if (response.statusCode == 200) {
-    return response.body;
-  } else {
-    throw Exception('Failed to put like: ${response.statusCode}');
+    if (response.statusCode == 200) {
+      return response.body;
+    } else {
+      throw Exception('Failed to put like: ${response.statusCode}');
+    }
   }
-}
 
 Future<String> removeLike(int videoId) async {
-
+  final token = await _authService.getToken();
+    final headers = {
+    'Content-Type': 'application/json',
+    if (token != null) 'Authorization': 'Bearer $token',
+    };
   final response = await http.delete(
     Uri.parse('$_baseUrl/api/Like/$videoId'),
+    headers: headers
   );
 
   if (response.statusCode == 200) {

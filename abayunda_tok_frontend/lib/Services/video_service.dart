@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'package:abayunda_tok_frontend/Models/VideoData.dart';
+import 'package:abayunda_tok_frontend/Services/auth_service.dart';
 import 'package:http/http.dart' as http;
 
 class VideoService {
   final String _baseUrl;
-
-  VideoService({required String baseUrl}) : _baseUrl = baseUrl;
+  final AuthService _authService;
+  
+  VideoService({required String baseUrl, required AuthService authService}) : _baseUrl = baseUrl, _authService = authService;
 
   Future<List<String>> fetchVideosUrls(int page, int limit) async {
     try {
@@ -29,8 +31,16 @@ class VideoService {
     final segments = uri.pathSegments;
     final guid = segments.length >= 2 ? segments[segments.length - 2] : videoUrl;
     try {
+      final token = await _authService.getToken();
+
+      final headers = {
+      'Content-Type': 'application/json',
+      if (token != null) 'Authorization': 'Bearer $token',
+      };
+
       final response = await http.get(
         Uri.parse('$_baseUrl/api/Video/$guid/metadata'),
+        headers: headers,
       );
 
       if (response.statusCode == 200) {
@@ -42,4 +52,30 @@ class VideoService {
       throw Exception('Connection error: $e');
     }
   }
+
+  Future<String> putLike(int videoId) async {
+
+  final response = await http.post(
+    Uri.parse('$_baseUrl/api/Like/$videoId'),
+  );
+
+  if (response.statusCode == 200) {
+    return response.body;
+  } else {
+    throw Exception('Failed to put like: ${response.statusCode}');
+  }
+}
+
+Future<String> removeLike(int videoId) async {
+
+  final response = await http.delete(
+    Uri.parse('$_baseUrl/api/Like/$videoId'),
+  );
+
+  if (response.statusCode == 200) {
+    return response.body;
+  } else {
+    throw Exception('Failed to remove like: ${response.statusCode}');
+  }
+}
 }

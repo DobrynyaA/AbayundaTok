@@ -124,7 +124,6 @@ class _VideoPlayerWithOverlayState extends State<_VideoPlayerWithOverlay> {
   Future<void> _loadVideoDetails() async {
     try {
       final details = await widget.videoService.fetchVideoDetails(widget.videoUrl);
-
       if (!mounted) return;
 
       setState(() {
@@ -132,6 +131,7 @@ class _VideoPlayerWithOverlayState extends State<_VideoPlayerWithOverlay> {
         _isLoadingDetails = false;
       });
     } catch (e) {
+      if (!mounted) return;
       setState(() => _isLoadingDetails = false);
       debugPrint('Ошибка загрузки деталей видео: $e');
     }
@@ -203,28 +203,141 @@ class _VideoPlayerWithOverlayState extends State<_VideoPlayerWithOverlay> {
         Positioned(
           right: 10,
           bottom: 250,
-          child: _RightIcons(authService: widget.authService,videoData: _videoData ),
+          child: _RightIcons(authService: widget.authService,videoData: _videoData,videoService: widget.videoService ),
         ),
       ],
     );
   }
 }
 
-class _RightIcons extends StatelessWidget {
+class _RightIcons extends StatefulWidget {
   final AuthService authService; 
   final VideoData? videoData;
-  const _RightIcons({required this.authService,required this.videoData});
+  final VideoService videoService;
+  
+  const _RightIcons({
+    required this.authService,
+    required this.videoData,
+    required this.videoService,
+  });
+
+  @override
+  State<_RightIcons> createState() => _RightIconsState();
+}
+
+class _RightIconsState extends State<_RightIcons> {
+  bool _isLiked = false;
+  bool _isLikeLoading = false;
+  int _likeCount = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _isLiked = widget.videoData?.isLiked ?? false;
+    _likeCount = widget.videoData?.likeCount ?? -1;
+  }
+
+  Future<void> _toggleLike() async {
+    if (_isLikeLoading) return;
+    
+    setState(() => _isLikeLoading = true);
+    
+    try {
+      final userId = await widget.authService.getToken();
+      if (userId == null) {
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Требуется авторизация')),
+        );
+        return;
+      }
+
+      if (_isLiked) {
+        final result = await widget.videoService.removeLike(widget.videoData!.id);
+        if (!mounted) return;
+        setState(() {
+          _isLiked = false;
+          _likeCount = int.tryParse(result) ?? _likeCount - 1;
+        });
+      } else {
+        final result = await widget.videoService.putLike(widget.videoData!.id);
+        if (!mounted) return;
+        setState(() {
+          _isLiked = true;
+          _likeCount = int.tryParse(result) ?? _likeCount + 1;
+        });
+      }
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Ошибка: ${e.toString()}')),
+      );
+    } finally {
+      if (mounted) {
+        setState(() => _isLikeLoading = false);
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (widget.videoData == null) {
+      return const CircularProgressIndicator(color: Colors.white);
+    }
+    
     return Column(
       children: [
-        _IconButton(icon: Icons.favorite, count: videoData?.likeCount.toString() ?? "не прогрузилось",authService: authService),
+        _LikeButton(
+          isLiked: _isLiked,
+          likeCount: _likeCount,
+          isLoading: _isLikeLoading,
+          onPressed: _toggleLike,
+        ),
         const SizedBox(height: 15),
-        _IconButton(icon: Icons.comment, count: '1.2K',authService: authService),
+        _IconButton(
+          icon: Icons.comment, 
+          count: '1.2K',
+          authService: widget.authService,
+        ),
         const SizedBox(height: 15),
         const CircleAvatar(
           radius: 20,
           backgroundColor: Colors.amber,
+        ),
+      ],
+    );
+  }
+}
+class _LikeButton extends StatelessWidget {
+  final bool isLiked;
+  final int likeCount;
+  final bool isLoading;
+  final VoidCallback onPressed;
+
+  const _LikeButton({
+    required this.isLiked,
+    required this.likeCount,
+    required this.isLoading,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        IconButton(
+          icon: isLoading 
+              ? const CircularProgressIndicator(color: Colors.white, strokeWidth: 2)
+              : Icon(
+                  Icons.favorite,
+                  size: 35,
+                  color: isLiked ? Colors.red : Colors.white,
+                ),
+          onPressed: onPressed,
+        ),
+        Text(
+          likeCount.toString(),
+          style: const TextStyle(color: Colors.white, fontSize: 12),
         ),
       ],
     );

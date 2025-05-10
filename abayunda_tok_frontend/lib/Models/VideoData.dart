@@ -1,10 +1,10 @@
 class VideoData {
-  final String id;
+  final int id;
   final String hlsUrl;
   final String avtorId;
   final String description;
   final int likeCount;
-  bool isLiked;
+  final bool? isLiked;
   
   VideoData({
     required this.id,
@@ -12,16 +12,17 @@ class VideoData {
     required this.avtorId,
     required this.description,
     required this.likeCount,
-    this.isLiked = false,
+    required this.isLiked
   });
 
   factory VideoData.fromJson(Map<String, dynamic> json) {
     return VideoData(
-      id: json['id'].toString(),
+      id: json['id'],
       hlsUrl: json['hlsUrl'],
       avtorId: json['avtorId'],
       description: json['description'],
       likeCount: json['likeCount'],
+      isLiked: json['isLiked']
     );
   }
 }

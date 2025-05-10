@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using AbayundaTok.BLL.DTO;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace AbayundaTok.PresentationLayer.Controllers
 {
@@ -16,10 +17,12 @@ namespace AbayundaTok.PresentationLayer.Controllers
     public class VideoController : ControllerBase
     {
         private readonly IVideoService _videoService;
+        private readonly ILikeService _likeService;
 
-        public VideoController(IVideoService videoService)
+        public VideoController(IVideoService videoService, ILikeService likeService)
         {
             _videoService = videoService;
+            _likeService = likeService;
         }
 
         [Authorize]
@@ -42,6 +45,27 @@ namespace AbayundaTok.PresentationLayer.Controllers
         public async Task<IActionResult> GetMetadata(string videoUrl)
         {
             var meta = await _videoService.GetVideoMetadataAsync(videoUrl);
+            var token = Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+            string? userId;
+            if (token == null)
+            {
+                userId = null;
+            }
+            else
+            {
+                try
+                {
+                    var handler = new JwtSecurityTokenHandler();
+                    var jwtToken = handler.ReadJwtToken(token);
+                    userId = jwtToken.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+                    meta.IsLiked = await _likeService.HasUserLiked(meta.Id, userId);
+                }
+                catch
+                {
+                    userId = null;
+                }
+            }
+
             return Ok(meta);
         }
 
@@ -61,6 +85,23 @@ namespace AbayundaTok.PresentationLayer.Controllers
             {
 
                 return StatusCode(500, "Internal server error");
+            }
+        }
+        private string? GetUserIdFromToken()
+        {
+            var token = Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+            if (string.IsNullOrEmpty(token))
+                return null;
+
+            try
+            {
+                var handler = new JwtSecurityTokenHandler();
+                var jwtToken = handler.ReadJwtToken(token);
+                return jwtToken.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            }
+            catch
+            {
+                return null;
             }
         }
     }

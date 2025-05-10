@@ -10,7 +10,7 @@ import 'package:flutter/services.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final authService = AuthService(await SharedPreferences.getInstance());
-  final videoService = VideoService(baseUrl: 'https://10.0.2.2:7000');
+  final videoService = VideoService(baseUrl: 'https://10.0.2.2:7000', authService: authService);
   HttpOverrides.global = _MyHttpOverrides();
   runApp(MyApp(authService: authService,videoService: videoService,));
 }

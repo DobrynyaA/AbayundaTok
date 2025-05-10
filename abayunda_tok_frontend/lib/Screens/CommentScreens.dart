@@ -18,16 +18,69 @@ class CommentsScreen extends StatefulWidget {
   @override
   _CommentsScreenState createState() => _CommentsScreenState();
 }
-
 class _CommentsScreenState extends State<CommentsScreen> {
   late Future<List<Comment>> _commentsFuture;
   final _commentController = TextEditingController();
   final _scrollController = ScrollController();
+  bool _isLoading = false;
 
   @override
   void initState() {
     super.initState();
-    _commentsFuture = widget.commentService.getComments(widget.videoId);
+    _commentsFuture = _loadComments();
+  }
+
+  Future<List<Comment>> _loadComments() async {
+    try {
+      return await widget.commentService.getComments(widget.videoId);
+    } catch (e) {
+      debugPrint('Ошибка загрузки комментариев: $e');
+      rethrow;
+    }
+  }
+
+  Future<void> _addComment() async {
+    if (_commentController.text.isEmpty || _isLoading) return;
+
+    setState(() => _isLoading = true);
+    
+    try {
+      await widget.commentService.addComment(
+        widget.videoId,
+        _commentController.text,
+      );
+      
+      _commentController.clear();
+      setState(() {
+        _commentsFuture = _loadComments();
+      });
+      
+      // Ждем обновления списка перед прокруткой
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (_scrollController.hasClients) {
+          _scrollController.animateTo(
+            _scrollController.position.maxScrollExtent,
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeOut,
+          );
+        }
+      });
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Ошибка: $e')),
+      );
+    } finally {
+      if (mounted) {
+        setState(() => _isLoading = false);
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    _commentController.dispose();
+    _scrollController.dispose();
+    super.dispose();
   }
 
   @override
@@ -77,9 +130,10 @@ class _CommentsScreenState extends State<CommentsScreen> {
           Expanded(
             child: TextField(
               controller: _commentController,
+              enabled: !_isLoading,
               style: const TextStyle(color: Colors.white),
               decoration: InputDecoration(
-                hintText: 'Написать комментарий...',
+                hintText: _isLoading ? 'Отправка...' : 'Написать комментарий...',
                 hintStyle: const TextStyle(color: Colors.grey),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
@@ -91,47 +145,13 @@ class _CommentsScreenState extends State<CommentsScreen> {
             ),
           ),
           IconButton(
-            icon: const Icon(Icons.send, color: Colors.white),
-            onPressed: _addComment,
+            icon: _isLoading 
+                ? const CircularProgressIndicator(color: Colors.white, strokeWidth: 2)
+                : const Icon(Icons.send, color: Colors.white),
+            onPressed: _isLoading ? null : _addComment,
           ),
         ],
       ),
     );
-  }
-
-  Future<void> _addComment() async {
-    if (_commentController.text.isEmpty) return;
-
-    try {
-      await widget.commentService.addComment(
-        widget.videoId,
-        _commentController.text,
-      );
-      
-      _commentController.clear();
-      setState(() {
-        _commentsFuture = widget.commentService.getComments(widget.videoId);
-      });
-      
-      // Прокрутка вниз после добавления
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        _scrollController.animateTo(
-          _scrollController.position.maxScrollExtent,
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeOut,
-        );
-      });
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Ошибка: $e')),
-      );
-    }
-  }
-
-  @override
-  void dispose() {
-    _commentController.dispose();
-    _scrollController.dispose();
-    super.dispose();
   }
 }

@@ -17,7 +17,7 @@ namespace AbayundaTok.BLL.Services
         private readonly AppDbContext _dbContext;
         private readonly UserManager<User> _userManager;
 
-        public LikeService(AppDbContext context, UserManager<User> userManager, IMinioClient minioClient)
+        public LikeService(AppDbContext context, UserManager<User> userManager)
         {
             _dbContext = context;
             _userManager = userManager;

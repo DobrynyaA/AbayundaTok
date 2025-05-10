@@ -10,6 +10,6 @@ namespace AbayundaTok.BLL.Interfaces
     public interface ICommentService
     {
         Task<List<Comment>> GetCommentsForVideo(int videoId);
-        Task<Comment> AddComment(int videoId, string userId, string userName, string text);
+        Task<Comment> AddComment(int videoId, string userId, string text);
     }
 }

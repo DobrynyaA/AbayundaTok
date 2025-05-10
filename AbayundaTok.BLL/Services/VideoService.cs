@@ -161,7 +161,8 @@ namespace AbayundaTok.BLL.Services
                 Id = video.Id,
                 Description = video.Description,
                 LikeCount = video.LikeCount,
-                HlsUrl = videoUrl
+                HlsUrl = videoUrl,
+                CommentCount = video.CommentCount,
             };
             return meta;
         }

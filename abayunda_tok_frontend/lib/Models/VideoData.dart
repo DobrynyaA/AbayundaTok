@@ -4,6 +4,7 @@ class VideoData {
   final String avtorId;
   final String description;
   final int likeCount;
+  final int commentCount;
   final bool? isLiked;
   
   VideoData({
@@ -12,6 +13,7 @@ class VideoData {
     required this.avtorId,
     required this.description,
     required this.likeCount,
+    required this.commentCount,
     required this.isLiked
   });
 
@@ -22,7 +24,8 @@ class VideoData {
       avtorId: json['avtorId'],
       description: json['description'],
       likeCount: json['likeCount'],
-      isLiked: json['isLiked']
+      isLiked: json['isLiked'],
+      commentCount: json['commentCount']
     );
   }
 }

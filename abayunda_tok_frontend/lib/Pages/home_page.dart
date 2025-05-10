@@ -1,5 +1,7 @@
 import 'package:abayunda_tok_frontend/Models/VideoData.dart';
+import 'package:abayunda_tok_frontend/Screens/CommentScreens.dart';
 import 'package:abayunda_tok_frontend/Services/auth_service.dart';
+import 'package:abayunda_tok_frontend/Services/comment_service.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:abayunda_tok_frontend/Services/video_service.dart';
@@ -8,8 +10,9 @@ import 'package:video_player/video_player.dart';
 class HomePage extends StatefulWidget {
   final VideoService videoService;
   final AuthService authService;
-  
-  const HomePage({super.key, required this.videoService, required this.authService});
+  final CommentService commentService;
+
+  const HomePage({super.key, required this.videoService, required this.authService, required this.commentService});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -81,6 +84,7 @@ class _HomePageState extends State<HomePage> {
             description: _videoDescriptions[index % _videoDescriptions.length],
             authService: widget.authService,
             videoService: widget.videoService,
+            commentService: widget.commentService,
           );
         },
       ),
@@ -93,12 +97,14 @@ class _VideoPlayerWithOverlay extends StatefulWidget {
   final String description;
   final AuthService authService;
   final VideoService videoService;
+  final CommentService commentService;
 
   const _VideoPlayerWithOverlay({
     required this.videoUrl,
     required this.description,
     required this.authService,
-    required this.videoService
+    required this.videoService,
+    required this.commentService
   });
 
   @override
@@ -205,7 +211,7 @@ class _VideoPlayerWithOverlayState extends State<_VideoPlayerWithOverlay> {
         Positioned(
           right: 10,
           bottom: 250,
-          child: _RightIcons(authService: widget.authService,videoData: _videoData,videoService: widget.videoService ),
+          child: _RightIcons(authService: widget.authService,videoData: _videoData,videoService: widget.videoService,commentService: widget.commentService, ),
         ),
       ],
     );
@@ -216,11 +222,13 @@ class _RightIcons extends StatefulWidget {
   final AuthService authService; 
   final VideoData? videoData;
   final VideoService videoService;
+  final CommentService commentService;
   
   const _RightIcons({
     required this.authService,
     required this.videoData,
     required this.videoService,
+    required this.commentService
   });
 
   @override
@@ -231,12 +239,14 @@ class _RightIconsState extends State<_RightIcons> {
   bool _isLiked = false;
   bool _isLikeLoading = false;
   int _likeCount = -1;
+  int _commentCount = -1;
 
   @override
   void initState() {
     super.initState();
     _isLiked = widget.videoData?.isLiked ?? false;
     _likeCount = widget.videoData?.likeCount ?? -1;
+    _commentCount = widget.videoData?.commentCount ?? -1;
   }
 
   Future<void> _toggleLike() async {
@@ -280,7 +290,31 @@ class _RightIconsState extends State<_RightIcons> {
       }
     }
   }
+  void _openComments() async {
+    if (widget.videoData == null) return;
+    
+    if (!await widget.authService.isLoggedIn()) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Войдите, чтобы оставлять комментарии')),
+      );
+      return;
+    }
 
+    final updatedCount = await Navigator.push<int>(
+      context,
+      MaterialPageRoute(
+        builder: (context) => CommentsScreen(
+          videoId: widget.videoData!.id,
+          commentService: widget.commentService,
+          authService: widget.authService,
+        ),
+      ),
+    );
+
+    if (updatedCount != null && mounted) {
+      setState(() => _commentCount = updatedCount);
+    }
+  }
   @override
   Widget build(BuildContext context) {
     if (widget.videoData == null) {
@@ -296,10 +330,9 @@ class _RightIconsState extends State<_RightIcons> {
           onPressed: _toggleLike,
         ),
         const SizedBox(height: 15),
-        _IconButton(
-          icon: Icons.comment, 
-          count: '1.2K',
-          authService: widget.authService,
+        _CommentButton(
+          commentCount: _commentCount,
+          onPressed: _openComments,
         ),
         const SizedBox(height: 15),
         const CircleAvatar(
@@ -310,6 +343,7 @@ class _RightIconsState extends State<_RightIcons> {
     );
   }
 }
+
 class _LikeButton extends StatelessWidget {
   final bool isLiked;
   final int likeCount;
@@ -346,39 +380,28 @@ class _LikeButton extends StatelessWidget {
   }
 }
 
-class _IconButton extends StatelessWidget {
-  final IconData icon;
-  final String count;
-  final AuthService authService;
-  const _IconButton({required this.icon, required this.count, required this.authService});
+class _CommentButton extends StatelessWidget {
+  final int commentCount;
+  final VoidCallback onPressed;
+
+  const _CommentButton({
+    required this.commentCount,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: ()async {
-        if (!await authService.isLoggedIn()) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Войдите или зарегистрируйтесь, чтобы пользоваться данным функционалом'),
-            ),
-          );
-        }else{
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Вы успешно зарегистрированы'),
-            ),
-          );
-        }
-      },
-      child: Column(
-        children: [
-          Icon(icon, size: 35, color: Colors.white),
-          if (count.isNotEmpty) ...[
-            const SizedBox(height: 5),
-            Text(count, style: const TextStyle(color: Colors.white, fontSize: 12)),
-          ],
-        ],
-      ),
+    return Column(
+      children: [
+        IconButton(
+          icon: const Icon(Icons.comment, size: 35, color: Colors.white),
+          onPressed: onPressed,
+        ),
+        Text(
+          commentCount.toString(),
+          style: const TextStyle(color: Colors.white, fontSize: 12),
+        ),
+      ],
     );
   }
 }

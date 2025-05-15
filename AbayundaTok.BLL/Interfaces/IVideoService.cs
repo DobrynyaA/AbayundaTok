@@ -16,5 +16,6 @@ namespace AbayundaTok.BLL.Interfaces
         Task<string> GetVideoPlaylistAsync(string videoUrl);
         Task<VideoDto> GetVideoMetadataAsync(string videoUrl);
         Task<List<VideoDto>> GetVideosAsync(int page, int limit);
+        Task<List<VideoDto>> GetUserVideosMetadataAsync(string userId);
     }
 }

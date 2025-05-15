@@ -11,6 +11,7 @@ using AbayundaTok.DAL;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.EntityFrameworkCore;
 using AbayundaTok.BLL.DTO;
+using System.Text.Json;
 
 namespace AbayundaTok.BLL.Services
 {
@@ -41,11 +42,13 @@ namespace AbayundaTok.BLL.Services
         public async Task<Video> UploadVideoAsync(IFormFile file, string userId)
         {
             await EnsureBucketExistsAsync();
+            await EnsureThumbnailBucketExistsAsync();
 
             var videoUrl = Guid.NewGuid().ToString();
             var tempPath = Path.GetTempPath();
             var originalPath = Path.Combine(tempPath, $"{videoUrl}_original.mp4");
             var hlsPath = Path.Combine(tempPath, videoUrl);
+            var thumbnailPath = Path.Combine(tempPath, $"{videoUrl}_thumbnail.jpg");
 
             try
             {
@@ -54,8 +57,21 @@ namespace AbayundaTok.BLL.Services
                 {
                     await file.CopyToAsync(stream);
                 }
+                var ffmpegThumbnailCmd = $"-i \"{originalPath}\" -ss 00:00:00.000 -vframes 1 \"{thumbnailPath}\"";
+                await ExecuteFFmpegCommand(ffmpegThumbnailCmd);
 
-                //var ffmpegCmd = $"-i \"{originalPath}\" -c:v libx264 -hls_time 10 -hls_list_size 0 \"{Path.Combine(hlsPath, "master.m3u8")}\"";
+                if (File.Exists(thumbnailPath))
+                {
+                    var thumbnailObjectName = $"{videoUrl}.jpg";
+                    await _minioClient.PutObjectAsync(
+                        new PutObjectArgs()
+                            .WithBucket("thumbnails")
+                            .WithObject(thumbnailObjectName)
+                            .WithContentType("image/jpeg")
+                            .WithFileName(thumbnailPath)
+                    );
+                    Console.WriteLine($"✅ Превью загружено: {thumbnailObjectName}");
+                }
                 var ffmpegCmd = $"-i \"{originalPath}\" " +
                 "-c:v h264 " +
                 "-preset fast " +
@@ -104,6 +120,7 @@ namespace AbayundaTok.BLL.Services
                     UserId = userId,
                     VideoUrl = videoUrl,
                     Description = "fsdfsdfsdf",
+                    ThumbnailUrl = $"http://10.0.2.2:9000/thumbnails/{videoUrl}.jpg"
                 };
 
                 try
@@ -132,7 +149,34 @@ namespace AbayundaTok.BLL.Services
             }
         }
 
-        
+        private async Task EnsureThumbnailBucketExistsAsync()
+        {
+            var bucketName = "thumbnails";
+            var found = await _minioClient.BucketExistsAsync(new BucketExistsArgs().WithBucket(bucketName));
+            if (!found)
+            {
+                await _minioClient.MakeBucketAsync(new MakeBucketArgs().WithBucket(bucketName));
+
+                var policy = new
+                {
+                    Version = "2012-10-17",
+                    Statement = new[]
+                    {
+                        new
+                        {
+                            Effect = "Allow",
+                            Principal = "*",
+                            Action = new[] { "s3:GetObject" },
+                            Resource = new[] { $"arn:aws:s3:::{bucketName}/*" }
+                        }
+                    }
+                };
+
+                await _minioClient.SetPolicyAsync(new SetPolicyArgs()
+                    .WithBucket(bucketName)
+                    .WithPolicy(JsonSerializer.Serialize(policy)));
+            }
+        }
 
         public async Task<Stream> GetVideoStreamAsync(string videoUrl)
         {
@@ -163,8 +207,29 @@ namespace AbayundaTok.BLL.Services
                 LikeCount = video.LikeCount,
                 HlsUrl = videoUrl,
                 CommentCount = video.CommentCount,
+                ThumbnailUrl = video.ThumbnailUrl,
             };
             return meta;
+        }
+
+        public async Task<List<VideoDto>> GetUserVideosMetadataAsync(string userId)
+        {
+            var videos = await _dbContext.Videos
+                .Where(v => v.UserId == userId)
+                .ToListAsync();
+
+            var videosMetadata = videos.Select(video => new VideoDto
+            {
+                AvtorId = video.UserId,
+                Id = video.Id,
+                Description = video.Description,
+                LikeCount = video.LikeCount,
+                HlsUrl = video.VideoUrl,
+                CommentCount = video.CommentCount,
+                ThumbnailUrl = video.ThumbnailUrl,
+            }).ToList();
+
+            return videosMetadata;
         }
 
         public async Task<List<VideoDto>> GetVideosAsync(int page, int limit)
@@ -175,8 +240,13 @@ namespace AbayundaTok.BLL.Services
                 .Take(limit)
                 .Select(v => new VideoDto
                 {
+                    AvtorId = v.UserId,
                     Id = v.Id,
-                    HlsUrl = $"http://10.0.2.2:9000/videos/{v.VideoUrl}/master.m3u8"
+                    Description = v.Description,
+                    LikeCount = v.LikeCount,
+                    HlsUrl = $"http://10.0.2.2:9000/videos/{v.VideoUrl}/master.m3u8",
+                    CommentCount = v.CommentCount,
+                    ThumbnailUrl = v.ThumbnailUrl,
                 })
                 .AsNoTracking();
 

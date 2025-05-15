@@ -15,5 +15,6 @@ namespace AbayundaTok.BLL.DTO
         public int LikeCount {  get; set; }
         public int CommentCount { get; set; }
         public bool? IsLiked {  get; set; }
+        public string? ThumbnailUrl { get; set; }
     }
 }

@@ -6,7 +6,7 @@ class VideoData {
   final int likeCount;
   final int commentCount;
   final bool? isLiked;
-  
+  final String? thumbnailUrl;
   VideoData({
     required this.id,
     required this.hlsUrl,
@@ -14,7 +14,8 @@ class VideoData {
     required this.description,
     required this.likeCount,
     required this.commentCount,
-    required this.isLiked
+    required this.isLiked,
+    required this.thumbnailUrl
   });
 
   factory VideoData.fromJson(Map<String, dynamic> json) {
@@ -25,7 +26,8 @@ class VideoData {
       description: json['description'],
       likeCount: json['likeCount'],
       isLiked: json['isLiked'],
-      commentCount: json['commentCount']
+      commentCount: json['commentCount'],
+      thumbnailUrl: json['thumbnailUrl'],
     );
   }
 }

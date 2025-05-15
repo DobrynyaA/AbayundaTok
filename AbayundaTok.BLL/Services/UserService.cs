@@ -20,17 +20,20 @@ namespace AbayundaTok.BLL.Services
         private readonly IMinioClient _minioClient;
         private readonly AppDbContext _context;
         private readonly UserManager<User> _userManager;
+        private readonly IVideoService _videoService;
         private const string BucketName = "avatars";
 
-        public UserService(AppDbContext context, UserManager<User> userManager, IMinioClient minioClient)
+        public UserService(AppDbContext context, UserManager<User> userManager, IMinioClient minioClient, IVideoService videoService)
         {
             _minioClient = minioClient;
             _context = context;
             _userManager = userManager;
+            _videoService = videoService;
         }
 
         public async Task<ProfileDto> GetUserProfileAsync(string userId)
         {
+            var userVideos = await _videoService.GetUserVideosMetadataAsync(userId);
             var userProfile = await _userManager.Users
                 .Where(u => u.Id == userId)
                 .Select(u => new ProfileDto
@@ -41,6 +44,7 @@ namespace AbayundaTok.BLL.Services
                     FollowersCount = u.Followers.Count,
                     FollowingCount = u.Following.Count,
                     CreatedAt = u.CreatedAt,
+                    Videos = userVideos
                 })
                 .FirstOrDefaultAsync();
             userProfile.AvatarUrl = await GetAvatarUrlAsync(userProfile.AvatarUrl);

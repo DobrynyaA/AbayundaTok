@@ -130,7 +130,6 @@ class AuthService {
       final response = await ioClient.get(
         Uri.parse('https://10.0.2.2:7000/api/Profile/my'),
         headers: {'Authorization': 'Bearer $token'},
-        //headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjFjN2MwYzgxLTUzNDgtNGU4NC1iM2YwLWNiMTY1NzUzNDI5NCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJPbGVnIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoia2l6YXJ1QG1haWwucnUiLCJqdGkiOiJlN2YwNmNjNC1iNTJjLTQ3NGQtOGY4NC0yZTNhMjRiNThjZTkiLCJleHAiOjE3NDY0NDk5NDQsImlzcyI6Ik15QXV0aFNlcnZlciIsImF1ZCI6Ik15QXV0aENsaWVudCJ9.qhg-pQIAd-KV_pBJbjMOgJUcKP0hHQkmCROn4XujRLU'},
       );
 
       if (response.statusCode == 200) {
@@ -147,4 +146,26 @@ class AuthService {
       return null;
     }
   }
+  Future<Map<String, dynamic>> getUserProfileById(String userId) async {
+  await Future.delayed(const Duration(seconds: 1));
+
+  return {
+    'id': userId,
+    'userName': userId == '123' ? 'pro_user' : 'user_$userId',
+    'avatarUrl': 'https://i.pravatar.cc/300?u=$userId',
+    'bio': userId == '123' 
+      ? 'Профессиональный создатель контента' 
+      : 'Любительское видео',
+    'followingCount': userId == '123' ? 542 : 23,
+    'followersCount': userId == '123' ? 12800 : 45,
+    'likeCount': userId == '123' ? 85000 : 120,
+    'isLiked': false,
+    'isFollowing': false,
+    'thumbnailUrl': 'https://picsum.photos/300/200?random=$userId',
+    'videos': [
+      {'id': '1', 'title': 'Мое первое видео', 'likes': 150},
+      {'id': '2', 'title': 'Отдых на море', 'likes': 430},
+    ],
+  } ?? {};
+}
 }

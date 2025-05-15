@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:abayunda_tok_frontend/Pages/auth_page.dart';
 import 'package:abayunda_tok_frontend/Services/comment_service.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -70,7 +71,7 @@ class _MainNavigationState extends State<MainNavigation> {
         index: _currentIndex,
         children: [
           HomePage(videoService: widget.videoService, authService: widget.authService, commentService: widget.commentService),
-          ProfilePage(authService: widget.authService),
+          AuthPage(authService: widget.authService),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

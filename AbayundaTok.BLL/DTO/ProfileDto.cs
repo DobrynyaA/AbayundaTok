@@ -15,6 +15,7 @@ namespace AbayundaTok.BLL.DTO
         public int FollowingCount { get; set; }
         public DateTime? CreatedAt { get; set; }
         public long LikeCount {  get; set; }
+        public List<VideoDto> Videos { get; set; }
 
     }
 }

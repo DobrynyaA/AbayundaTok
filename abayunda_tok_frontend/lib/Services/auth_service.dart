@@ -118,7 +118,7 @@ class AuthService {
     await _prefs.remove('jwt_token');
   }
 
-  Future<Map<String, dynamic>?> getUserProfile() async {
+  Future<Map<String, dynamic>?> getMyProfile() async {
     final token = await getToken();
     if (token == null) return null;
 
@@ -147,25 +147,19 @@ class AuthService {
     }
   }
   Future<Map<String, dynamic>> getUserProfileById(String userId) async {
-  await Future.delayed(const Duration(seconds: 1));
+  try {
+    final response = await http.get(
+      Uri.parse('https://10.0.2.2:7000/api/Profile/$userId'), 
+    );
 
-  return {
-    'id': userId,
-    'userName': userId == '123' ? 'pro_user' : 'user_$userId',
-    'avatarUrl': 'https://i.pravatar.cc/300?u=$userId',
-    'bio': userId == '123' 
-      ? 'Профессиональный создатель контента' 
-      : 'Любительское видео',
-    'followingCount': userId == '123' ? 542 : 23,
-    'followersCount': userId == '123' ? 12800 : 45,
-    'likeCount': userId == '123' ? 85000 : 120,
-    'isLiked': false,
-    'isFollowing': false,
-    'thumbnailUrl': 'https://picsum.photos/300/200?random=$userId',
-    'videos': [
-      {'id': '1', 'title': 'Мое первое видео', 'likes': 150},
-      {'id': '2', 'title': 'Отдых на море', 'likes': 430},
-    ],
-  } ?? {};
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body); 
+    }
+
+    throw Exception('Ошибка сервера: ${response.statusCode}');
+  } catch (e) {
+    print('Ошибка при загрузке профиля: $e');
+    throw e;
+  }
 }
 }

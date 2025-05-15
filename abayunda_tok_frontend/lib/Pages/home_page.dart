@@ -2,6 +2,7 @@ import 'package:abayunda_tok_frontend/Models/VideoData.dart';
 import 'package:abayunda_tok_frontend/Screens/CommentScreens.dart';
 import 'package:abayunda_tok_frontend/Services/auth_service.dart';
 import 'package:abayunda_tok_frontend/Services/comment_service.dart';
+import 'package:abayunda_tok_frontend/pages/profile_page.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:abayunda_tok_frontend/Services/video_service.dart';
@@ -206,7 +207,7 @@ class _VideoPlayerWithOverlayState extends State<_VideoPlayerWithOverlay> {
         Positioned(
           bottom: 20,
           left: 10,
-          child: _VideoDescription(description: _videoData?.description ?? widget.description,),
+          child: _VideoDescription(description: _videoData?.description ?? widget.description,username: _videoData?.username ?? "vova",),
         ),
         Positioned(
           right: 10,
@@ -240,6 +241,7 @@ class _RightIconsState extends State<_RightIcons> {
   bool _isLikeLoading = false;
   int _likeCount = -1;
   int _commentCount = -1;
+  String _avatarUrl = "";
 
   @override
   void initState() {
@@ -247,6 +249,7 @@ class _RightIconsState extends State<_RightIcons> {
     _isLiked = widget.videoData?.isLiked ?? false;
     _likeCount = widget.videoData?.likeCount ?? -1;
     _commentCount = widget.videoData?.commentCount ?? -1;
+    _avatarUrl = widget.videoData?.avtorAvatarUrl ?? "";
   }
 
   Future<void> _toggleLike() async {
@@ -335,10 +338,25 @@ class _RightIconsState extends State<_RightIcons> {
           onPressed: _openComments,
         ),
         const SizedBox(height: 15),
-        const CircleAvatar(
-          radius: 20,
-          backgroundColor: Colors.amber,
-        ),
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ProfilePage(
+                  authService: widget.authService,
+                  videoService: widget.videoService,
+                  commentService: widget.commentService,
+                  userId: widget.videoData?.avtorId,
+                ),
+              ),
+            );
+          },
+          child: CircleAvatar(
+            radius: 20,
+            backgroundImage: NetworkImage(_avatarUrl),
+          ),
+        )
       ],
     );
   }
@@ -408,8 +426,8 @@ class _CommentButton extends StatelessWidget {
 
 class _VideoDescription extends StatelessWidget {
   final String description;
-
-  const _VideoDescription({required this.description});
+  final String username;
+  const _VideoDescription({required this.description,required this.username});
 
   @override
   Widget build(BuildContext context) {
@@ -418,8 +436,8 @@ class _VideoDescription extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            '@username',
+          Text(
+            username,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,

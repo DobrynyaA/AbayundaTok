@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AbayundaTok.BLL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+38a46e3ecf12588b47ddfb82c06bb8dd74d95e18")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+299f9d94c56f7698f701245ecda0954dd3cbf4be")]
 [assembly: System.Reflection.AssemblyProductAttribute("AbayundaTok.BLL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AbayundaTok.BLL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

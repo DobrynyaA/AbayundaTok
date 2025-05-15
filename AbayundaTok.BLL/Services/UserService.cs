@@ -108,6 +108,42 @@ namespace AbayundaTok.BLL.Services
                     new MakeBucketArgs().WithBucket(BucketName)
                 );
         }
+
+        public async Task<List<FolowerDto>> GetFolowerListAsync(string userId)
+        {
+            var followers = await _context.Followers
+            .Where(f => f.FollowingId == userId) 
+            .Include(f => f.Follower) 
+            .OrderByDescending(f => f.CreatedAt)
+            .Select(f => new FolowerDto
+            {
+                Id = f.Follower.Id,
+                UserName = f.Follower.UserName,
+                AvatarUrl = f.Follower.AvatarUrl,
+                Bio = f.Follower.Bio ?? string.Empty
+            })
+            .ToListAsync();
+
+            return followers;
+        }
+
+        public async Task<List<FolowerDto>> GetFolowingListAsync(string userId)
+        {
+            var followers = await _context.Followers
+            .Where(f => f.FollowerId == userId)
+            .Include(f => f.Following)
+            .OrderByDescending(f => f.CreatedAt)
+            .Select(f => new FolowerDto
+            {
+                Id = f.Following.Id,
+                UserName = f.Following.UserName,
+                AvatarUrl = f.Following.AvatarUrl,
+                Bio = f.Following.Bio ?? string.Empty
+            })
+            .ToListAsync();
+
+            return followers;
+        }
     }
 }
 

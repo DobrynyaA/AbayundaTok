@@ -80,5 +80,27 @@ namespace AbayundaTok.PresentationLayer.Controllers
         {
             return await _profileService.GetAvatarUrlAsync(avatarUrl);
         }
+
+        [HttpGet("/folowwers/{userId}")]
+        public async Task<ActionResult<List<FolowerDto>>> GetFolowers(string userId)
+        {
+            var folowers = await _profileService.GetFolowerListAsync(userId);
+
+            if (folowers == null)
+                return NotFound();
+
+            return folowers;
+        }
+
+        [HttpGet("/folowing/{userId}")]
+        public async Task<ActionResult<List<FolowerDto>>> GetFolowing(string userId)
+        {
+            var folowers = await _profileService.GetFolowingListAsync(userId);
+
+            if (folowers == null)
+                return NotFound();
+
+            return folowers;
+        }
     }
 }

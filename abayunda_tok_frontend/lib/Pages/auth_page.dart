@@ -1,11 +1,14 @@
+import 'package:abayunda_tok_frontend/Services/comment_service.dart';
+import 'package:abayunda_tok_frontend/Services/video_service.dart';
 import 'package:abayunda_tok_frontend/pages/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:abayunda_tok_frontend/Services/auth_service.dart';
 
 class AuthPage extends StatefulWidget {
   final AuthService authService;
-
-  const AuthPage({super.key, required this.authService});
+  final VideoService videoService;
+  final CommentService commentService;
+  const AuthPage({super.key, required this.authService,required this.videoService,required this.commentService});
 
   @override
   State<AuthPage> createState() => _AuthPageState();
@@ -38,7 +41,7 @@ class _AuthPageState extends State<AuthPage> {
         }
 
         return snapshot.data == true 
-            ? ProfilePage(userId: null, authService: widget.authService)
+            ? ProfilePage(userId: null, authService: widget.authService, videoService: widget.videoService, commentService: widget.commentService,)
             : _buildAuthUI();
       },
     );

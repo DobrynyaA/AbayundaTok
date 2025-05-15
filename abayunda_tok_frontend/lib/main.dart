@@ -71,7 +71,7 @@ class _MainNavigationState extends State<MainNavigation> {
         index: _currentIndex,
         children: [
           HomePage(videoService: widget.videoService, authService: widget.authService, commentService: widget.commentService),
-          AuthPage(authService: widget.authService),
+          AuthPage(authService: widget.authService, videoService: widget.videoService, commentService: widget.commentService,),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

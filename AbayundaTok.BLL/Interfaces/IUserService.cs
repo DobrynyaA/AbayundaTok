@@ -16,5 +16,7 @@ namespace AbayundaTok.BLL.Interfaces
         Task<string> UploadAvatarAsync(IFormFile file, string userId);
         Task<Stream> GetAvatarStreamAsync(string photoUrl);
         Task<string> GetAvatarUrlAsync(string photoUrl);
+        Task<List<FolowerDto>> GetFolowerListAsync(string userId);
+        Task<List<FolowerDto>> GetFolowingListAsync(string userId);
     }
 }

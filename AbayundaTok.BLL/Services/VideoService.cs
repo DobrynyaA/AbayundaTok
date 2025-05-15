@@ -199,15 +199,18 @@ namespace AbayundaTok.BLL.Services
         public async Task<VideoDto> GetVideoMetadataAsync(string videoUrl)
         {
             var video = await _dbContext.Videos.FirstOrDefaultAsync(v => v.VideoUrl == videoUrl);
+            var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == video.UserId);
             var meta = new VideoDto
             {
                 AvtorId = video.UserId,
                 Id = video.Id,
                 Description = video.Description,
                 LikeCount = video.LikeCount,
-                HlsUrl = videoUrl,
+                HlsUrl = $"http://10.0.2.2:9000/videos/{videoUrl}/master.m3u8",
                 CommentCount = video.CommentCount,
                 ThumbnailUrl = video.ThumbnailUrl,
+                AvtorAvatarUrl = $"http://10.0.2.2:9000/avatars/{user.AvatarUrl}",
+                AvtorName = user.UserName
             };
             return meta;
         }
@@ -217,7 +220,7 @@ namespace AbayundaTok.BLL.Services
             var videos = await _dbContext.Videos
                 .Where(v => v.UserId == userId)
                 .ToListAsync();
-
+            var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == userId);
             var videosMetadata = videos.Select(video => new VideoDto
             {
                 AvtorId = video.UserId,
@@ -227,6 +230,8 @@ namespace AbayundaTok.BLL.Services
                 HlsUrl = video.VideoUrl,
                 CommentCount = video.CommentCount,
                 ThumbnailUrl = video.ThumbnailUrl,
+                AvtorAvatarUrl = $"http://10.0.2.2:9000/avatars/{user.AvatarUrl}",
+                AvtorName = user.UserName
             }).ToList();
 
             return videosMetadata;

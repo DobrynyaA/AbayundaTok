@@ -1,13 +1,22 @@
+import 'package:abayunda_tok_frontend/Models/Comment.dart';
+import 'package:abayunda_tok_frontend/Models/VideoData.dart';
+import 'package:abayunda_tok_frontend/Pages/singleVideo_page.dart';
+import 'package:abayunda_tok_frontend/Services/comment_service.dart';
+import 'package:abayunda_tok_frontend/Services/video_service.dart';
 import 'package:flutter/material.dart';
 import 'package:abayunda_tok_frontend/Services/auth_service.dart';
 
 class ProfilePage extends StatefulWidget {
   final AuthService authService;
-  final String? userId; // null - текущий пользователь
+  final CommentService commentService;
+  final VideoService videoService;
+  final String? userId;
 
   const ProfilePage({
     super.key,
     required this.authService,
+    required this.videoService,
+    required this.commentService,
     this.userId,
   });
 
@@ -26,7 +35,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   void _loadProfile() {
     _userProfile = widget.userId == null
-        ? widget.authService.getUserProfile()
+        ? widget.authService.getMyProfile()
         : widget.authService.getUserProfileById(widget.userId!);
   }
 
@@ -176,7 +185,7 @@ Widget _buildActionButton({
 }
 SliverPadding _buildVideosSection() {
   return SliverPadding(
-    padding: const EdgeInsets.all(16.0),
+    padding: const EdgeInsets.all(2.0), // Минимальные отступы
     sliver: FutureBuilder<Map<String, dynamic>?>(
       future: _userProfile,
       builder: (context, snapshot) {
@@ -184,67 +193,97 @@ SliverPadding _buildVideosSection() {
           return const SliverToBoxAdapter(child: CircularProgressIndicator());
         }
         
-        final videos = snapshot.data!['videos'] as List<dynamic>? ?? [];
+        final videos = (snapshot.data!['videos'] as List<dynamic>? ?? [])
+            .map((v) => VideoData.fromJson(v))
+            .toList();
         
-        return videos.isEmpty
-            ? SliverToBoxAdapter(
-                child: Center(
-                  child: Text(
-                    widget.userId == null
-                        ? 'У вас пока нет видео'
-                        : 'У пользователя нет видео',
-                    style: TextStyle(color: Colors.grey[600]),
-                  ),
-                ),
-              )
-            : SliverGrid(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 8,
-                  mainAxisSpacing: 8,
-                  childAspectRatio: 0.8,
-                ),
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) => _buildVideoItem(videos[index]),
-                  childCount: videos.length,
-                ),
-              );
+        return SliverGrid(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            crossAxisSpacing: 2,
+            mainAxisSpacing: 2,
+            childAspectRatio: 0.6, // Более квадратные карточки
+          ),
+          delegate: SliverChildBuilderDelegate(
+            (context, index) => _buildVideoItem(videos[index]),
+            childCount: videos.length,
+          ),
+        );
       },
     ),
   );
 }
 
-Widget _buildVideoItem(Map<String, dynamic> video) {
+Widget _buildVideoItem(VideoData video) {
   return GestureDetector(
-    //onTap: () => _openVideoPlayer(video['id']),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    onTap: () => _openVideoPlayer(context, video),
+    child: Stack(
+      fit: StackFit.expand,
       children: [
-        Expanded(
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: Image.network(
-              video['thumbnailUrl'] ?? 'https://via.placeholder.com/300',
-              fit: BoxFit.cover,
-              width: double.infinity,
+        // Обложка видео
+        Image.network(
+          video.thumbnailUrl ?? 'https://via.placeholder.com/300',
+          fit: BoxFit.cover,
+          width: double.infinity,
+        ),
+        
+        // Затемнение нижней части для текста
+        Positioned.fill(
+          bottom: 0,
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              height: 60,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.bottomCenter,
+                  end: Alignment.topCenter,
+                  colors: [Colors.black.withOpacity(0.7), Colors.transparent],
+                ),
+              ),
             ),
           ),
         ),
-        const SizedBox(height: 4),
-        Text(
-          video['title'] ?? 'Без названия',
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-        ),
-        Text(
-          '${video['views']} просмотров',
-          style: TextStyle(
-            fontSize: 12,
-            color: Colors.grey[600],
+        
+        Positioned(
+          bottom: 8,
+          left: 8,
+          child: Row(
+            children: [
+              const Icon(Icons.favorite, size: 16, color: Colors.white),
+              const SizedBox(width: 4),
+              Text(
+                _formatLikeCount(video.likeCount),
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
           ),
         ),
       ],
     ),
   );
+}
+void _openVideoPlayer(BuildContext context, VideoData video) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (_) => SingleVideoPage(
+        authService: widget.authService,
+        videoService: widget.videoService,
+        commentService: widget.commentService,
+        videoUrl: video.hlsUrl
+      ),
+    ),
+  );
+}
+String _formatLikeCount(int count) {
+  if (count >= 1000) {
+    return '${(count / 1000).toStringAsFixed(1)}K';
+  }
+  return count.toString();
 }
 }

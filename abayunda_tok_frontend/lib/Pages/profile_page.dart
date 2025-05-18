@@ -126,7 +126,15 @@ SliverToBoxAdapter _buildProfileStats() {
 
 Widget _buildStatItem(String value, String label, BuildContext context, Map<String, dynamic> userData) {
   return GestureDetector(
-    onTap: () {
+    onTap: () async {
+      final userId = widget.userId ?? await widget.authService.getUserIdFromToken();
+      if (userId == null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Не удалось получить ID пользователя')),
+        );
+        return;
+      }
+      
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -135,7 +143,7 @@ Widget _buildStatItem(String value, String label, BuildContext context, Map<Stri
             commentService: widget.commentService,
             videoService: widget.videoService,
             folowerService: widget.folowerService,
-            userId: widget.userId ?? userData['id'],
+            userId: userId, // Теперь точно String
             showFollowers: label == 'Подписчики',
           ),
         ),

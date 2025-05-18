@@ -1,7 +1,9 @@
 import 'package:abayunda_tok_frontend/Models/Comment.dart';
 import 'package:abayunda_tok_frontend/Models/VideoData.dart';
 import 'package:abayunda_tok_frontend/Pages/singleVideo_page.dart';
+import 'package:abayunda_tok_frontend/Screens/FolowwersFolowingScreen.dart';
 import 'package:abayunda_tok_frontend/Services/comment_service.dart';
+import 'package:abayunda_tok_frontend/Services/folower_service.dart';
 import 'package:abayunda_tok_frontend/Services/video_service.dart';
 import 'package:flutter/material.dart';
 import 'package:abayunda_tok_frontend/Services/auth_service.dart';
@@ -10,6 +12,7 @@ class ProfilePage extends StatefulWidget {
   final AuthService authService;
   final CommentService commentService;
   final VideoService videoService;
+  final FolowerService folowerService;
   final String? userId;
 
   const ProfilePage({
@@ -17,6 +20,7 @@ class ProfilePage extends StatefulWidget {
     required this.authService,
     required this.videoService,
     required this.commentService,
+    required this.folowerService,
     this.userId,
   });
 
@@ -102,11 +106,15 @@ SliverToBoxAdapter _buildProfileStats() {
             children: [
               _buildStatItem(
                 user['followersCount']?.toString() ?? '0', 
-                'Подписчики'
+                'Подписчики',
+                context,
+                user
               ),
               _buildStatItem(
                 user['followingCount']?.toString() ?? '0', 
-                'Подписки'
+                'Подписки',
+                context,
+                user
               ),
             ],
           ),
@@ -116,26 +124,43 @@ SliverToBoxAdapter _buildProfileStats() {
   );
 }
 
-Widget _buildStatItem(String value, String label) {
-  return Column(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      Text(
-        value,
-        style: const TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
+Widget _buildStatItem(String value, String label, BuildContext context, Map<String, dynamic> userData) {
+  return GestureDetector(
+    onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => FollowersFollowingScreen(
+            authService: widget.authService,
+            commentService: widget.commentService,
+            videoService: widget.videoService,
+            folowerService: widget.folowerService,
+            userId: widget.userId ?? userData['id'],
+            showFollowers: label == 'Подписчики',
+          ),
         ),
-      ),
-      const SizedBox(height: 4),
-      Text(
-        label,
-        style: TextStyle(
-          fontSize: 14,
-          color: Colors.grey[600],
+      );
+    },
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          value,
+          style: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
         ),
-      ),
-    ],
+        const SizedBox(height: 4),
+        Text(
+          label,
+          style: TextStyle(
+            fontSize: 14,
+            color: Colors.grey[600],
+          ),
+        ),
+      ],
+    ),
   );
 }
 SliverToBoxAdapter _buildProfileActions() {
@@ -275,7 +300,8 @@ void _openVideoPlayer(BuildContext context, VideoData video) {
         authService: widget.authService,
         videoService: widget.videoService,
         commentService: widget.commentService,
-        videoUrl: video.hlsUrl
+        videoUrl: video.hlsUrl,
+        folowerService: widget.folowerService,
       ),
     ),
   );

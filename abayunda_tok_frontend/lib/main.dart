@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:abayunda_tok_frontend/Pages/auth_page.dart';
 import 'package:abayunda_tok_frontend/Services/comment_service.dart';
+import 'package:abayunda_tok_frontend/Services/folower_service.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Services/auth_service.dart';
@@ -14,8 +15,9 @@ void main() async {
   final authService = AuthService(await SharedPreferences.getInstance());
   final videoService = VideoService(baseUrl: 'https://10.0.2.2:7000', authService: authService);
   final commentService = CommentService(baseUrl: 'https://10.0.2.2:7000', authService: authService);
+  final folowerService = FolowerService(baseUrl: 'https://10.0.2.2:7000', authService: authService);
   HttpOverrides.global = _MyHttpOverrides();
-  runApp(MyApp(authService: authService,videoService: videoService,commentService: commentService,));
+  runApp(MyApp(authService: authService,videoService: videoService,commentService: commentService,folowerService: folowerService,));
 }
 
 class _MyHttpOverrides extends HttpOverrides {
@@ -30,7 +32,8 @@ class MyApp extends StatelessWidget {
   final AuthService authService;
   final VideoService videoService;
   final CommentService commentService;
-  const MyApp({super.key, required this.authService,required this.videoService,required this.commentService});
+  final FolowerService folowerService;
+  const MyApp({super.key, required this.authService,required this.videoService,required this.commentService,required this.folowerService});
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +45,7 @@ class MyApp extends StatelessWidget {
         future: authService.isLoggedIn(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            return MainNavigation(authService: authService, videoService: videoService, commentService:commentService,);
+            return MainNavigation(authService: authService, videoService: videoService, commentService:commentService,folowerService: folowerService,);
           }
           return const Scaffold(body: Center(child: CircularProgressIndicator()));
         },
@@ -55,7 +58,8 @@ class MainNavigation extends StatefulWidget {
   final AuthService authService;
   final VideoService videoService;
   final CommentService commentService;
-  const MainNavigation({super.key, required this.authService,required this.videoService,required this.commentService});
+  final FolowerService folowerService;
+  const MainNavigation({super.key, required this.authService,required this.videoService,required this.commentService,required this.folowerService});
 
   @override
   State<MainNavigation> createState() => _MainNavigationState();
@@ -70,8 +74,8 @@ class _MainNavigationState extends State<MainNavigation> {
       body: IndexedStack(
         index: _currentIndex,
         children: [
-          HomePage(videoService: widget.videoService, authService: widget.authService, commentService: widget.commentService),
-          AuthPage(authService: widget.authService, videoService: widget.videoService, commentService: widget.commentService,),
+          HomePage(videoService: widget.videoService, authService: widget.authService, commentService: widget.commentService,folowerService: widget.folowerService,),
+          AuthPage(authService: widget.authService, videoService: widget.videoService, commentService: widget.commentService,folowerService: widget.folowerService,),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

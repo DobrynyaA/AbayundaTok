@@ -119,7 +119,7 @@ namespace AbayundaTok.BLL.Services
             {
                 Id = f.Follower.Id,
                 UserName = f.Follower.UserName,
-                AvatarUrl = f.Follower.AvatarUrl,
+                AvatarUrl = $"http://10.0.2.2:9000/avatars/{f.Follower.AvatarUrl}",
                 Bio = f.Follower.Bio ?? string.Empty
             })
             .ToListAsync();
@@ -137,7 +137,7 @@ namespace AbayundaTok.BLL.Services
             {
                 Id = f.Following.Id,
                 UserName = f.Following.UserName,
-                AvatarUrl = f.Following.AvatarUrl,
+                AvatarUrl = $"http://10.0.2.2:9000/avatars/{f.Following.AvatarUrl}",
                 Bio = f.Following.Bio ?? string.Empty
             })
             .ToListAsync();

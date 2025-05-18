@@ -2,6 +2,7 @@ import 'package:abayunda_tok_frontend/Models/VideoData.dart';
 import 'package:abayunda_tok_frontend/Screens/CommentScreens.dart';
 import 'package:abayunda_tok_frontend/Services/auth_service.dart';
 import 'package:abayunda_tok_frontend/Services/comment_service.dart';
+import 'package:abayunda_tok_frontend/Services/folower_service.dart';
 import 'package:abayunda_tok_frontend/pages/profile_page.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
@@ -12,8 +13,8 @@ class HomePage extends StatefulWidget {
   final VideoService videoService;
   final AuthService authService;
   final CommentService commentService;
-
-  const HomePage({super.key, required this.videoService, required this.authService, required this.commentService});
+  final FolowerService folowerService;
+  const HomePage({super.key, required this.videoService, required this.authService, required this.commentService, required this.folowerService});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -86,6 +87,7 @@ class _HomePageState extends State<HomePage> {
             authService: widget.authService,
             videoService: widget.videoService,
             commentService: widget.commentService,
+            folowerService: widget.folowerService,
           );
         },
       ),
@@ -99,13 +101,15 @@ class _VideoPlayerWithOverlay extends StatefulWidget {
   final AuthService authService;
   final VideoService videoService;
   final CommentService commentService;
+  final FolowerService folowerService;
 
   const _VideoPlayerWithOverlay({
     required this.videoUrl,
     required this.description,
     required this.authService,
     required this.videoService,
-    required this.commentService
+    required this.commentService,
+    required this.folowerService
   });
 
   @override
@@ -212,7 +216,7 @@ class _VideoPlayerWithOverlayState extends State<_VideoPlayerWithOverlay> {
         Positioned(
           right: 10,
           bottom: 250,
-          child: _RightIcons(authService: widget.authService,videoData: _videoData,videoService: widget.videoService,commentService: widget.commentService, ),
+          child: _RightIcons(authService: widget.authService,videoData: _videoData,videoService: widget.videoService,commentService: widget.commentService,folowerService: widget.folowerService, ),
         ),
       ],
     );
@@ -223,13 +227,15 @@ class _RightIcons extends StatefulWidget {
   final AuthService authService; 
   final VideoData? videoData;
   final VideoService videoService;
+  final FolowerService folowerService;
   final CommentService commentService;
   
   const _RightIcons({
     required this.authService,
     required this.videoData,
     required this.videoService,
-    required this.commentService
+    required this.commentService,
+    required this.folowerService
   });
 
   @override
@@ -348,6 +354,7 @@ class _RightIconsState extends State<_RightIcons> {
                   videoService: widget.videoService,
                   commentService: widget.commentService,
                   userId: widget.videoData?.avtorId,
+                  folowerService: widget.folowerService,
                 ),
               ),
             );

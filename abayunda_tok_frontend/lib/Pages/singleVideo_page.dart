@@ -2,6 +2,7 @@ import 'package:abayunda_tok_frontend/Models/VideoData.dart';
 import 'package:abayunda_tok_frontend/Screens/CommentScreens.dart';
 import 'package:abayunda_tok_frontend/Services/auth_service.dart';
 import 'package:abayunda_tok_frontend/Services/comment_service.dart';
+import 'package:abayunda_tok_frontend/Services/folower_service.dart';
 import 'package:abayunda_tok_frontend/Services/video_service.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ class SingleVideoPage extends StatefulWidget {
   final VideoService videoService;
   final AuthService authService;
   final CommentService commentService;
+  final FolowerService folowerService;
   final String videoUrl;
 
   const SingleVideoPage({
@@ -20,6 +22,7 @@ class SingleVideoPage extends StatefulWidget {
     required this.videoService,
     required this.authService,
     required this.commentService,
+    required this.folowerService,
     required this.videoUrl,
   });
 
@@ -242,6 +245,7 @@ class _SingleVideoPageState extends State<SingleVideoPage> {
                             authService: widget.authService,
                             videoService: widget.videoService,
                             commentService: widget.commentService,
+                            folowerService: widget.folowerService,
                             userId: _videoData?.avtorId,
                           ),
                         ),

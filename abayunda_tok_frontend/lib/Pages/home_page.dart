@@ -126,13 +126,12 @@ class _VideoPlayerWithOverlayState extends State<_VideoPlayerWithOverlay> {
   bool _isLikeLoading = false;
 
   @override
-  void initState() {
-    super.initState();
-    _loadVideoDetails();
-    if(_isLoadingDetails){
-      _initializeVideo();
-    }
-  }
+void initState() {
+  super.initState();
+  _loadVideoDetails().then((_) {
+    _initializeVideo();
+  });
+}
 
   Future<void> _loadVideoDetails() async {
     try {

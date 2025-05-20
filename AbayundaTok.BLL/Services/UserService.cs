@@ -175,6 +175,20 @@ namespace AbayundaTok.BLL.Services
         {
             return await _context.Followers.AnyAsync(e => e.FollowerId == userId && e.FollowingId == signatoryId);
         }
+
+        public async Task<string> EditUserAsync(EditUserDto user, string userId)
+        {
+            var userFromDb = await _context.Users.FirstOrDefaultAsync(e => e.Id == userId);
+            if (userFromDb == null)
+                return "Пользователь не найднед";
+
+            userFromDb.Bio = user.Bio;
+            userFromDb.UserName = user.UserName;
+            _context.Users.Update(userFromDb);
+            await _context.SaveChangesAsync();
+            return "Пользователь изменен";
+
+        }
     }
 }
 

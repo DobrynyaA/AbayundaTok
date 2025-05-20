@@ -169,19 +169,57 @@ class AuthService {
   }
 
   Future<Map<String, dynamic>> getUserProfileById(String? userId) async {
-  try {
-    final response = await http.get(
-      Uri.parse('https://10.0.2.2:7000/api/Profile/$userId'), 
-    );
+    try {
+      final response = await http.get(
+        Uri.parse('https://10.0.2.2:7000/api/Profile/$userId'), 
+      );
 
-    if (response.statusCode == 200) {
-      return jsonDecode(response.body); 
+      if (response.statusCode == 200) {
+        return jsonDecode(response.body); 
+      }
+
+      throw Exception('Ошибка сервера: ${response.statusCode}');
+    } catch (e) {
+      print('Ошибка при загрузке профиля: $e');
+      throw e;
     }
-
-    throw Exception('Ошибка сервера: ${response.statusCode}');
-  } catch (e) {
-    print('Ошибка при загрузке профиля: $e');
-    throw e;
   }
-}
+  Future<bool> updateProfile({String? username, String? bio, File? avatarFile}) async {
+    try {
+      final token = await getToken();
+      if (token == null) return false;
+
+      final uri = Uri.parse('https://10.0.2.2:7000/api/Profile/update');
+      final request = http.MultipartRequest('PUT', uri);
+      
+      request.headers['Authorization'] = 'Bearer $token';
+      
+      if (username != null) {
+        request.fields['Username'] = username;
+      }
+      if (bio != null) {
+        request.fields['Bio'] = bio;
+      }
+      
+      if (avatarFile != null) {
+        final fileStream = http.ByteStream(avatarFile.openRead());
+        final length = await avatarFile.length();
+        
+        final multipartFile = http.MultipartFile(
+          'Avatar',
+          fileStream,
+          length,
+          filename: avatarFile.path.split('/').last,
+        );
+        
+        request.files.add(multipartFile);
+      }
+      
+      final response = await request.send();  
+      return response.statusCode == 200;
+    } catch (e) {
+      print('Error updating profile: $e');
+      return false;
+    }
+  }
 }

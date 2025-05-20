@@ -243,6 +243,32 @@
   },
   {
     "ContainingType": "AbayundaTok.PresentationLayer.Controllers.ProfileController",
+    "Method": "UpdateProfile",
+    "RelativePath": "api/Profile/update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Bio",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Avatar",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AbayundaTok.PresentationLayer.Controllers.ProfileController",
     "Method": "UploadPhoto",
     "RelativePath": "api/Profile/uploadAvatar",
     "HttpMethod": "POST",

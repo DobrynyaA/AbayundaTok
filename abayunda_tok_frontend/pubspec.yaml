@@ -37,6 +37,7 @@ dependencies:
   chewie: ^1.11.3
   cupertino_icons: ^1.0.8
   jwt_decoder: ^2.0.1
+  image_picker: ^0.8.7+1
 
 dev_dependencies:
   flutter_test:

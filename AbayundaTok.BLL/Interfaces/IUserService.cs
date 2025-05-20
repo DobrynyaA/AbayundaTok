@@ -21,5 +21,6 @@ namespace AbayundaTok.BLL.Interfaces
         Task<string> Follow(string userId, string signatoryId);
         Task<string> Unfollow(string userId, string signatoryId);
         Task<bool> IsFollowing(string userId,string signatoryId);
+        Task<string> EditUserAsync(EditUserDto user,  string userId);
     }
 }

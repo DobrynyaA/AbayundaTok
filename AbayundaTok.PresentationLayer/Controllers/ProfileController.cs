@@ -4,6 +4,8 @@ using Diplom.DAL.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -101,6 +103,34 @@ namespace AbayundaTok.PresentationLayer.Controllers
                 return NotFound();
 
             return folowers;
+        }
+
+        [HttpPut("update")]
+        [Authorize]
+        public async Task<IActionResult> UpdateProfile(EditUserDto model)
+        {
+            try 
+            { 
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                if (userId is null)
+                    throw new ArgumentNullException(nameof(userId));
+
+                if (model.Avatar != null && model.Avatar.Length != 0)
+                {
+                    var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
+                    var extension = Path.GetExtension(model.Avatar.FileName).ToLowerInvariant();
+
+                    if (!allowedExtensions.Contains(extension))
+                        return BadRequest("Invalid file type");
+                    var photoUrl = await _profileService.UploadAvatarAsync(model.Avatar, userId);
+                }
+                var request = await _profileService.EditUserAsync(model,userId);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
         }
     }
 }

@@ -36,4 +36,64 @@ class FolowerService {
       throw Exception('Failed to load followers');
     }
   }
+  Future<bool> follow(String? signatoryId) async {
+    try {
+      final token = await _authService.getToken();
+    final response = await http.post(
+      Uri.parse('$_baseUrl/api/Follow/follow/$signatoryId'),
+      headers: {
+        'Authorization': 'Bearer $token',
+        'Content-Type': 'application/json',
+      },
+    );
+      return response.statusCode == 200;
+    } catch (e) {
+      throw Exception('Failed to follow user');
+    }
+  }
+
+  Future<bool> unfollow(String? signatoryId) async {
+    try {
+      final token = await _authService.getToken();
+    final response = await http.post(
+      Uri.parse('$_baseUrl/api/Follow/unfollow/$signatoryId'),
+      headers: {
+        'Authorization': 'Bearer $token',
+        'Content-Type': 'application/json',
+      },
+    );
+      return response.statusCode == 200;
+    } catch (e) {
+      throw Exception('Failed to unfollow user');
+    }
+  }
+
+  Future<bool> isFollowing(String? signatoryId) async {
+    try {
+      final token = await _authService.getToken();
+      final response = await http.post(
+        Uri.parse('$_baseUrl/api/Follow/isfollower/$signatoryId'),
+        headers: {
+          'Authorization': 'Bearer $token',
+          'Content-Type': 'application/json',
+        },
+      );
+      final responseBody = false;
+      if (response.statusCode == 200) {
+        final responseBody = jsonDecode(response.body);  
+        if (responseBody is bool) {
+          return responseBody;
+        } 
+        else if (responseBody is Map && responseBody['isFollowing'] != null) {
+          return responseBody['isFollowing'] as bool;
+        } 
+        else if (responseBody is Map && responseBody['success'] != null) {
+          return responseBody['success'] as bool;
+        }
+      }
+      throw Exception('Invalid response format');
+    } catch (e) {
+      throw Exception('Failed to check follow status');
+    }
+  }
 }

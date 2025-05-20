@@ -30,17 +30,23 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   late Future<Map<String, dynamic>?> _userProfile;
+  late Future<String?> _currentUserId;
 
   @override
   void initState() {
     super.initState();
+    _currentUserId = widget.authService.getUserIdFromToken();
     _loadProfile();
   }
 
   void _loadProfile() {
-    _userProfile = widget.userId == null
+    _userProfile = _isMyProfile()
         ? widget.authService.getMyProfile()
-        : widget.authService.getUserProfileById(widget.userId!);
+        : widget.authService.getUserProfileById(widget.userId);
+  }
+
+  bool _isMyProfile() {
+    return _currentUserId == widget.userId;
   }
 
   @override
@@ -58,143 +64,180 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   SliverAppBar _buildProfileHeader() {
-  return SliverAppBar(
-    expandedHeight: 200,
-    flexibleSpace: FutureBuilder<Map<String, dynamic>?>(
-      future: _userProfile,
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
-        }
-        
-        final user = snapshot.data;
-        if (user == null) {
-          return const Center(child: Text('Профиль не найден'));
-        }
-
-        return Stack(
-          children: [
-            Positioned.fill(
-              child: Container(color: Colors.black),
-            ),
-            Positioned(
-              bottom: 16,
-              left: 16,
-              child: CircleAvatar(
-                radius: 50,
-                backgroundImage: NetworkImage(user['avatarUrl'] ?? 'https://via.placeholder.com/150'),
-              ),
-            ),
-          ],
-        );
-      },
-    ),
-  );
-}
-SliverToBoxAdapter _buildProfileStats() {
-  return SliverToBoxAdapter(
-    child: FutureBuilder<Map<String, dynamic>?>(
-      future: _userProfile,
-      builder: (context, snapshot) {
-        if (!snapshot.hasData) return const SizedBox.shrink();
-        final user = snapshot.data!;
-        
-        return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+    return SliverAppBar(
+      expandedHeight: 200,
+      flexibleSpace: FutureBuilder<Map<String, dynamic>?>(
+        future: _userProfile,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          
+          if (snapshot.hasError) {
+            return const Center(child: Text('Ошибка загрузки профиля'));
+          }
+          
+          final user = snapshot.data!;
+          return Stack(
             children: [
-              _buildStatItem(
-                user['followersCount']?.toString() ?? '0', 
-                'Подписчики',
-                context,
-                user
-              ),
-              _buildStatItem(
-                user['followingCount']?.toString() ?? '0', 
-                'Подписки',
-                context,
-                user
+              Positioned.fill(child: Container(color: Colors.black)),
+              Positioned(
+                bottom: 16,
+                left: 16,
+                child: CircleAvatar(
+                  radius: 50,
+                  backgroundImage: NetworkImage(user['avatarUrl'] ?? 'https://via.placeholder.com/150'),
+                ),
               ),
             ],
+          );
+        },
+      ),
+    );
+  }
+
+  SliverToBoxAdapter _buildProfileStats() {
+    return SliverToBoxAdapter(
+      child: FutureBuilder<Map<String, dynamic>?>(
+        future: _userProfile,
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) return const SizedBox.shrink();
+          final user = snapshot.data!;
+          
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                _buildStatItem(
+                  user['followersCount']?.toString() ?? '0', 
+                  'Подписчики',
+                  context,
+                  user
+                ),
+                _buildStatItem(
+                  user['followingCount']?.toString() ?? '0', 
+                  'Подписки',
+                  context,
+                  user
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildStatItem(String value, String label, BuildContext context, Map<String, dynamic> userData) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => FollowersFollowingScreen(
+              authService: widget.authService,
+              commentService: widget.commentService,
+              videoService: widget.videoService,
+              folowerService: widget.folowerService,
+              userId: widget.userId.toString(),
+              showFollowers: label == 'Подписчики',
+            ),
           ),
         );
       },
-    ),
-  );
-}
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            value,
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            label,
+            style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+          ),
+        ],
+      ),
+    );
+  }
 
-Widget _buildStatItem(String value, String label, BuildContext context, Map<String, dynamic> userData) {
-  return GestureDetector(
-    onTap: () async {
-      final userId = widget.userId ?? await widget.authService.getUserIdFromToken();
-      if (userId == null) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Не удалось получить ID пользователя')),
-        );
-        return;
-      }
-      
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => FollowersFollowingScreen(
-            authService: widget.authService,
-            commentService: widget.commentService,
-            videoService: widget.videoService,
-            folowerService: widget.folowerService,
-            userId: userId, // Теперь точно String
-            showFollowers: label == 'Подписчики',
-          ),
-        ),
-      );
-    },
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          value,
-          style: const TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          label,
-          style: TextStyle(
-            fontSize: 14,
-            color: Colors.grey[600],
-          ),
-        ),
-      ],
-    ),
-  );
-}
-SliverToBoxAdapter _buildProfileActions() {
-  final isCurrentUser = widget.userId == null;
-  
+  SliverToBoxAdapter _buildProfileActions() {
   return SliverToBoxAdapter(
-    child: FutureBuilder<Map<String, dynamic>?>(
-      future: _userProfile,
-      builder: (context, snapshot) {
-        if (!snapshot.hasData) return const SizedBox.shrink();
-        
+    child: FutureBuilder(
+      future: Future.wait([
+        _userProfile,
+        _currentUserId,
+        widget.folowerService.isFollowing(widget.userId!), 
+      ]),
+      builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
+        if (!snapshot.hasData) {
+          return const SizedBox.shrink();
+        }
+
+        final user = snapshot.data![0] as Map<String, dynamic>;
+        final currentUserId = snapshot.data![1] as String?;
+        final isFollowing = snapshot.data![2] as bool;
+
+        final isMyProfile = currentUserId == widget.userId;
+
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             children: [
               const SizedBox(height: 8),
-              if (isCurrentUser)
+              if (isMyProfile)
                 _buildActionButton(
                   text: 'Редактировать профиль',
                   icon: Icons.edit,
-                  onPressed: widget.authService.logout
-                ),
+                  onPressed: () {
+                    // TODO: Реализовать редактирование профиля
+                  },
+                )
+              else
+                _buildFollowButton(
+                  isFollowing: isFollowing,
+                  onPressed: () async {
+                    try {
+                      if (isFollowing) {
+                        await widget.folowerService.unfollow(widget.userId!);
+                      } else {
+                        await widget.folowerService.follow(widget.userId!);
+                      }
+                      setState(() {
+                        _loadProfile();
+                      });
+                    } catch (e) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Ошибка: ${e.toString()}')),
+                      );
+                    }
+                }),
             ],
           ),
         );
       },
+    ),
+  );
+}
+
+Widget _buildFollowButton({
+  required bool isFollowing,
+  required VoidCallback onPressed,
+}) {
+  return ElevatedButton(
+    style: ElevatedButton.styleFrom(
+      backgroundColor: isFollowing ? Colors.grey : Colors.blue,
+      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
+    ),
+    onPressed: onPressed,
+    child: Text(
+      isFollowing ? 'Отписаться' : 'Подписаться',
+      style: const TextStyle(color: Colors.white),
     ),
   );
 }

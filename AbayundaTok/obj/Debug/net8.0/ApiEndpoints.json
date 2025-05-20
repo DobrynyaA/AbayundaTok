@@ -74,6 +74,54 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "AbayundaTok.PresentationLayer.Controllers.FollowController",
+    "Method": "Follow",
+    "RelativePath": "api/Follow/follow/{signatoryId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "signatoryId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AbayundaTok.PresentationLayer.Controllers.FollowController",
+    "Method": "IsFollow",
+    "RelativePath": "api/Follow/isfollower/{signatoryId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "signatoryId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AbayundaTok.PresentationLayer.Controllers.FollowController",
+    "Method": "Unfollow",
+    "RelativePath": "api/Follow/unfollow/{signatoryId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "signatoryId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "AbayundaTok.PresentationLayer.Controllers.LikeController",
     "Method": "AddLike",
     "RelativePath": "api/Like/{videoId}",

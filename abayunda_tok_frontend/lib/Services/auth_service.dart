@@ -118,26 +118,26 @@ class AuthService {
     await _prefs.remove('jwt_token');
   }
 
-    Future<String?> getUserIdFromToken() async {
-      try {
-        final token = await getToken(); 
-        if (token == null) return null;
+  Future<String?> getUserIdFromToken() async {
+    try {
+      final token = await getToken(); 
+      if (token == null) return null;
         
-        final decodedToken = JwtDecoder.decode(token);
-        print('Decoded token: $decodedToken');
+      final decodedToken = JwtDecoder.decode(token);
+      print('Decoded token: $decodedToken');
         
-        final userId = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier']?.toString();
+      final userId = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier']?.toString();
         
-        if (userId == null) {
-          print('User ID not found in token claims');
-        }
-        
-        return userId;
-      } catch (e) {
-        print('Error getting user ID from token: $e');
-        return null;
+      if (userId == null) {
+        print('User ID not found in token claims');
       }
+        
+      return userId;
+    } catch (e) {
+      print('Error getting user ID from token: $e');
+      return null;
     }
+  }
 
   Future<Map<String, dynamic>?> getMyProfile() async {
     final token = await getToken();
@@ -168,7 +168,7 @@ class AuthService {
     }
   }
 
-  Future<Map<String, dynamic>> getUserProfileById(String userId) async {
+  Future<Map<String, dynamic>> getUserProfileById(String? userId) async {
   try {
     final response = await http.get(
       Uri.parse('https://10.0.2.2:7000/api/Profile/$userId'), 

@@ -144,6 +144,37 @@ namespace AbayundaTok.BLL.Services
 
             return followers;
         }
+
+        public async Task<string> Follow(string userId, string signatoryId)
+        {
+            var follow = new Follow
+            {
+                FollowerId = userId,
+                FollowingId = signatoryId
+            };
+
+            _context.Followers.Add(follow);
+            await _context.SaveChangesAsync();
+
+            return "Сервис подписки отработал";
+        }
+
+        public async Task<string> Unfollow(string userId, string signatoryId)
+        {
+                var request = await _context.Followers.FirstOrDefaultAsync(e => e.FollowerId == userId && e.FollowingId == signatoryId);
+                if (request == null)
+                    return "Пользователь не найден";
+
+                _context.Followers.Remove(request);
+                await _context.SaveChangesAsync();
+
+                return "Сервис отписки отработал";
+        }
+
+        public async Task<bool> IsFollowing(string userId, string signatoryId)
+        {
+            return await _context.Followers.AnyAsync(e => e.FollowerId == userId && e.FollowingId == signatoryId);
+        }
     }
 }
 

@@ -32,22 +32,42 @@ class _AuthPageState extends State<AuthPage> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return FutureBuilder<bool>(
-      future: _isLoggedIn,
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Scaffold(
-            body: Center(child: CircularProgressIndicator()),
-          );
-        }
+Widget build(BuildContext context) {
+  return FutureBuilder<bool>(
+    future: _isLoggedIn,
+    builder: (context, snapshot) {
+      if (snapshot.connectionState == ConnectionState.waiting) {
+        return const Scaffold(
+          body: Center(child: CircularProgressIndicator()),
+        );
+      }
 
-        return snapshot.data == true 
-            ? ProfilePage(userId: null, authService: widget.authService, videoService: widget.videoService, commentService: widget.commentService, folowerService: widget.folowerService,)
-            : _buildAuthUI();
-      },
-    );
-  }
+      if (snapshot.data != true) {
+        return _buildAuthUI();
+      }
+
+      // Добавляем вложенный FutureBuilder для userId
+      return FutureBuilder<String?>(
+        future: widget.authService.getUserIdFromToken(),
+        builder: (context, userIdSnapshot) {
+          if (userIdSnapshot.connectionState == ConnectionState.waiting) {
+            return const Scaffold(
+              body: Center(child: CircularProgressIndicator()),
+            );
+          }
+
+          return ProfilePage(
+            userId: userIdSnapshot.data, // Может быть null
+            authService: widget.authService,
+            videoService: widget.videoService,
+            commentService: widget.commentService,
+            folowerService: widget.folowerService,
+          );
+        },
+      );
+    },
+  );
+}
 
   Widget _buildAuthUI() {
     return Scaffold(

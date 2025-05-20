@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AbayundaTok.BLL.Interfaces
+namespace AbayundaTok.BLL.DTO
 {
-
+    internal class EditUserDto
+    {
+    }
 }

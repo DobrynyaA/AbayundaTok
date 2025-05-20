@@ -6,6 +6,8 @@ import 'package:abayunda_tok_frontend/Screens/FolowwersFolowingScreen.dart';
 import 'package:abayunda_tok_frontend/Services/comment_service.dart';
 import 'package:abayunda_tok_frontend/Services/folower_service.dart';
 import 'package:abayunda_tok_frontend/Services/video_service.dart';
+import 'package:abayunda_tok_frontend/main.dart';
+import 'package:abayunda_tok_frontend/pages/auth_page.dart';
 import 'package:flutter/material.dart';
 import 'package:abayunda_tok_frontend/Services/auth_service.dart';
 
@@ -75,7 +77,19 @@ class _ProfilePageState extends State<ProfilePage> {
 
   SliverAppBar _buildProfileHeader() {
   return SliverAppBar(
-    expandedHeight: 250, // Увеличим высоту для размещения дополнительной информации
+    expandedHeight: 250,
+    actions: [
+        IconButton(
+          icon: const Icon(Icons.logout, color: Colors.white),
+          onPressed: () async {
+            await widget.authService.logout();
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => MyApp(authService: widget.authService,videoService: widget.videoService,commentService: widget.commentService,folowerService: widget.folowerService,)),
+            );
+          },
+        ),
+    ],
     flexibleSpace: FutureBuilder<Map<String, dynamic>?>(
       future: _userProfile,
       builder: (context, snapshot) {

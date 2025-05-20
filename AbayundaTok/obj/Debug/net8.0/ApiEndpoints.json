@@ -355,7 +355,12 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "file",
+        "Name": "Description",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "VideoFile",
         "Type": "Microsoft.AspNetCore.Http.IFormFile",
         "IsRequired": false
       }

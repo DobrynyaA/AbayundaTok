@@ -52,7 +52,8 @@ plugins {
 android {
     namespace = "com.example.abayunda_tok_frontend"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = "25.1.8937393"
+    //ndkVersion = "25.1.8937393"
+    ndkVersion = "25.2.9519653"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -72,6 +73,7 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+        multiDexEnabled true
     }
 
     buildTypes {

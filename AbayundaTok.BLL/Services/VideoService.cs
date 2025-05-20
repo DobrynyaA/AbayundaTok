@@ -39,7 +39,7 @@ namespace AbayundaTok.BLL.Services
                 );
         }
 
-        public async Task<Video> UploadVideoAsync(IFormFile file, string userId)
+        public async Task<Video> UploadVideoAsync(IFormFile file,string description, string userId)
         {
             await EnsureBucketExistsAsync();
             await EnsureThumbnailBucketExistsAsync();
@@ -119,7 +119,7 @@ namespace AbayundaTok.BLL.Services
                 {
                     UserId = userId,
                     VideoUrl = videoUrl,
-                    Description = "fsdfsdfsdf",
+                    Description = description,
                     ThumbnailUrl = $"http://10.0.2.2:9000/thumbnails/{videoUrl}.jpg"
                 };
 
@@ -141,7 +141,6 @@ namespace AbayundaTok.BLL.Services
                 {
                     File.Delete(originalPath);
                 }
-
                 if (Directory.Exists(hlsPath))
                 {
                     Directory.Delete(hlsPath, true);

@@ -43,7 +43,7 @@ class AuthService {
       print('Login error: $e');
       return false;
     } finally {
-      client.close(); // Закрываем клиент
+      client.close(); 
     }
   }
 

@@ -11,7 +11,7 @@ namespace AbayundaTok.BLL.Interfaces
 {
     public interface IVideoService
     {
-        Task<Video> UploadVideoAsync(IFormFile file,string userId);
+        Task<Video> UploadVideoAsync(IFormFile file, string description, string userId);
         Task<Stream> GetVideoStreamAsync(string videoUrl);
         Task<string> GetVideoPlaylistAsync(string videoUrl);
         Task<VideoDto> GetVideoMetadataAsync(string videoUrl);

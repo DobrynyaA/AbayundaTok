@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:abayunda_tok_frontend/Pages/auth_page.dart';
+import 'package:abayunda_tok_frontend/Pages/uploadVideo_page.dart';
 import 'package:abayunda_tok_frontend/Services/comment_service.dart';
 import 'package:abayunda_tok_frontend/Services/folower_service.dart';
 import 'package:flutter/material.dart';
@@ -75,6 +76,7 @@ class _MainNavigationState extends State<MainNavigation> {
         index: _currentIndex,
         children: [
           HomePage(videoService: widget.videoService, authService: widget.authService, commentService: widget.commentService,folowerService: widget.folowerService,),
+          UploadVideoPage(videoService: widget.videoService, authService: widget.authService),
           AuthPage(authService: widget.authService, videoService: widget.videoService, commentService: widget.commentService,folowerService: widget.folowerService,),
         ],
       ),
@@ -82,6 +84,7 @@ class _MainNavigationState extends State<MainNavigation> {
         currentIndex: _currentIndex,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Главная'),
+          BottomNavigationBarItem(icon: Icon(Icons.add_a_photo), label: 'Загрузить видео'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Профиль'),
         ],
         onTap: (index) => setState(() => _currentIndex = index),

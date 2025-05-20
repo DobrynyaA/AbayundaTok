@@ -27,10 +27,10 @@ namespace AbayundaTok.PresentationLayer.Controllers
 
         [Authorize]
         [HttpPost("upload")]
-        public async Task<IActionResult> UploadVideo(IFormFile file)
+        public async Task<IActionResult> UploadVideo(UploadVideo video)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var videoId = await _videoService.UploadVideoAsync(file,userId);
+            var videoId = await _videoService.UploadVideoAsync(video.VideoFile,video.Description,userId);
             return Ok(new { VideoId = videoId });
         }
 

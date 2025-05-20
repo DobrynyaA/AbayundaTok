@@ -1,6 +1,7 @@
 import 'package:abayunda_tok_frontend/Services/comment_service.dart';
 import 'package:abayunda_tok_frontend/Services/folower_service.dart';
 import 'package:abayunda_tok_frontend/Services/video_service.dart';
+import 'package:abayunda_tok_frontend/main.dart';
 import 'package:abayunda_tok_frontend/pages/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:abayunda_tok_frontend/Services/auth_service.dart';
@@ -46,7 +47,6 @@ Widget build(BuildContext context) {
         return _buildAuthUI();
       }
 
-      // Добавляем вложенный FutureBuilder для userId
       return FutureBuilder<String?>(
         future: widget.authService.getUserIdFromToken(),
         builder: (context, userIdSnapshot) {
@@ -57,7 +57,7 @@ Widget build(BuildContext context) {
           }
 
           return ProfilePage(
-            userId: userIdSnapshot.data, // Может быть null
+            userId: userIdSnapshot.data,
             authService: widget.authService,
             videoService: widget.videoService,
             commentService: widget.commentService,
@@ -126,9 +126,11 @@ Widget build(BuildContext context) {
                 passwordController.text,
               );
               if (mounted) {
-                Navigator.pop(context);
                 if (success) {
-                  _refresh();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyApp(authService: widget.authService,videoService: widget.videoService,commentService: widget.commentService,folowerService: widget.folowerService,)),
+                  );
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Ошибка входа')),

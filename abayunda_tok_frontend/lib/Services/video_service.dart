@@ -125,7 +125,7 @@ class VideoService {
       
       await tempFile.delete();
       
-      return response.statusCode == 500;
+      return response.statusCode == 200;
     } catch (e) {
       print('Error uploading video: $e');
       return false;

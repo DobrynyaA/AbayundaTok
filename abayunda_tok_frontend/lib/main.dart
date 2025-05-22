@@ -76,7 +76,7 @@ class _MainNavigationState extends State<MainNavigation> {
         index: _currentIndex,
         children: [
           HomePage(videoService: widget.videoService, authService: widget.authService, commentService: widget.commentService,folowerService: widget.folowerService,),
-          UploadVideoPage(videoService: widget.videoService, authService: widget.authService),
+          UploadVideoPage(videoService: widget.videoService, authService: widget.authService,commentService: widget.commentService,folowerService: widget.folowerService,),
           AuthPage(authService: widget.authService, videoService: widget.videoService, commentService: widget.commentService,folowerService: widget.folowerService,),
         ],
       ),

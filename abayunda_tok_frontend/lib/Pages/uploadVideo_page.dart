@@ -1,4 +1,8 @@
 import 'dart:io';
+import 'package:abayunda_tok_frontend/Models/Comment.dart';
+import 'package:abayunda_tok_frontend/Services/comment_service.dart';
+import 'package:abayunda_tok_frontend/Services/folower_service.dart';
+import 'package:abayunda_tok_frontend/main.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:abayunda_tok_frontend/Services/video_service.dart';
@@ -8,11 +12,15 @@ import 'package:video_player/video_player.dart';
 class UploadVideoPage extends StatefulWidget {
   final VideoService videoService;
   final AuthService authService;
+  final CommentService commentService;
+  final FolowerService folowerService;
 
   const UploadVideoPage({
     super.key,
     required this.videoService,
     required this.authService,
+    required this.commentService,
+    required this.folowerService,
   });
 
   @override
@@ -62,7 +70,10 @@ class _UploadVideoPageState extends State<UploadVideoPage> {
 
       if (success) {
         if (!mounted) return;
-        Navigator.pop(context, true);
+        Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyApp(authService: widget.authService,videoService: widget.videoService,commentService: widget.commentService,folowerService: widget.folowerService,)),
+                  );
       } else {
         if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(

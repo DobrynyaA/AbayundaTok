@@ -79,7 +79,7 @@ namespace AbayundaTok.BLL.Services
                 "-vf \"scale=-2:720\" " +
                 "-c:a aac " +
                 "-b:a 128k " +
-                "-hls_time 4 " +
+                "-hls_time 1 " +
                 "-hls_playlist_type vod " +
                 $"-hls_segment_filename \"{Path.Combine(hlsPath, "%03d.ts")}\" " +
                 $"-hls_base_url \"http://10.0.2.2:9000/videos/{videoUrl}/\" " +
@@ -137,17 +137,79 @@ namespace AbayundaTok.BLL.Services
             }
             finally
             {
-                if (File.Exists(originalPath))
+                try
                 {
-                    File.Delete(originalPath);
+                    KillAllFFmpegProcesses();
+                    SafeDeleteFile(originalPath);
+                    await ForceDeleteDirectoryAsync(hlsPath);
                 }
-                if (Directory.Exists(hlsPath))
+                catch (Exception ex)
                 {
-                    Directory.Delete(hlsPath, true);
+                    Console.WriteLine($"Ошибка при очистке временных файлов: {ex.Message}");
+                }
+            }
+        }
+        private void KillAllFFmpegProcesses()
+        {
+            foreach (var process in Process.GetProcessesByName("ffmpeg"))
+            {
+                try
+                {
+                    process.Kill();
+                    process.WaitForExit(1000);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Ошибка при завершении FFmpeg: {ex.Message}");
+                }
+            }
+        }
+        private void SafeDeleteFile(string path, int retries = 3, int delayMs = 500)
+        {
+            for (int i = 0; i < retries; i++)
+            {
+                try
+                {
+                    if (File.Exists(path))
+                    {
+                        File.Delete(path);
+                        break;
+                    }
+                }
+                catch (IOException)
+                {
+                    if (i == retries - 1) throw;
+                    Thread.Sleep(delayMs);
                 }
             }
         }
 
+        private async Task ForceDeleteDirectoryAsync(string path, int retries = 5, int delayMs = 1000)
+        {
+            if (!Directory.Exists(path))
+                return;
+
+            for (int i = 0; i < retries; i++)
+            {
+                try
+                {
+                    foreach (var file in Directory.GetFiles(path))
+                    {
+                        SafeDeleteFile(file, retries: 3, delayMs: 300);
+                    }
+
+                    Directory.Delete(path, recursive: true);
+                    break;
+                }
+                catch (IOException ex)
+                {
+                    if (i == retries - 1)
+                        throw new Exception($"Не удалось удалить директорию {path}: {ex.Message}");
+
+                    await Task.Delay(delayMs);
+                }
+            }
+        }
         private async Task EnsureThumbnailBucketExistsAsync()
         {
             var bucketName = "thumbnails";

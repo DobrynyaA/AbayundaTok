@@ -3,10 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dobrynya\\AppData\\Local\\SourceServer\\64998043fc50716e0231f2eb3025d2ac9037409f1c583bcd6eb9c106d24f9768\\AbayundaTok.BLL\\Services\\VideoService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9BFD6A4E-5DA9-44CC-9ADC-C6FA066A50D4}|..\\AbayundaTok.BLL\\AbayundaTok.BLL.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.bll\\services\\videoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9BFD6A4E-5DA9-44CC-9ADC-C6FA066A50D4}|..\\AbayundaTok.BLL\\AbayundaTok.BLL.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.bll\\services\\videoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dobrynya\\AppData\\Local\\SourceServer\\64998043fc50716e0231f2eb3025d2ac9037409f1c583bcd6eb9c106d24f9768\\AbayundaTok.BLL\\Services\\VideoService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5F2644F3-5FBD-4508-AF71-E3F94BBCF2B3}|..\\AbayundaTok.PresentationLayer\\AbayundaTok.PresentationLayer.csproj|c:\\users\\dobrynya\\desktop\\vkr\\abayundatok.presentationlayer\\controllers\\videocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -105,17 +105,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "VideoService.cs",
               "DocumentMoniker": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\Services\\VideoService.cs",
               "RelativeDocumentMoniker": "..\\AbayundaTok.BLL\\Services\\VideoService.cs",
               "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.BLL\\Services\\VideoService.cs",
               "RelativeToolTip": "..\\AbayundaTok.BLL\\Services\\VideoService.cs",
-              "ViewState": "AQIAAH4AAAAAAAAAAAAAAI8AAAAmAAAA",
+              "ViewState": "AQIAAEoAAAAAAAAAAAAAAFEAAAAcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-03T11:56:07.979Z",
               "IsPinned": true,
@@ -179,12 +179,12 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "VideoService.cs",
               "DocumentMoniker": "C:\\Users\\Dobrynya\\AppData\\Local\\SourceServer\\64998043fc50716e0231f2eb3025d2ac9037409f1c583bcd6eb9c106d24f9768\\AbayundaTok.BLL\\Services\\VideoService.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\SourceServer\\64998043fc50716e0231f2eb3025d2ac9037409f1c583bcd6eb9c106d24f9768\\AbayundaTok.BLL\\Services\\VideoService.cs",
-              "ToolTip": "C:\\Users\\Dobrynya\\AppData\\Local\\SourceServer\\64998043fc50716e0231f2eb3025d2ac9037409f1c583bcd6eb9c106d24f9768\\AbayundaTok.BLL\\Services\\VideoService.cs*",
-              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\SourceServer\\64998043fc50716e0231f2eb3025d2ac9037409f1c583bcd6eb9c106d24f9768\\AbayundaTok.BLL\\Services\\VideoService.cs*",
+              "ToolTip": "C:\\Users\\Dobrynya\\AppData\\Local\\SourceServer\\64998043fc50716e0231f2eb3025d2ac9037409f1c583bcd6eb9c106d24f9768\\AbayundaTok.BLL\\Services\\VideoService.cs",
+              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\SourceServer\\64998043fc50716e0231f2eb3025d2ac9037409f1c583bcd6eb9c106d24f9768\\AbayundaTok.BLL\\Services\\VideoService.cs",
               "ViewState": "AQIAAIQAAAAAAAAAAAAlwI8AAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-20T20:21:57.748Z",

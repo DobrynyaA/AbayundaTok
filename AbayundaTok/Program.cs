@@ -107,6 +107,8 @@ builder.Services.AddSingleton<IMinioClient>(_ =>
 
 var app = builder.Build();
 
+//app.Urls.Add("http://0.0.0.0:7000");
+
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {

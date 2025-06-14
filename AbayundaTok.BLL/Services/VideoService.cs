@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.EntityFrameworkCore;
 using AbayundaTok.BLL.DTO;
 using System.Text.Json;
+using AbayundaTok.DAL.Constants;
 
 namespace AbayundaTok.BLL.Services
 {
@@ -82,7 +83,7 @@ namespace AbayundaTok.BLL.Services
                 "-hls_time 1 " +
                 "-hls_playlist_type vod " +
                 $"-hls_segment_filename \"{Path.Combine(hlsPath, "%03d.ts")}\" " +
-                $"-hls_base_url \"http://10.0.2.2:9000/videos/{videoUrl}/\" " +
+                $"-hls_base_url \"{URL.Url}/videos/{videoUrl}/\" " +
                 $"\"{Path.Combine(hlsPath, "master.m3u8")}\"";
 
                 await ExecuteFFmpegCommand(ffmpegCmd);
@@ -120,7 +121,7 @@ namespace AbayundaTok.BLL.Services
                     UserId = userId,
                     VideoUrl = videoUrl,
                     Description = description,
-                    ThumbnailUrl = $"http://10.0.2.2:9000/thumbnails/{videoUrl}.jpg"
+                    ThumbnailUrl = $"{URL.Url}/thumbnails/{videoUrl}.jpg"
                 };
 
                 try
@@ -254,7 +255,7 @@ namespace AbayundaTok.BLL.Services
 
         public async Task<string> GetVideoPlaylistAsync(string videoUrl)
         {
-            return $"http://localhost:9000/videos/{videoUrl}/master.m3u8";
+            return $"{URL.Url}/videos/{videoUrl}/master.m3u8";
         }
 
         public async Task<VideoDto> GetVideoMetadataAsync(string videoUrl)
@@ -267,10 +268,10 @@ namespace AbayundaTok.BLL.Services
                 Id = video.Id,
                 Description = video.Description,
                 LikeCount = video.LikeCount,
-                HlsUrl = $"http://10.0.2.2:9000/videos/{videoUrl}/master.m3u8",
+                HlsUrl = $"{URL.Url}/videos/{videoUrl}/master.m3u8",
                 CommentCount = video.CommentCount,
                 ThumbnailUrl = video.ThumbnailUrl,
-                AvtorAvatarUrl = $"http://10.0.2.2:9000/avatars/{user.AvatarUrl}",
+                AvtorAvatarUrl = $"{URL.Url}/avatars/{user.AvatarUrl}",
                 AvtorName = user.UserName
             };
             return meta;
@@ -291,7 +292,7 @@ namespace AbayundaTok.BLL.Services
                 HlsUrl = video.VideoUrl,
                 CommentCount = video.CommentCount,
                 ThumbnailUrl = video.ThumbnailUrl,
-                AvtorAvatarUrl = $"http://10.0.2.2:9000/avatars/{user.AvatarUrl}",
+                AvtorAvatarUrl = $"{URL.Url}/avatars/{user.AvatarUrl}",
                 AvtorName = user.UserName
             }).ToList();
 
@@ -310,7 +311,7 @@ namespace AbayundaTok.BLL.Services
                     Id = v.Id,
                     Description = v.Description,
                     LikeCount = v.LikeCount,
-                    HlsUrl = $"http://10.0.2.2:9000/videos/{v.VideoUrl}/master.m3u8",
+                    HlsUrl = $"{URL.Url}/videos/{v.VideoUrl}/master.m3u8",
                     CommentCount = v.CommentCount,
                     ThumbnailUrl = v.ThumbnailUrl,
                 })

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:abayunda_tok_frontend/Constants/Url.dart';
 import 'package:abayunda_tok_frontend/Pages/auth_page.dart';
 import 'package:abayunda_tok_frontend/Pages/uploadVideo_page.dart';
 import 'package:abayunda_tok_frontend/Services/comment_service.dart';
@@ -15,9 +16,9 @@ import 'package:flutter/services.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final authService = AuthService(await SharedPreferences.getInstance());
-  final videoService = VideoService(baseUrl: 'https://10.0.2.2:7000', authService: authService);
-  final commentService = CommentService(baseUrl: 'https://10.0.2.2:7000', authService: authService);
-  final folowerService = FolowerService(baseUrl: 'https://10.0.2.2:7000', authService: authService);
+  final videoService = VideoService(baseUrl: Url.serverAdress, authService: authService);
+  final commentService = CommentService(baseUrl: Url.serverAdress, authService: authService);
+  final folowerService = FolowerService(baseUrl: Url.serverAdress, authService: authService);
   HttpOverrides.global = _MyHttpOverrides();
   runApp(MyApp(authService: authService,videoService: videoService,commentService: commentService,folowerService: folowerService,));
 }

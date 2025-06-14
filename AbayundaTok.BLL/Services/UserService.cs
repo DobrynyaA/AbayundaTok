@@ -1,6 +1,7 @@
 ﻿using AbayundaTok.BLL.DTO;
 using AbayundaTok.BLL.Interfaces;
 using AbayundaTok.DAL;
+using AbayundaTok.DAL.Constants;
 using Diplom.DAL.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -94,7 +95,7 @@ namespace AbayundaTok.BLL.Services
 
         public async Task<string> GetAvatarUrlAsync(string photoUrl)
         {
-            return $"http://10.0.2.2:9000/{BucketName}/{photoUrl}";
+            return $"{URL.Url}/{BucketName}/{photoUrl}";
         }
 
         private async Task EnsureBucketExistsAsync()
@@ -119,7 +120,7 @@ namespace AbayundaTok.BLL.Services
             {
                 Id = f.Follower.Id,
                 UserName = f.Follower.UserName,
-                AvatarUrl = $"http://10.0.2.2:9000/avatars/{f.Follower.AvatarUrl}",
+                AvatarUrl = $"{URL.Url}/avatars/{f.Follower.AvatarUrl}",
                 Bio = f.Follower.Bio ?? string.Empty
             })
             .ToListAsync();
@@ -137,7 +138,7 @@ namespace AbayundaTok.BLL.Services
             {
                 Id = f.Following.Id,
                 UserName = f.Following.UserName,
-                AvatarUrl = $"http://10.0.2.2:9000/avatars/{f.Following.AvatarUrl}",
+                AvatarUrl = $"{URL.Url}/avatars/{f.Following.AvatarUrl}",
                 Bio = f.Following.Bio ?? string.Empty
             })
             .ToListAsync();

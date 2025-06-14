@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'package:abayunda_tok_frontend/Constants/Url.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,7 @@ import 'package:http/io_client.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 class AuthService {
-  static const String _baseUrl = 'https://10.0.2.2:7000/api/Auth';
+  static const String _baseUrl = '${Url.serverAdress}/api/Auth';
   final SharedPreferences _prefs;
 
   AuthService(this._prefs);
@@ -94,7 +95,7 @@ class AuthService {
     final ioClient = IOClient(client);
 
     final response = await ioClient.get(
-      Uri.parse('https://10.0.2.2:7000/api/Test'),
+      Uri.parse('${Url.serverAdress}/api/Test'),
       headers: {'Authorization': 'Bearer $token'},
     );
 
@@ -149,7 +150,7 @@ class AuthService {
       final ioClient = IOClient(client);
 
       final response = await ioClient.get(
-        Uri.parse('https://10.0.2.2:7000/api/Profile/my'),
+        Uri.parse('${Url.serverAdress}/api/Profile/my'),
         headers: {'Authorization': 'Bearer $token'},
       );
 
@@ -171,7 +172,7 @@ class AuthService {
   Future<Map<String, dynamic>> getUserProfileById(String? userId) async {
     try {
       final response = await http.get(
-        Uri.parse('https://10.0.2.2:7000/api/Profile/$userId'), 
+        Uri.parse('${Url.serverAdress}/api/Profile/$userId'), 
       );
 
       if (response.statusCode == 200) {
@@ -189,7 +190,7 @@ class AuthService {
       final token = await getToken();
       if (token == null) return false;
 
-      final uri = Uri.parse('https://10.0.2.2:7000/api/Profile/update');
+      final uri = Uri.parse('${Url.serverAdress}/api/Profile/update');
       final request = http.MultipartRequest('PUT', uri);
       
       request.headers['Authorization'] = 'Bearer $token';

@@ -1,13 +1,13 @@
 import 'dart:io';
-import 'package:abayunda_tok_frontend/Models/Comment.dart';
-import 'package:abayunda_tok_frontend/Services/comment_service.dart';
-import 'package:abayunda_tok_frontend/Services/folower_service.dart';
-import 'package:abayunda_tok_frontend/main.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:abayunda_tok_frontend/Services/video_service.dart';
-import 'package:abayunda_tok_frontend/Services/auth_service.dart';
 import 'package:video_player/video_player.dart';
+import 'package:abayunda_tok_frontend/Models/Comment.dart';
+import 'package:abayunda_tok_frontend/Services/auth_service.dart';
+import 'package:abayunda_tok_frontend/Services/comment_service.dart';
+import 'package:abayunda_tok_frontend/Services/folower_service.dart';
+import 'package:abayunda_tok_frontend/Services/video_service.dart';
+import 'package:abayunda_tok_frontend/main.dart';
 
 class UploadVideoPage extends StatefulWidget {
   final VideoService videoService;
@@ -70,10 +70,17 @@ class _UploadVideoPageState extends State<UploadVideoPage> {
 
       if (success) {
         if (!mounted) return;
-        Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => MyApp(authService: widget.authService,videoService: widget.videoService,commentService: widget.commentService,folowerService: widget.folowerService,)),
-                  );
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MyApp(
+              authService: widget.authService,
+              videoService: widget.videoService,
+              commentService: widget.commentService,
+              folowerService: widget.folowerService,
+            ),
+          ),
+        );
       } else {
         if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
@@ -99,16 +106,33 @@ class _UploadVideoPageState extends State<UploadVideoPage> {
   }
 
   Widget _buildAuthMessage() {
-    return const Center(
+    return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.lock, size: 50, color: Colors.grey),
-          SizedBox(height: 20),
-          Text(
+          const Icon(Icons.lock, size: 50, color: Colors.grey),
+          const SizedBox(height: 20),
+          const Text(
             'Авторизуйтесь, чтобы загрузить видео',
             style: TextStyle(fontSize: 18, color: Colors.grey),
             textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MyApp(
+                    authService: widget.authService,
+                    videoService: widget.videoService,
+                    commentService: widget.commentService,
+                    folowerService: widget.folowerService,
+                  ),
+                ),
+              );
+            },
+            child: const Text('Войти'),
           ),
         ],
       ),
@@ -120,6 +144,7 @@ class _UploadVideoPageState extends State<UploadVideoPage> {
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
+          // Видео превью
           if (_videoFile != null)
             AspectRatio(
               aspectRatio: 9/16,
@@ -127,13 +152,29 @@ class _UploadVideoPageState extends State<UploadVideoPage> {
             )
           else
             Container(
-              height: 300,
-              color: Colors.black12,
+              height: 200,
+              decoration: BoxDecoration(
+                color: Colors.black12,
+                borderRadius: BorderRadius.circular(12),
+              ),
               child: const Center(
-                child: Icon(Icons.videocam, size: 100, color: Colors.white30),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.videocam, size: 50, color: Colors.white30),
+                    SizedBox(height: 10),
+                    Text(
+                      'Выберите видео',
+                      style: TextStyle(color: Colors.white30),
+                    ),
+                  ],
+                ),
               ),
             ),
+
           const SizedBox(height: 20),
+
+          // Кнопки выбора видео
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -149,14 +190,52 @@ class _UploadVideoPageState extends State<UploadVideoPage> {
               ),
             ],
           ),
+
           const SizedBox(height: 20),
+
+          // Поле описания
           TextField(
             controller: _descriptionController,
-            decoration: const InputDecoration(
+            style: const TextStyle(color: Colors.black), // Черный цвет текста
+            decoration: InputDecoration(
               labelText: 'Описание видео',
-              border: OutlineInputBorder(),
+              labelStyle: const TextStyle(color: Colors.black54),
+              filled: true,
+              fillColor: Colors.white,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide.none,
+              ),
+              contentPadding: const EdgeInsets.all(16),
             ),
             maxLines: 3,
+          ),
+
+          const SizedBox(height: 20),
+
+          // Кнопка загрузки
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+              onPressed: _videoFile != null && !_isUploading ? _uploadVideo : null,
+              child: _isUploading
+                  ? const CircularProgressIndicator(color: Colors.white)
+                  : const Text(
+                      'Загрузить видео',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+            ),
           ),
         ],
       ),
@@ -169,10 +248,10 @@ class _UploadVideoPageState extends State<UploadVideoPage> {
       appBar: AppBar(
         title: const Text('Загрузить видео'),
         actions: [
-          if (_isLoggedIn)
+          if (_isLoggedIn && _videoFile != null)
             IconButton(
               icon: const Icon(Icons.upload),
-              onPressed: _videoFile != null && !_isUploading ? _uploadVideo : null,
+              onPressed: _isUploading ? null : _uploadVideo,
             ),
         ],
       ),
@@ -194,6 +273,7 @@ class VideoPlayerWidget extends StatefulWidget {
 
 class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
   late VideoPlayerController _controller;
+  bool _isPlaying = false;
 
   @override
   void initState() {
@@ -212,11 +292,29 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return _controller.value.isInitialized
-        ? AspectRatio(
+    return Stack(
+      children: [
+        if (_controller.value.isInitialized)
+          AspectRatio(
             aspectRatio: _controller.value.aspectRatio,
             child: VideoPlayer(_controller),
-          )
-        : const Center(child: CircularProgressIndicator());
+          ),
+        Center(
+          child: IconButton(
+            icon: Icon(
+              _isPlaying ? Icons.pause : Icons.play_arrow,
+              size: 50,
+              color: Colors.white.withOpacity(0.7),
+            ),
+            onPressed: () {
+              setState(() {
+                _isPlaying = !_isPlaying;
+                _isPlaying ? _controller.play() : _controller.pause();
+              });
+            },
+          ),
+        ),
+      ],
+    );
   }
 }

@@ -8,6 +8,7 @@ import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:abayunda_tok_frontend/Services/video_service.dart';
 import 'package:video_player/video_player.dart';
+import 'package:flutter/services.dart';
 
 class HomePage extends StatefulWidget {
   final VideoService videoService;
@@ -31,11 +32,18 @@ class _HomePageState extends State<HomePage> {
   int _currentPage = 1;
   bool _isLoading = false;
   bool _hasMore = true;
+  int _currentIndex = 0;
 
   @override
   void initState() {
     super.initState();
     _loadVideos();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
   }
 
   Future<void> _loadVideos() async {
@@ -73,6 +81,9 @@ class _HomePageState extends State<HomePage> {
         scrollDirection: Axis.vertical,
         itemCount: _videoUrls.length + (_hasMore ? 1 : 0),
         onPageChanged: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
           if (index >= _videoUrls.length - 3 && _hasMore) {
             _loadVideos();
           }
@@ -320,7 +331,9 @@ class _RightIconsState extends State<_RightIcons> {
     );
 
     if (updatedCount != null && mounted) {
-      setState(() => _commentCount = updatedCount);
+      setState(() {
+        _commentCount = updatedCount;
+      });
     }
   }
   @override

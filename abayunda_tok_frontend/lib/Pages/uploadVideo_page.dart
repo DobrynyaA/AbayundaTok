@@ -144,7 +144,6 @@ class _UploadVideoPageState extends State<UploadVideoPage> {
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
-          // Видео превью
           if (_videoFile != null)
             AspectRatio(
               aspectRatio: 9/16,
@@ -174,7 +173,6 @@ class _UploadVideoPageState extends State<UploadVideoPage> {
 
           const SizedBox(height: 20),
 
-          // Кнопки выбора видео
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -193,10 +191,9 @@ class _UploadVideoPageState extends State<UploadVideoPage> {
 
           const SizedBox(height: 20),
 
-          // Поле описания
           TextField(
             controller: _descriptionController,
-            style: const TextStyle(color: Colors.black), // Черный цвет текста
+            style: const TextStyle(color: Colors.black), 
             decoration: InputDecoration(
               labelText: 'Описание видео',
               labelStyle: const TextStyle(color: Colors.black54),
@@ -213,7 +210,6 @@ class _UploadVideoPageState extends State<UploadVideoPage> {
 
           const SizedBox(height: 20),
 
-          // Кнопка загрузки
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
@@ -226,7 +222,20 @@ class _UploadVideoPageState extends State<UploadVideoPage> {
               ),
               onPressed: _videoFile != null && !_isUploading ? _uploadVideo : null,
               child: _isUploading
-                  ? const CircularProgressIndicator(color: Colors.white)
+                  ? Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: const [
+                        CircularProgressIndicator(color: Colors.white),
+                        SizedBox(height: 8),
+                        Text(
+                          'Дождитесь, пока загрузится видео',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ],
+                    )
                   : const Text(
                       'Загрузить видео',
                       style: TextStyle(
@@ -256,7 +265,22 @@ class _UploadVideoPageState extends State<UploadVideoPage> {
         ],
       ),
       body: _isUploading
-          ? const Center(child: CircularProgressIndicator())
+          ? const Center(
+            child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: const [
+                        CircularProgressIndicator(color: Colors.white),
+                        SizedBox(height: 8),
+                        Text(
+                          'Дождитесь, пока загрузится видео',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ],
+                    ) //CircularProgressIndicator()
+            )
           : _isLoggedIn ? _buildUploadInterface() : _buildAuthMessage(),
     );
   }

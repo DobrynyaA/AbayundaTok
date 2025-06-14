@@ -65,6 +65,12 @@ class _CommentsScreenState extends State<CommentsScreen> {
           );
         }
       });
+
+      // Получаем обновленное количество комментариев
+      final comments = await _loadComments();
+      if (mounted) {
+        Navigator.pop(context, comments.length);
+      }
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Ошибка: $e')),

@@ -117,6 +117,10 @@
           "SelectedChildIndex": 8,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 6,
               "Title": "VideoService.cs",
@@ -195,10 +199,6 @@
               "IsPinned": true
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
               "$type": "Document",
               "DocumentIndex": 9,
               "Title": "Video.cs",
@@ -218,7 +218,7 @@
               "RelativeDocumentMoniker": "..\\AbayundaTok.PresentationLayer\\Controllers\\VideoController.cs",
               "ToolTip": "C:\\Users\\Dobrynya\\Desktop\\VKR\\AbayundaTok.PresentationLayer\\Controllers\\VideoController.cs",
               "RelativeToolTip": "..\\AbayundaTok.PresentationLayer\\Controllers\\VideoController.cs",
-              "ViewState": "AQIAAC0AAAAAAAAAAAAIwDcAAAATAAAA",
+              "ViewState": "AQIAABoAAAAAAAAAAAAiwDcAAAATAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-04T12:50:01.394Z",
               "EditorCaption": ""
@@ -245,7 +245,8 @@
               "RelativeToolTip": "..\\AbayundaTok.PresentationLayer\\Controllers\\ProfileController.cs",
               "ViewState": "AQIAADkAAAAAAAAAAAAQwHEAAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-10T21:24:07.703Z"
+              "WhenOpened": "2025-05-10T21:24:07.703Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
